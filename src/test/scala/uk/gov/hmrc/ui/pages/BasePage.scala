@@ -180,14 +180,14 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def clickLinkById(linkId: String): Unit =
     try {
       click(By.id(linkId))
-      println(s"Successfully clicked the link with ID: $linkId")
+      logger.info(s"Successfully clicked the link with ID: $linkId")
     } catch {
       case e: Exception =>
-        println(s"Failed to click the link with ID: $linkId. Error: ${e.getMessage}")
+        logger.info(s"Failed to click the link with ID: $linkId. Error: ${e.getMessage}")
     }
 
   def verifyPageTitle(expectedTitle: String): Unit = {
-    println("Actual page title is: " + driver.getTitle)
+    logger.info("Actual page title is: " + driver.getTitle)
     waitForPageTitle(expectedTitle)
     assert(
       driver.getTitle == expectedTitle,
@@ -196,7 +196,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   def verifyPageTitleContains(expectedString: String): Unit = {
-    println("Actual page title is: " + driver.getTitle)
+    logger.info("Actual page title is: " + driver.getTitle)
     waitForPageTitleContains(expectedString)
     assert(
       expectedString.contains(driver.getTitle),
@@ -217,7 +217,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
       actualHeader == expectedHeader,
       s"Page header mismatch! Expected: $expectedHeader, Actual: $actualHeader"
     )
-    println("Actual page header is: " + driver.findElement(Locators.txtHeader).getText)
+    logger.info("Actual page header is: " + driver.findElement(Locators.txtHeader).getText)
   }
 
   def waitForElementToBeClickable(selector: By): WebElement =
