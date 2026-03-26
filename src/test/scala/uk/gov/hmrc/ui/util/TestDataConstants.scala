@@ -19,9 +19,6 @@ package uk.gov.hmrc.ui.util
 object TestDataConstants {
 
   // ==== Auth
-  // --  Confidence level
-  final val lowConfidence: String  = "50"
-  final val highConfidence: String = "250"
 
   // -- Affinity Group
   final val affinityIndividual: String   = "Individual"
@@ -53,9 +50,6 @@ object TestDataConstants {
   final val postcodeSL: String                  = "AA1 1AA"
   final val CRRelief: String                    = "Charities Relief"
   final val validCRN: String                    = "SN898989"
-
-  final val waitFor1Sec: Int = 1000
-  final val waitFor5Sec: Int = 5000
 
   // -- Local
   final val ukPostCode: String = "ZZ11ZZ"

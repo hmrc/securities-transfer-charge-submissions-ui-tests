@@ -32,15 +32,10 @@ object AuthWizard extends BasePage {
 
   val redirectUrl: By     = By.id("redirectionUrl")
   val affinityGroup: By   = By.id("affinityGroupSelect")
-  val confidenceLevel: By = By.id("confidenceLevel")
-  val nino: By            = By.id("nino")
-  val addPreset: By       = By.id("add-ident-btn-0")
   val enrolmentKey: By    = By.id("enrolment[0].name")
   val identifierName: By  = By.id("input-0-0-name")
   val identifierValue: By = By.id("input-0-0-value")
   val btnSubmit: By       = By.id("submit")
-  val givenName: By       = By.id("itmp.givenName")
-  val familyName: By      = By.id("itmp.familyName")
 
   def loginAsIndividual(): Unit = {
     AuthWizard.navigateToPage(url + Urls.SUBMISSION)

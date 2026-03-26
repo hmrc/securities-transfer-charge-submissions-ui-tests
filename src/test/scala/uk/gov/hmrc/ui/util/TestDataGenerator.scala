@@ -22,22 +22,6 @@ import scala.util.Random
 
 object TestDataGenerator {
 
-  private val validPrefixLetters = "ABCEGHJKLMNPRSTWXYZ" // Excludes D, F, I, Q, U, V
-  private val suffixLetters      = "ABCD"
-
-  def generateNino(): String = {
-    val random = new Random()
-
-    val firstLetter  = validPrefixLetters(random.nextInt(validPrefixLetters.length))
-    val secondLetter = validPrefixLetters(random.nextInt(validPrefixLetters.length))
-
-    val digits = (1 to 6).map(_ => random.nextInt(10)).mkString
-
-    val suffix = suffixLetters(random.nextInt(suffixLetters.length))
-
-    s"$firstLetter$secondLetter$digits$suffix"
-  }
-
   def generateRandomString(length: Int): String = {
     val chars  = ('A' to 'Z') ++ ('a' to 'z') ++ ('0' to '9')
     val random = new Random()
@@ -74,14 +58,6 @@ object TestDataGenerator {
       s"$wholePart.$decimalPart"
     }
   }
-
-  def generateNino(prefix: String = "AA"): String = {
-    val num    = Random.nextInt(1000000)
-    val suffix = "C"
-    f"$prefix$num%06d$suffix"
-  }
-
-  val testNino: String = generateNino("AB")
 
   private val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
 

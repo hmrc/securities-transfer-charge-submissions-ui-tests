@@ -21,6 +21,6 @@ object Urls extends Enumeration {
 
   val SUBMISSION: String =
     if (env == "local")
-      "/auth-login-stub/gg-sign-in?continue=http://localhost:30036/securities-transfer-charge/submissions-dashboard"
-    else "/auth-login-stub/gg-sign-in?continue=/securities-transfer-charge/submissions-dashboard"
+      "auth-login-stub/gg-sign-in?continue=http://localhost:30036/securities-transfer-charge/submissions-dashboard"
+    else "auth-login-stub/gg-sign-in?continue=/securities-transfer-charge/submissions-dashboard"
 }

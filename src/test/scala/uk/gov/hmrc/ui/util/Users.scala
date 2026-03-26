@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.ui.util
 
-import uk.gov.hmrc.ui.util.TestDataGenerator.generateNino
-
 object Users {
 
   sealed abstract class UserTypes(val affinity: String, val slug: String, val landingPage: String, val slug2: String)
@@ -59,7 +57,6 @@ object Users {
           identifier = "",
           enrolmentKey = "",
           enrolmentId = "",
-          nino = generateNino(),
           confidenceLevel = "250",
           saPreset = ""
         )
