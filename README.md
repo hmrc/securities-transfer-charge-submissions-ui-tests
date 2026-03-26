@@ -1,8 +1,7 @@
-**This is the template README. Please update this with project specific content.**
 
 # securities-transfer-charge-submissions-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+UI journey tests suite for the [securities-transfer-charge-submissions](https://github.com/hmrc/securities-transfer-charge-submissions) using SeleniumWebdriver with ScalaTest.
 
 ## Pre-requisites
 
@@ -14,11 +13,12 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:6.0
 ```
 
-Start `<SERVICE_MANAGER_PROFILE>` services as follows:
+To start the required services via [service manager](https://github.com/hmrc/sm2), run:
 
 ```bash
-sm2 --start <SERVICE_MANAGER_PROFILE>
+sm2 --start STAMP_TAXES_ON_SHARES_ALL
 ```
+
 
 ## Tests
 
