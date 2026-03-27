@@ -14,28 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.CommonPages
+package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+object SubmissionsDashboardPage extends BasePage {
 
-object CheckYourAnswersPage extends BasePage {
+  override def pageUrl: String = "/securities-transfer-charge/submissions-dashboard"
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/check-your-answers"
-
-  // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Check your answers - securities-transfer-charge-frontend - GOV.UK"
+    "Submissions - securities-transfer-charge-frontend - GOV.UK"
 
-  def verify(expectedTitle: String): Unit = {
+  def createNewSubmission(): Unit = {
     verifyPageTitle(pageTitle)
-    val panelTitle = driver.findElement(By.cssSelector(".govuk-heading-xl"))
-
-    val actualText = panelTitle.getText.trim
-
-    assert(
-      actualText == expectedTitle,
-      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
-    )
+    continue()
   }
 }

@@ -21,12 +21,12 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import SecuritiesTypePage.{Other, Shares}
-import TaxRatePage.{HalfRate, OneAndHalfRate}
+import uk.gov.hmrc.ui.pages.SecuritiesTypePage.{Other, Shares}
+import uk.gov.hmrc.ui.pages.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
-class S1SubmissionsIndividualSpec
+class S2SubmissionsBusinessSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -36,10 +36,10 @@ class S1SubmissionsIndividualSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC Individual Journeys") {
-    Scenario("Submission of a user as an Individual") {
+  Feature("STC Business Journeys") {
+    Scenario("Submission of a user as an Business") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -68,10 +68,10 @@ class S1SubmissionsIndividualSpec
     }
 
     Scenario(
-      "Submission of a user as an Individual - Edit and update buyer's & seller's address to another UK address"
+      "Submission of a user as an Business - Edit and update buyer's & seller's address to another UK address"
     ) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -103,9 +103,9 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Individual - Edit and update buyer's & seller's address to non UK address") {
+    Scenario("Submission of a user as an Business - Edit and update buyer's & seller's address to non UK address") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -135,9 +135,9 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Individual with non connected persons") {
+    Scenario("Submission of a user as an Business with non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -165,9 +165,9 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Individual with no relief option") {
+    Scenario("Submission of a user as an Business with no relief option") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -194,9 +194,9 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Individual with other securities type") {
+    Scenario("Submission of a user as an Business with other securities type") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -226,9 +226,9 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Individual with other securities type for non connected persons") {
+    Scenario("Submission of a user as an Business with other securities type for non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsIndividual()
+      AuthWizard.loginAsOrganisation()
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()

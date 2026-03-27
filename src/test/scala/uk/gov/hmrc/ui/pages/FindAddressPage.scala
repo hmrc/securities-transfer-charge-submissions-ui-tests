@@ -14,23 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object FindAddressPage extends BasePage {
 
-object BuyDatePage extends BasePage {
-
-  override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
+  override def pageUrl: String = "lookup-address/*/lookup"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "When did you buy these securities? - securities-transfer-charge-frontend - GOV.UK"
+    "Find the seller’s address - - GOV.UK " +
+      "& Find the buyer’s address - - GOV.UK" +
+      "& Find the business’s address - - GOV.UK"
 
-  def enterDate(date: String, month: String, year: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
+  def enterPostCode(postcode: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtPostCode, postcode)
     continue()
+  }
+
+  def clickEnterTheAddressManually(): Unit = {
+    verifyPageTitleContains(pageTitle)
+    click(Locators.lnkAddrManually)
   }
 }

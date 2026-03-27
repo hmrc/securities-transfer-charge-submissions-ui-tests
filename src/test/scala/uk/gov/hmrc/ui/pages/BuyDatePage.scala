@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataConstants.validCRN
-import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomString
+object BuyDatePage extends BasePage {
 
-object BusinessBuyingInPage extends BasePage {
-
-  override def pageUrl: String = "/securities-transfer-charge/stf/securities-target"
+  override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What business are you buying these securities in? - securities-transfer-charge-frontend - GOV.UK"
+    "When did you buy these securities? - securities-transfer-charge-frontend - GOV.UK" +
+      "& What is the charging point? - securities-transfer-charge-frontend - GOV.UK"
 
-  def enterValues(): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtBusinessName, generateRandomString(10))
-    input(Locators.txtCRN, validCRN)
+  def enterDate(date: String, month: String, year: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtDate, date)
+    input(Locators.txtMonth, month)
+    input(Locators.txtYear, year)
     continue()
   }
 }

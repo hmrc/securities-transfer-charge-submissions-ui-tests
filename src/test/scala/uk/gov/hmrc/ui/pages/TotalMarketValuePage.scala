@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomAmount
 
-object HowMuchPaidPage extends BasePage {
+object TotalMarketValuePage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/consideration"
+  override def pageUrl: String = "/securities-transfer-charge/stf/total-market-value"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "How much did you pay for these securities? - securities-transfer-charge-frontend - GOV.UK"
+    "What is the total market value of these securities? - securities-transfer-charge-frontend - GOV.UK"
 
   def enterValues(): Unit = {
     verifyPageTitle(pageTitle)
-    input(Locators.txtValue, generateRandomAmount(10))
+    input(Locators.txtValue, generateRandomAmount(9))
     continue()
   }
 }

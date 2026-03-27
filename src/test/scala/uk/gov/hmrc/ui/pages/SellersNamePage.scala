@@ -14,32 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.CommonPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object SellersNamePage extends BasePage {
 
-object AboutYourSecuritiesTransfersPage extends BasePage {
+  override def pageUrl: String = "/securities-transfer-charge/stf/seller-name"
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/how-many-transfers"
-
-  sealed trait ConfirmationOption {
-    def selector: String
-  }
-
-  case object One extends ConfirmationOption {
-    val selector = "#value_0"
-  }
-
-  case object More extends ConfirmationOption {
-    val selector = "#value_1"
-  }
-
+  // placeholder yet to finalize the title
   override def pageTitle: String =
-    "How do you want to tell us about your securities transfers? - securities-transfer-charge-frontend - GOV.UK"
+    "What’s the seller’s name? - securities-transfer-charge-frontend - GOV.UK"
 
-  def selectOneOrMore(option: ConfirmationOption = One): Unit = {
+  def enterName(sellerName: String): Unit = {
     verifyPageTitle(pageTitle)
-    radioButton(option.selector)
+    input(Locators.txtValue, sellerName)
     saveAndContinue()
   }
 }

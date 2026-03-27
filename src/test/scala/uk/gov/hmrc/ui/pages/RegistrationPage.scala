@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.CommonPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object RegistrationPage extends BasePage {
 
-object SubmissionsDashboardPage extends BasePage {
-
-  override def pageUrl: String = "/securities-transfer-charge/submissions-dashboard"
+  override def pageUrl: String = "register-securities-transfer-charge/register"
 
   override def pageTitle: String =
-    "Submissions - securities-transfer-charge-frontend - GOV.UK"
-
-  def createNewSubmission(): Unit = {
-    verifyPageTitle(pageTitle)
+//    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
+    "Register to tell us about a securities transfer - securities-transfer-charge-reg-frontend - GOV.UK"
+//  Register to tell us about a securities transfer -securities - transfer - charge - reg - frontend - GOV.UK
+  def startRegistration(): Unit = {
+    verifyPageTitle(RegistrationPage.pageTitle)
     continue()
   }
 }

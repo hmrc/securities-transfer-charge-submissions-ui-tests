@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.CommonPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object AddressCountryPage extends BasePage {
 
-object RegistrationPage extends BasePage {
+  override def pageUrl: String = "lookup-address/*/country-picker"
 
-  override def pageUrl: String = "register-securities-transfer-charge/register"
-
+  // placeholder yet to finalize the title
   override def pageTitle: String =
-//    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
-    "Register to tell us about a securities transfer - securities-transfer-charge-reg-frontend - GOV.UK"
-//  Register to tell us about a securities transfer -securities - transfer - charge - reg - frontend - GOV.UK
-  def startRegistration(): Unit = {
-    verifyPageTitle(RegistrationPage.pageTitle)
+    "Seller’s address - - GOV.UK " +
+      "& Buyer’s address - - GOV.UK" +
+      "& Business address - - GOV.UK"
+
+  def enterCountry(country: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.dropDownCountry, country)
+    continue()
+    // additional continue is to select and continue to next page
     continue()
   }
 }
