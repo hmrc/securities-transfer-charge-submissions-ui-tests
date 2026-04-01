@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
-
-import uk.gov.hmrc.ui.pages.BasePage
+package uk.gov.hmrc.ui.pages
 
 object TaxRatePage extends BasePage {
 

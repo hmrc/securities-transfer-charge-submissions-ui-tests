@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object ReliefApplyingForPage extends BasePage {
 
-object SelectAddressPage extends BasePage {
-
-  override def pageUrl: String = "/lookup-address/*/select?postcode=*"
+  override def pageUrl: String = "/securities-transfer-charge/stf/select-relief"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Choose the seller’s address - - GOV.UK & Select the buyer’s address - - GOV.UK"
+    "What relief are you applying for? - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
+      "& What relief is the business applying for? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
-  def selectAddress(): Unit = {
+  def enterRelief(relief: String): Unit = {
     verifyPageTitleContains(pageTitle)
-    click(Locators.rdoFirstAddress)
+    input(Locators.dropDownRelief, relief)
+    continue()
+    // additional continue is to select and continue to next page
     continue()
   }
 }

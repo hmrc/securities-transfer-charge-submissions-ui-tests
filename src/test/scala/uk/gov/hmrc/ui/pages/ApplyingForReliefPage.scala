@@ -14,26 +14,32 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object ApplyingForReliefPage extends BasePage {
 
-object FindAddressPage extends BasePage {
+  override def pageUrl: String = "/securities-transfer-charge/stf/apply-relief"
 
-  override def pageUrl: String = "lookup-address/*/lookup"
+  sealed trait ConfirmationOption {
+    def selector: String
+  }
+
+  case object Yes extends ConfirmationOption {
+    val selector = "#value"
+  }
+
+  case object No extends ConfirmationOption {
+    val selector = "#value-no"
+  }
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Find the seller’s address - - GOV.UK & Find the buyer’s address - - GOV.UK"
+    "Are you applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
+      "& Is the business applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
-  def enterPostCode(postcode: String): Unit = {
+  def select(option: ConfirmationOption): Unit = {
     verifyPageTitleContains(pageTitle)
-    input(Locators.txtPostCode, postcode)
+    radioButton(option.selector)
     continue()
-  }
-
-  def clickEnterTheAddressManually(): Unit = {
-    verifyPageTitleContains(pageTitle)
-    click(Locators.lnkAddrManually)
   }
 }

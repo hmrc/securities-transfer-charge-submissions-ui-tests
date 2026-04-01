@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.CommonPages
+package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.click
+import uk.gov.hmrc.ui.pages.AuthWizard.click
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.{Env, TestDataConstants, Urls}
 

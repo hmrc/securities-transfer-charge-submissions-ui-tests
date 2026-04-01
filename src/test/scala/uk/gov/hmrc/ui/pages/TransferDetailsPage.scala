@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomInteger, generateRandomString}
 
 object TransferDetailsPage extends BasePage {

@@ -14,33 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+import org.openqa.selenium.By
 
-object ConnectedPersonsPage extends BasePage {
+object CheckYourAnswersPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/connected-persons"
-
-  sealed trait ConfirmationOption {
-    def selector: String
-  }
-
-  case object Yes extends ConfirmationOption {
-    val selector = "#value"
-  }
-
-  case object No extends ConfirmationOption {
-    val selector = "#value-no"
-  }
+  override def pageUrl: String = "/securities-transfer-charge/stf/check-your-answers"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Connected persons - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "Check your answers - securities-transfer-charge-frontend - GOV.UK"
 
-  def select(option: ConfirmationOption): Unit = {
+  def verify(expectedTitle: String): Unit = {
     verifyPageTitle(pageTitle)
-    radioButton(option.selector)
-    continue()
+    val panelTitle = driver.findElement(By.cssSelector(".govuk-heading-xl"))
+
+    val actualText = panelTitle.getText.trim
+
+    assert(
+      actualText == expectedTitle,
+      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
+    )
   }
 }

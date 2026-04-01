@@ -14,22 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object ConfirmAddressPage extends BasePage {
 
-object EnterAddressPage extends BasePage {
-
-  override def pageUrl: String = "/lookup-address/*/edit"
+  override def pageUrl: String = "/securities-transfer-charge/stf/confirm-address"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What’s the seller’s address - - GOV.UK & Enter your address - - GOV.UK"
+    "Review and confirm your address - securities-transfer-charge-frontend - GOV.UK " +
+      "& Confirm the seller’s address - - GOV.UK " +
+      "& Confirm the buyer’s address - - GOV.UK " +
+      "& Review and confirm - - GOV.UK " +
+      "& Confirm business address - Business details - securities-transfer-charge-frontend - GOV.UK" +
+      "& Confirm the business’s address - - GOV.UK"
 
-  def enterAddressDetails(address1: String, postcode: String): Unit = {
+  def confirm(): Unit                      = {
     verifyPageTitleContains(pageTitle)
-    input(Locators.txtAddress1, address1)
-    input(Locators.txtPostCode, postcode)
     continue()
+  }
+  def clickEnterTheAddressManually(): Unit = {
+    verifyPageTitleContains(pageTitle)
+    click(Locators.lnkEditAddr)
   }
 }

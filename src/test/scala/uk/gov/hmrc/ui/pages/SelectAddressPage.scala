@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object SelectAddressPage extends BasePage {
 
-object AddressCountryPage extends BasePage {
-
-  override def pageUrl: String = "lookup-address/*/country-picker"
+  override def pageUrl: String = "/lookup-address/*/select?postcode=*"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Seller’s address - - GOV.UK & Buyer’s address - - GOV.UK"
+    "Choose the seller’s address - - GOV.UK " +
+      "& Select the buyer’s address - - GOV.UK" +
+      "& Select the business’s address - - GOV.UK"
 
-  def enterCountry(country: String): Unit = {
+  def selectAddress(): Unit = {
     verifyPageTitleContains(pageTitle)
-    input(Locators.dropDownCountry, country)
-    continue()
-    // additional continue is to select and continue to next page
+    click(Locators.rdoFirstAddress)
     continue()
   }
 }

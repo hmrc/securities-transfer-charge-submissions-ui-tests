@@ -14,33 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomAmount
 
-object SecuritiesTypePage extends BasePage {
+object HowMuchPaidPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/securities-type"
-
-  sealed trait ConfirmationOption {
-    def selector: String
-  }
-
-  case object Shares extends ConfirmationOption {
-    val selector = "#value_0"
-  }
-
-  case object Other extends ConfirmationOption {
-    val selector = "#value_1"
-  }
+  override def pageUrl: String = "/securities-transfer-charge/stf/consideration"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What type of securities are you buying? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "How much did you pay for these securities? - securities-transfer-charge-frontend - GOV.UK" +
+      "& How much did the business pay for these securities? - securities-transfer-charge-frontend - GOV.UK"
 
-  def select(option: ConfirmationOption): Unit = {
-    verifyPageTitle(pageTitle)
-    radioButton(option.selector)
+  def enterValues(): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtValue, generateRandomAmount(10))
     continue()
   }
 }

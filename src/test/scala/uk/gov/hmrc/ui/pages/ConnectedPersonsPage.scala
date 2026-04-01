@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+object ConnectedPersonsPage extends BasePage {
 
-object ApplyingForReliefPage extends BasePage {
-
-  override def pageUrl: String = "/securities-transfer-charge/stf/apply-relief"
+  override def pageUrl: String = "/securities-transfer-charge/stf/connected-persons"
 
   sealed trait ConfirmationOption {
     def selector: String
@@ -36,10 +34,11 @@ object ApplyingForReliefPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Are you applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "Connected persons - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
+      "& Connected persons - Seller details - securities-transfer-charge-frontend - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleContains(pageTitle)
     radioButton(option.selector)
     continue()
   }

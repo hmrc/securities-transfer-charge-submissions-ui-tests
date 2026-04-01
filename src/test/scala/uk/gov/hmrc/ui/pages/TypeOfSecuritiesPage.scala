@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.individualPages
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomString
 
-object SellersNamePage extends BasePage {
+object TypeOfSecuritiesPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/seller-name"
+  override def pageUrl: String = "/securities-transfer-charge/stf/security-type"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What’s the seller’s name? - securities-transfer-charge-frontend - GOV.UK"
+    "Enter the type of securities you are buying - Transfer details - securities-transfer-charge-frontend - GOV.UK" +
+      "& What type of securities is the business buying? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
-  def enterName(sellerName: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtValue, sellerName)
-    saveAndContinue()
+  def enterValues(): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtValue, generateRandomString(10))
+    continue()
   }
 }
