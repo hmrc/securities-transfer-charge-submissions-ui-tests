@@ -39,8 +39,10 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   /** Locator values */
   object Locators {
+    val fileInput             = "#file-input-input"
     val btnContinue           = ".govuk-button"
     val btnReturn             = ".govuk-button  govuk-button--secondary"
+    val btnUpload             = "button[type='submit'].govuk-button"
     val lnkBack               = "Back"
     val btnSubmit             = ".govuk-button"
     val lnkHeader             = ".govuk-header__link.govuk-header__service-name"
@@ -120,23 +122,35 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   /** Specific actions */
-  def clickSubmitButton(): Unit        =
+  def clickSubmitButton(): Unit          =
     click(By.cssSelector(Locators.btnSubmit))
-  def clickBackLink(): Unit            =
+  def clickBackLink(): Unit              =
     click(By.linkText(Locators.lnkBack))
-  def continue(): Unit                 =
+  def continue(): Unit                   =
     click(By.cssSelector(Locators.btnContinue))
-  def saveAndContinue(): Unit          =
+  def saveAndContinue(): Unit            =
     click(By.cssSelector(Locators.btnContinue))
-  def saveAndReturnToDashboard(): Unit =
+  def saveAndReturnToDashboard(): Unit   =
     click(By.cssSelector(Locators.btnContinue))
-  def acceptAndContinue(): Unit        =
+  def acceptAndContinue(): Unit          =
     click(By.cssSelector(Locators.btnContinue))
-  def header(): Unit                   =
+  def header(): Unit                     =
     click(By.cssSelector(Locators.lnkHeader))
-  def removeFile(): Unit               =
+  def removeFile(): Unit                 =
     click(By.cssSelector(Locators.lnkRemoveFile))
-  def clickSignOutLink(): Unit         =
+  def uploadFile(filePath: String): Unit = {
+    val js = driver.asInstanceOf[JavascriptExecutor]
+    js.executeScript(
+      "document.querySelector('#file-input-input').removeAttribute('hidden');" +
+        "document.querySelector('#file-input-input').removeAttribute('aria-hidden');" +
+        "document.querySelector('#file-input-input').style.display='block';"
+    )
+
+    driver.findElement(By.cssSelector(Locators.fileInput)).sendKeys(filePath)
+  }
+  def clickUploadButton(): Unit          =
+    click(By.cssSelector(Locators.btnUpload))
+  def clickSignOutLink(): Unit           =
     click(By.ByLinkText(Locators.signOut))
 
   /** Navigation methods */
@@ -199,7 +213,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     logger.info("Actual page title is: " + driver.getTitle)
     waitForPageTitleContains(expectedString)
     assert(
-      expectedString.contains(driver.getTitle),
+      driver.getTitle.contains(expectedString),
       s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
     )
   }
@@ -208,7 +222,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     fluentWait.until(ExpectedConditions.titleIs(expectedTitle))
 
   def waitForPageTitleContains(expectedTitle: String): Unit =
-    fluentWait.until((driver: WebDriver) => expectedTitle.contains(driver.getTitle))
+    fluentWait.until((driver: WebDriver) => driver.getTitle.contains(expectedTitle))
 
   def verifyPageHeader(expectedHeader: String): Unit = {
     waitForVisibilityOfElement(Locators.txtHeader)

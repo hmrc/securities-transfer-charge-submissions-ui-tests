@@ -20,9 +20,11 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.pages.*
 import SecuritiesTypePage.{Other, Shares}
 import TaxRatePage.{HalfRate, OneAndHalfRate}
+import uk.gov.hmrc.ui.pages.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
@@ -254,6 +256,118 @@ class S1SubmissionsIndividualSpec
       HowMuchPaidPage.enterValues()
 
       Then("User verifies check your answers for details entered")
+      CheckYourAnswersPage.verify(checkYourAnswers)
+    }
+
+    Scenario("Bulk submission of a user as an Individual") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Submissions start page - Buyer's details")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+      UploadFileTransfersPage.chooseFile()
+      UploadFileTransfersPage.selectUpload()
+
+      // To be replaced with bulk check your answers
+      TempPlaceholderFileUploadedPage.verifyPageTitle()
+      CheckYourAnswersPage.verify(checkYourAnswers)
+    }
+
+    Scenario("Submission of an empty bulk file as a user as an Individual") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Submissions start page - Buyer's details")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.emptyFile)
+      UploadFileTransfersPage.selectUpload()
+      TempPlaceholderFileUploadedPage.navigateToBulkEmptyPage()
+
+//      Wondering if this step should be in the spec as the title is part of the A/C?
+      BulkEmptyPage.verifyPageTitleContains("There are no transfers in your file")
+      BulkEmptyPage.selectUpload()
+      UploadFileTransfersPage.chooseFile()
+      UploadFileTransfersPage.selectUpload()
+
+      // To be replaced with bulk check your answers
+      TempPlaceholderFileUploadedPage.verifyPageTitle()
+      TempPlaceholderFileUploadedPage.navigateToPage(
+        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
+      )
+      CheckYourAnswersPage.verify(checkYourAnswers)
+
+    }
+
+    Scenario("Submission of a bulk file with errors as a user as an Individual") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Submissions start page - Buyer's details")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.formattingFile)
+      UploadFileTransfersPage.selectUpload()
+      TempPlaceholderFileUploadedPage.navigateToBulkErrorPage()
+      BulkErrorPage.selectUpload()
+      UploadFileTransfersPage.chooseFile()
+      UploadFileTransfersPage.selectUpload()
+
+      // To be replaced with bulk check your answers
+      TempPlaceholderFileUploadedPage.verifyPageTitle()
+      TempPlaceholderFileUploadedPage.navigateToPage(
+        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
+      )
+      CheckYourAnswersPage.verify(checkYourAnswers)
+    }
+
+    Scenario("Submission of a bulk file with formatting errors as a user as an Individual") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Submissions start page - Buyer's details")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.formattingFile)
+      UploadFileTransfersPage.selectUpload()
+      TempPlaceholderFileUploadedPage.navigateToBulkFormattingPage()
+      BulkFormattingPage.selectUpload()
+      UploadFileTransfersPage.chooseFile()
+      UploadFileTransfersPage.selectUpload()
+
+      // To be replaced with bulk check your answers
+      TempPlaceholderFileUploadedPage.verifyPageTitle()
+      TempPlaceholderFileUploadedPage.navigateToPage(
+        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
+      )
+      CheckYourAnswersPage.verify(checkYourAnswers)
+    }
+
+    Scenario("Submission of a bulk file with error list as a user as an Individual") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Submissions start page - Buyer's details")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.errorListFile)
+      UploadFileTransfersPage.selectUpload()
+      TempPlaceholderFileUploadedPage.navigateToBulkErrorListPage()
+      BulkErrorListPage.selectUpload()
+      UploadFileTransfersPage.chooseFile()
+      UploadFileTransfersPage.selectUpload()
+
+      // To be replaced with bulk check your answers
+      TempPlaceholderFileUploadedPage.verifyPageTitle()
+      TempPlaceholderFileUploadedPage.navigateToPage(
+        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
+      )
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
   }
