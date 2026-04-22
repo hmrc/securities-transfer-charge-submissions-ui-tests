@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.ui.pages
 
-import org.openqa.selenium.By
-
 object BulkEmptyPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-empty"

@@ -16,39 +16,11 @@
 
 package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.conf.TestConfiguration
-import uk.gov.hmrc.ui.pages.SecuritiesTypePage.verifyPageTitleContains
-
 object TempPlaceholderFileUploadedPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/file-upload"
+  override def pageUrl: String   = "/securities-transfer-charge/stf/file-upload"
+  override def pageTitle: String = "File uploaded"
 
-  override def pageTitle: String =
-    "File uploaded"
+  def verifyPageTitle(): Unit = verifyPageTitleContains(pageTitle)
 
-  def verifyPageTitle(): Unit =
-    verifyPageTitleContains(pageTitle)
-
-  def verifyPageUploadedTitle(pageTitle: String): Unit =
-    verifyPageTitleContains("File uploaded")
-
-  def navigateToBulkEmptyPage(): Unit =
-    navigateToPage(
-      s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${BulkEmptyPage.pageUrl}"
-    )
-
-  def navigateToBulkErrorPage(): Unit =
-    navigateToPage(
-      s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${BulkErrorPage.pageUrl}"
-    )
-
-  def navigateToBulkFormattingPage(): Unit =
-    navigateToPage(
-      s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${BulkFormattingPage.pageUrl}"
-    )
-
-  def navigateToBulkErrorListPage(): Unit =
-    navigateToPage(
-      s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${BulkErrorListPage.pageUrl}"
-    )
 }

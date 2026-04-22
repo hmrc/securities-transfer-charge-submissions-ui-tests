@@ -33,6 +33,9 @@ object TestConfiguration {
   def url(service: String): String =
     s"${baseUrl(service)}${serviceRoute(service)}"
 
+  def fullUrl(path: String): String =
+    s"${baseUrl("securities-transfer-charge-submissions")}$path"
+
   def environmentHost: String = envConfig.getString("services.host")
 
   def servicePort(serviceName: String): String = envConfig.getString(s"services.$serviceName.port")

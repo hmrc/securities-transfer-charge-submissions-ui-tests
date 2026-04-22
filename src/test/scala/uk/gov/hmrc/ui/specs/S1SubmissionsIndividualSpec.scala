@@ -20,7 +20,6 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.pages.*
 import SecuritiesTypePage.{Other, Shares}
 import TaxRatePage.{HalfRate, OneAndHalfRate}
@@ -285,7 +284,9 @@ class S1SubmissionsIndividualSpec
       HowUseTemplateTransfersPage.selectContinue()
       UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.emptyFile)
       UploadFileTransfersPage.selectUpload()
-      TempPlaceholderFileUploadedPage.navigateToBulkEmptyPage()
+
+      // Remove next step when navigation has been wired in
+      TempPlaceholderFileUploadedPage.navigateTo(BulkEmptyPage)
 
 //      Wondering if this step should be in the spec as the title is part of the A/C?
       BulkEmptyPage.verifyPageTitleContains("There are no transfers in your file")
@@ -295,9 +296,7 @@ class S1SubmissionsIndividualSpec
 
       // To be replaced with bulk check your answers
       TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateToPage(
-        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
-      )
+      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
       CheckYourAnswersPage.verify(checkYourAnswers)
 
     }
@@ -312,16 +311,16 @@ class S1SubmissionsIndividualSpec
       HowUseTemplateTransfersPage.selectContinue()
       UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.formattingFile)
       UploadFileTransfersPage.selectUpload()
-      TempPlaceholderFileUploadedPage.navigateToBulkErrorPage()
+      
+      // Remove next step when navigation has been wired in
+      TempPlaceholderFileUploadedPage.navigateTo(BulkErrorPage)
       BulkErrorPage.selectUpload()
       UploadFileTransfersPage.chooseFile()
       UploadFileTransfersPage.selectUpload()
 
       // To be replaced with bulk check your answers
       TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateToPage(
-        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
-      )
+      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
@@ -335,16 +334,16 @@ class S1SubmissionsIndividualSpec
       HowUseTemplateTransfersPage.selectContinue()
       UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.formattingFile)
       UploadFileTransfersPage.selectUpload()
-      TempPlaceholderFileUploadedPage.navigateToBulkFormattingPage()
+
+      // Remove next step when navigation has been wired in
+      TempPlaceholderFileUploadedPage.navigateTo(BulkFormattingPage)
       BulkFormattingPage.selectUpload()
       UploadFileTransfersPage.chooseFile()
       UploadFileTransfersPage.selectUpload()
 
       // To be replaced with bulk check your answers
       TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateToPage(
-        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
-      )
+      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
@@ -358,16 +357,16 @@ class S1SubmissionsIndividualSpec
       HowUseTemplateTransfersPage.selectContinue()
       UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.errorListFile)
       UploadFileTransfersPage.selectUpload()
-      TempPlaceholderFileUploadedPage.navigateToBulkErrorListPage()
+      
+      // Remove next step when navigation has been wired in
+      TempPlaceholderFileUploadedPage.navigateTo(BulkErrorListPage)
       BulkErrorListPage.selectUpload()
       UploadFileTransfersPage.chooseFile()
       UploadFileTransfersPage.selectUpload()
 
       // To be replaced with bulk check your answers
       TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateToPage(
-        s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${CheckYourAnswersPage.pageUrl}"
-      )
+      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
   }

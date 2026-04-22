@@ -24,6 +24,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.driver.BrowserDriver
 
 import java.time.Duration
@@ -155,6 +156,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   /** Navigation methods */
   def navigateToPage(url: String): Unit = driver.navigate().to(url)
+  def navigateTo(page: BasePage): Unit  = navigateToPage(TestConfiguration.fullUrl(page.pageUrl))
   def navigateBackToPage(): Unit        = driver.navigate().back()
 
   /** Page validation methods */

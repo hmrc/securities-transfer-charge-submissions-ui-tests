@@ -16,19 +16,16 @@
 
 package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.conf.TestConfiguration
-
 object BulkErrorListPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-list"
-
+  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-error-list"
   override def pageTitle: String = "There is a problem with your uploaded file"
 
   def selectUpload(): Unit = {
     verifyPageTitleContains(pageTitle)
-    navigateToPage(
-      s"${TestConfiguration.baseUrl("securities-transfer-charge-submissions")}${UploadFileTransfersPage.pageUrl}"
-    )
+    // Direct navigation used here because button "Back to file upload" not yet wired in
+    // TODO: replace with clickUploadButton() once the service handles this correctly.
+    navigateTo(UploadFileTransfersPage)
   }
 
 }
