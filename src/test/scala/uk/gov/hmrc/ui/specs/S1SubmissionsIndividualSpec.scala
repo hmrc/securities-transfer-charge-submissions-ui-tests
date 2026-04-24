@@ -21,8 +21,8 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.SecuritiesTypePage.{Other, Shares}
-import uk.gov.hmrc.ui.pages.TaxRatePage.{HalfRate, OneAndHalfRate}
+import SecuritiesTypePage.{Other, Shares}
+import TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
