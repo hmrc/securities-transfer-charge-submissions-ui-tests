@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.BulkPages
 
-object BulkEmptyPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-empty"
+object HowUseTemplateTransfersPage extends BasePage {
 
-  // placeholder yet to finalize the title
-  override def pageTitle: String = "There are no transfers in your file"
+  override def pageUrl: String = "/securities-transfer-charge/stf/template"
 
-  def selectUpload(): Unit = {
+  override def pageTitle: String = "How to use the template"
+
+  def selectContinue(): Unit = {
     verifyPageTitleContains(pageTitle)
-    clickUploadButton()
+    continue()
   }
-
 }

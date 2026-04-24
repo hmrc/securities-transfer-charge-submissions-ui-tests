@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.BulkPages
 
-import uk.gov.hmrc.ui.pages.SecuritiesTypePage.verifyPageTitleContains
+import uk.gov.hmrc.ui.pages.BasePage
 
 object UploadFileTransfersPage extends BasePage {
 
@@ -24,13 +24,17 @@ object UploadFileTransfersPage extends BasePage {
 
   override def pageTitle: String = "Upload your file"
 
-  private def testDataPath(fileName: String): String =
-    new java.io.File(s"src/test/resources/testData/$fileName").getAbsolutePath
+  private def testDataPath(fileName: String): String = {
+    val resource = getClass.getResource(s"/testData/$fileName")
+    if (resource == null) throw new IllegalArgumentException(s"Test resource not found: testData/$fileName")
+    new java.io.File(resource.toURI).getAbsolutePath
+  }
 
   val filledFile: String     = testDataPath("Bulk Securities Transfer Charges - Filled.xlsx")
   val emptyFile: String      = testDataPath("Bulk Securities Transfer Charges - Empty.xlsx")
   val formattingFile: String = testDataPath("Bulk Securities Transfer Charges - Formatting.xlsx")
   val errorListFile: String  = testDataPath("Bulk Securities Transfer Charges - Error List.xlsx")
+  val manyErrorsFile: String = testDataPath("Bulk Securities Transfer Charges - Many Errors.xlsx")
 
   def chooseFile(file: String = filledFile): Unit = {
     verifyPageTitleContains(pageTitle)

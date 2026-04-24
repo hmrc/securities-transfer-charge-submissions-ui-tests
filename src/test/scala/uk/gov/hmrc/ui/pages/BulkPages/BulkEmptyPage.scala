@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.BulkPages
 
-object BulkErrorListPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-error-list"
-  override def pageTitle: String = "There is a problem with your uploaded file"
+object BulkEmptyPage extends BasePage {
+
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-empty"
+
+  // placeholder yet to finalize the title
+  override def pageTitle: String = "There are no transfers in your file"
 
   def selectUpload(): Unit = {
     verifyPageTitleContains(pageTitle)
-    // Direct navigation used here because button "Back to file upload" not yet wired in
-    // TODO: replace with clickUploadButton() once the service handles this correctly.
-    navigateTo(UploadFileTransfersPage)
+    clickUploadButton()
   }
 
 }
