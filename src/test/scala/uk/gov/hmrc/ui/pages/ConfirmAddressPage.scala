@@ -30,11 +30,11 @@ object ConfirmAddressPage extends BasePage {
       "& Confirm the business’s address - - GOV.UK"
 
   def confirm(): Unit                      = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     continue()
   }
   def clickEnterTheAddressManually(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     click(Locators.lnkEditAddr)
   }
 }

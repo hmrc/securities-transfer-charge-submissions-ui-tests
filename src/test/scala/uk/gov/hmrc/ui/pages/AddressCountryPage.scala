@@ -27,7 +27,7 @@ object AddressCountryPage extends BasePage {
       "& Business address - - GOV.UK"
 
   def enterCountry(country: String): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.dropDownCountry, country)
     continue()
     // additional continue is to select and continue to next page

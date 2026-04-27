@@ -25,7 +25,7 @@ object EnterAddressPage extends BasePage {
     "What’s the seller’s address - - GOV.UK & Enter your address - - GOV.UK"
 
   def enterAddressDetails(address1: String, postcode: String): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtAddress1, address1)
     input(Locators.txtPostCode, postcode)
     continue()

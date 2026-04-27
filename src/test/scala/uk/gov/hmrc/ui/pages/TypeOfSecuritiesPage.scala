@@ -28,7 +28,7 @@ object TypeOfSecuritiesPage extends BasePage {
       "& What type of securities is the business buying? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
   def enterValues(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtValue, generateRandomString(10))
     continue()
   }

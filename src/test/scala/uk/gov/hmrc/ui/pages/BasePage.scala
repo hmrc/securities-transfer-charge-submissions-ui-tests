@@ -24,6 +24,7 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.driver.BrowserDriver
 
 import java.time.Duration
@@ -39,8 +40,10 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   /** Locator values */
   object Locators {
+    val fileInput             = "#file-input-input"
     val btnContinue           = ".govuk-button"
     val btnReturn             = ".govuk-button  govuk-button--secondary"
+    val btnUpload             = "button[type='submit'].govuk-button"
     val lnkBack               = "Back"
     val btnSubmit             = ".govuk-button"
     val lnkHeader             = ".govuk-header__link.govuk-header__service-name"
@@ -120,27 +123,40 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   /** Specific actions */
-  def clickSubmitButton(): Unit        =
+  def clickSubmitButton(): Unit          =
     click(By.cssSelector(Locators.btnSubmit))
-  def clickBackLink(): Unit            =
+  def clickBackLink(): Unit              =
     click(By.linkText(Locators.lnkBack))
-  def continue(): Unit                 =
+  def continue(): Unit                   =
     click(By.cssSelector(Locators.btnContinue))
-  def saveAndContinue(): Unit          =
+  def saveAndContinue(): Unit            =
     click(By.cssSelector(Locators.btnContinue))
-  def saveAndReturnToDashboard(): Unit =
+  def saveAndReturnToDashboard(): Unit   =
     click(By.cssSelector(Locators.btnContinue))
-  def acceptAndContinue(): Unit        =
+  def acceptAndContinue(): Unit          =
     click(By.cssSelector(Locators.btnContinue))
-  def header(): Unit                   =
+  def header(): Unit                     =
     click(By.cssSelector(Locators.lnkHeader))
-  def removeFile(): Unit               =
+  def removeFile(): Unit                 =
     click(By.cssSelector(Locators.lnkRemoveFile))
-  def clickSignOutLink(): Unit         =
+  def uploadFile(filePath: String): Unit = {
+    val js = driver.asInstanceOf[JavascriptExecutor]
+    js.executeScript(
+      "document.querySelector('#file-input-input').removeAttribute('hidden');" +
+        "document.querySelector('#file-input-input').removeAttribute('aria-hidden');" +
+        "document.querySelector('#file-input-input').style.display='block';"
+    )
+
+    driver.findElement(By.cssSelector(Locators.fileInput)).sendKeys(filePath)
+  }
+  def clickUploadButton(): Unit          =
+    click(By.cssSelector(Locators.btnUpload))
+  def clickSignOutLink(): Unit           =
     click(By.ByLinkText(Locators.signOut))
 
   /** Navigation methods */
   def navigateToPage(url: String): Unit = driver.navigate().to(url)
+  def navigateTo(page: BasePage): Unit  = navigateToPage(TestConfiguration.fullUrl(page.pageUrl))
   def navigateBackToPage(): Unit        = driver.navigate().back()
 
   /** Page validation methods */
@@ -195,11 +211,20 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     )
   }
 
+  def verifyExpectedContainsPageTitle(expectedString: String): Unit = {
+    logger.info("Actual page title is: " + driver.getTitle)
+    waitForExpectedContainsPageTitle(expectedString)
+    assert(
+      expectedString.contains(driver.getTitle),
+      s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
+    )
+  }
+
   def verifyPageTitleContains(expectedString: String): Unit = {
     logger.info("Actual page title is: " + driver.getTitle)
     waitForPageTitleContains(expectedString)
     assert(
-      expectedString.contains(driver.getTitle),
+      driver.getTitle.contains(expectedString),
       s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
     )
   }
@@ -207,8 +232,11 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def waitForPageTitle(expectedTitle: String): Unit =
     fluentWait.until(ExpectedConditions.titleIs(expectedTitle))
 
-  def waitForPageTitleContains(expectedTitle: String): Unit =
+  def waitForExpectedContainsPageTitle(expectedTitle: String): Unit =
     fluentWait.until((driver: WebDriver) => expectedTitle.contains(driver.getTitle))
+
+  def waitForPageTitleContains(expectedTitle: String): Unit =
+    fluentWait.until((driver: WebDriver) => driver.getTitle.contains(expectedTitle))
 
   def verifyPageHeader(expectedHeader: String): Unit = {
     waitForVisibilityOfElement(Locators.txtHeader)

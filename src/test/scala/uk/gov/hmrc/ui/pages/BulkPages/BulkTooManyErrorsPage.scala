@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.BulkPages
 
-object SelectAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "/lookup-address/*/select?postcode=*"
+object BulkTooManyErrorsPage extends BasePage {
 
-  // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Choose the seller’s address - - GOV.UK " +
-      "& Select the buyer’s address - - GOV.UK" +
-      "& Select the business’s address - - GOV.UK"
+  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-error"
+  override def pageTitle: String = "Your file has formatting errors"
 
-  def selectAddress(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    click(Locators.rdoFirstAddress)
-    continue()
+  def selectUpload(): Unit = {
+    verifyPageTitleContains(pageTitle)
+    clickUploadButton()
   }
+
 }

@@ -26,7 +26,7 @@ object ReliefApplyingForPage extends BasePage {
       "& What relief is the business applying for? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
   def enterRelief(relief: String): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.dropDownRelief, relief)
     continue()
     // additional continue is to select and continue to next page
