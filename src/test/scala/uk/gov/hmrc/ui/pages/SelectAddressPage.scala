@@ -27,7 +27,7 @@ object SelectAddressPage extends BasePage {
       "& Select the business’s address - - GOV.UK"
 
   def selectAddress(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     click(Locators.rdoFirstAddress)
     continue()
   }

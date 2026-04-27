@@ -27,13 +27,13 @@ object FindAddressPage extends BasePage {
       "& Find the business’s address - - GOV.UK"
 
   def enterPostCode(postcode: String): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtPostCode, postcode)
     continue()
   }
 
   def clickEnterTheAddressManually(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     click(Locators.lnkAddrManually)
   }
 }

@@ -38,7 +38,7 @@ object ConnectedPersonsPage extends BasePage {
       "& Connected persons - Seller details - securities-transfer-charge-frontend - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     radioButton(option.selector)
     continue()
   }

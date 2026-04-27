@@ -38,7 +38,7 @@ object SecuritiesTypePage extends BasePage {
       "& What type of securities is the business buying? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     radioButton(option.selector)
     continue()
   }

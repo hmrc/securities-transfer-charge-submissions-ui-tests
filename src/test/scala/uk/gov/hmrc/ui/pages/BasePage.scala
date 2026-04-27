@@ -211,6 +211,15 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     )
   }
 
+  def verifyExpectedContainsPageTitle(expectedString: String): Unit = {
+    logger.info("Actual page title is: " + driver.getTitle)
+    waitForExpectedContainsPageTitle(expectedString)
+    assert(
+      expectedString.contains(driver.getTitle),
+      s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
+    )
+  }
+
   def verifyPageTitleContains(expectedString: String): Unit = {
     logger.info("Actual page title is: " + driver.getTitle)
     waitForPageTitleContains(expectedString)
@@ -222,6 +231,9 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   def waitForPageTitle(expectedTitle: String): Unit =
     fluentWait.until(ExpectedConditions.titleIs(expectedTitle))
+
+  def waitForExpectedContainsPageTitle(expectedTitle: String): Unit =
+    fluentWait.until((driver: WebDriver) => expectedTitle.contains(driver.getTitle))
 
   def waitForPageTitleContains(expectedTitle: String): Unit =
     fluentWait.until((driver: WebDriver) => driver.getTitle.contains(expectedTitle))
