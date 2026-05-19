@@ -26,7 +26,7 @@ object BuyDatePage extends BasePage {
       "& What is the charging point? - securities-transfer-charge-frontend - GOV.UK"
 
   def enterDate(date: String, month: String, year: String): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtDate, date)
     input(Locators.txtMonth, month)
     input(Locators.txtYear, year)

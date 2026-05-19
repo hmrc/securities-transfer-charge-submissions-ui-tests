@@ -38,7 +38,7 @@ object ApplyingForReliefPage extends BasePage {
       "& Is the business applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     radioButton(option.selector)
     continue()
   }

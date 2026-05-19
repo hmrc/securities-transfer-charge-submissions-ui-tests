@@ -29,7 +29,7 @@ object BusinessBuyingInPage extends BasePage {
       "& Which business are the securities being bought in? - securities-transfer-charge-frontend - GOV.UK"
 
   def enterValues(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtBusinessName, generateRandomString(10))
     input(Locators.txtCRN, validCRN)
     continue()
