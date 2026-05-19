@@ -21,8 +21,10 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.SecuritiesTypePage.{Other, Shares}
-import uk.gov.hmrc.ui.pages.TaxRatePage.{HalfRate, OneAndHalfRate}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
+import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{Other, Shares}
+import uk.gov.hmrc.ui.pages.Single.{AddressCountryPage, ApplyingForReliefPage, BusinessBuyingInPage, BuyDatePage, CheckYourAnswersPage, ConfirmAddressPage, ConnectedPersonsPage, EnterAddressPage, FindAddressPage, HowMuchPaidPage, ReliefApplyingForPage, SecuritiesTypePage, SelectAddressPage, SellersNamePage, SubmissionsDashboardPage, TaxRatePage, TotalMarketValuePage, TransferDetailsPage, TypeOfSecuritiesPage}
+import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
@@ -39,7 +41,7 @@ class S2SubmissionsBusinessSpec
   Feature("STC Business Journeys") {
     Scenario("Submission of a user as an Business") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -71,7 +73,7 @@ class S2SubmissionsBusinessSpec
       "Submission of a user as an Business - Edit and update buyer's & seller's address to another UK address"
     ) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -105,7 +107,7 @@ class S2SubmissionsBusinessSpec
 
     Scenario("Submission of a user as an Business - Edit and update buyer's & seller's address to non UK address") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -137,7 +139,7 @@ class S2SubmissionsBusinessSpec
 
     Scenario("Submission of a user as an Business with non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -167,7 +169,7 @@ class S2SubmissionsBusinessSpec
 
     Scenario("Submission of a user as an Business with no relief option") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -196,7 +198,7 @@ class S2SubmissionsBusinessSpec
 
     Scenario("Submission of a user as an Business with other securities type") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -228,7 +230,7 @@ class S2SubmissionsBusinessSpec
 
     Scenario("Submission of a user as an Business with other securities type for non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAsOrganisation()
+      AuthWizard.loginAs("organisation")
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
