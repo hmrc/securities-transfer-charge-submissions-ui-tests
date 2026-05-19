@@ -28,7 +28,7 @@ object HowMuchPaidPage extends BasePage {
       "& How much did the business pay for these securities? - securities-transfer-charge-frontend - GOV.UK"
 
   def enterValues(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtValue, generateRandomAmount(9))
     continue()
   }
