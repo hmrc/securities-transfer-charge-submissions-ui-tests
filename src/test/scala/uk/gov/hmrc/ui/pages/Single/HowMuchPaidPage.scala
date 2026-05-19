@@ -31,7 +31,7 @@ object HowMuchPaidPage extends BasePage {
 
   def enterValues(): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtValue, generateRandomAmount(10))
+    input(Locators.txtValue, generateRandomAmount(9))
     continue()
   }
 }

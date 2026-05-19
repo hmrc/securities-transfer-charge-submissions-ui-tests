@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages
 
-import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomInteger, generateRandomString}
+import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, generateRandomInteger, generateRandomString}
 
 object TransferDetailsPage extends BasePage {
 
@@ -31,9 +30,9 @@ object TransferDetailsPage extends BasePage {
     verifyPageTitle(pageTitle)
     input(Locators.txtNumberOfShares, generateRandomInteger(9))
     input(Locators.txtTypeOfShares, generateRandomString(9))
-    input(Locators.txtAmountPaid, generateRandomInteger(8))
+    input(Locators.txtAmountPaid, generateRandomAmount(9))
     if (connectedPersons)
-      input(Locators.txtMarketValue, generateRandomInteger(8))
+      input(Locators.txtMarketValue, generateRandomAmount(9))
     continue()
   }
 }
