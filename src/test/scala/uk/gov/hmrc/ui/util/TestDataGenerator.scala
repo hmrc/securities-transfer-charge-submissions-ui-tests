@@ -28,12 +28,26 @@ object TestDataGenerator {
     (1 to length).map(_ => chars(random.nextInt(chars.length))).mkString
   }
 
-  def generateRandomInteger(maxDigits: Int): String = {
-    val random = new Random()
-
+  def generateRandomInteger(maxDigits: Int, allowZeroValue: Boolean = true): String = {
+    val random    = new Random()
     val numDigits = random.nextInt(maxDigits) + 1
 
-    (1 to numDigits).map(_ => random.nextInt(10)).mkString
+    val digits = (1 to numDigits).map(_ => random.nextInt(10)).mkString
+
+    if (allowZeroValue) {
+      digits
+    } else {
+      if (digits.forall(_ == '0')) {
+        if (numDigits == 1) {
+          (random.nextInt(9) + 1).toString
+        } else {
+          val firstNonZero = (random.nextInt(9) + 1).toString
+          firstNonZero + digits.tail
+        }
+      } else {
+        digits
+      }
+    }
   }
 
   def generateRandomAmount(maxDigits: Int): String = {

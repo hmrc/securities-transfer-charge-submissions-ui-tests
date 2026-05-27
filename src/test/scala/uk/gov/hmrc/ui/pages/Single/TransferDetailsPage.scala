@@ -28,7 +28,7 @@ object TransferDetailsPage extends BasePage {
 
   def enterValues(connectedPersons: Boolean = true): Unit = {
     verifyPageTitle(pageTitle)
-    input(Locators.txtNumberOfShares, generateRandomInteger(9))
+    input(Locators.txtNumberOfShares, generateRandomInteger(9, false))
     input(Locators.txtTypeOfShares, generateRandomString(9))
     input(Locators.txtAmountPaid, generateRandomAmount(9))
     if (connectedPersons)
