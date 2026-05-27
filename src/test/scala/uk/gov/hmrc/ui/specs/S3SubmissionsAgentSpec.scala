@@ -20,10 +20,10 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.{TransferDetailsPage, *}
+import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{Other, Shares}
-import uk.gov.hmrc.ui.pages.Single.{AddAReference, AddressCountryPage, ApplyingForReliefPage, BusinessBuyingInPage, BuyDatePage, BuyersNamePage, CheckYourAnswersPage, ConfirmAddressPage, ConnectedPersonsPage, EnterAddressPage, FindAddressPage, HowMuchPaidPage, ReliefApplyingForPage, SecuritiesTypePage, SelectAddressPage, SellersNamePage, SubmissionsDashboardPage, TaxRatePage, TotalMarketValuePage, TypeOfSecuritiesPage}
+import uk.gov.hmrc.ui.pages.Single.{AddAReference, AddressCountryPage, ApplyingForReliefPage, BusinessBuyingInPage, BuyDatePage, BuyersNamePage, CheckYourAnswersPage, ConfirmAddressPage, ConnectedPersonsPage, EnterAddressPage, FindAddressPage, HowMuchPaidPage, ReliefApplyingForPage, SecuritiesTypePage, SelectAddressPage, SellersNamePage, SubmissionsDashboardPage, TaxRatePage, TotalMarketValuePage, TransferDetailsPage, TypeOfSecuritiesPage}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}

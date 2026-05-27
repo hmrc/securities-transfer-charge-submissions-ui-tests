@@ -22,49 +22,31 @@ import scala.util.Random
 
 object TestDataGenerator {
 
+  private val random = new Random()
+
+  // Can return 0
+  def randomInt(maxExclusive: Int): String =
+    random.nextInt(maxExclusive).toString
+
+  // Starts from 1
+  def randomIntFromOne(maxInclusive: Int): String =
+    (random.nextInt(maxInclusive) + 1).toString
+
   def generateRandomString(length: Int): String = {
-    val chars  = ('A' to 'Z') ++ ('a' to 'z') ++ ('0' to '9')
-    val random = new Random()
+    val chars = ('A' to 'Z') ++ ('a' to 'z') ++ ('0' to '9')
     (1 to length).map(_ => chars(random.nextInt(chars.length))).mkString
   }
 
-  def generateRandomInteger(maxDigits: Int, allowZeroValue: Boolean = true): String = {
-    val random    = new Random()
-    val numDigits = random.nextInt(maxDigits) + 1
-
-    val digits = (1 to numDigits).map(_ => random.nextInt(10)).mkString
-
-    if (allowZeroValue) {
-      digits
-    } else {
-      if (digits.forall(_ == '0')) {
-        if (numDigits == 1) {
-          (random.nextInt(9) + 1).toString
-        } else {
-          val firstNonZero = (random.nextInt(9) + 1).toString
-          firstNonZero + digits.tail
-        }
-      } else {
-        digits
-      }
-    }
-  }
-
   def generateRandomAmount(maxDigits: Int): String = {
-    val random = new Random()
-
-    val numDigits = random.nextInt(maxDigits) + 1
-
-    val wholePart = if (numDigits == 1) {
+    val numDigits   = random.nextInt(maxDigits) + 1
+    val wholePart   = if (numDigits == 1) {
       (random.nextInt(9) + 1).toString
     } else {
       val firstDigit = random.nextInt(9) + 1
       val restDigits = (1 until numDigits).map(_ => random.nextInt(10)).mkString
       s"$firstDigit$restDigits"
     }
-
     val numDecimals = random.nextInt(3)
-
     if (numDecimals == 0) {
       wholePart
     } else {

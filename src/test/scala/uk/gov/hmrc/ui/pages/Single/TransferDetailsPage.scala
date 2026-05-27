@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.Single
 
-import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, generateRandomInteger, generateRandomString}
+import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, generateRandomString, randomIntFromOne}
 
 object TransferDetailsPage extends BasePage {
 
@@ -28,7 +29,7 @@ object TransferDetailsPage extends BasePage {
 
   def enterValues(connectedPersons: Boolean = true): Unit = {
     verifyPageTitle(pageTitle)
-    input(Locators.txtNumberOfShares, generateRandomInteger(9, false))
+    input(Locators.txtNumberOfShares, randomIntFromOne(9))
     input(Locators.txtTypeOfShares, generateRandomString(9))
     input(Locators.txtAmountPaid, generateRandomAmount(9))
     if (connectedPersons)
