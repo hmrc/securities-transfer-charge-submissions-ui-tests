@@ -32,6 +32,7 @@ object TestDataConstants {
 
   // ==== Test data
   // -- Common
+  final val serviceName: String                 = " - Tell us about a security transfer - GOV.UK"
   final val buyDate: String                     = "01"
   final val buyMonth: String                    = "01"
   final val BuyYear: String                     = "2026"

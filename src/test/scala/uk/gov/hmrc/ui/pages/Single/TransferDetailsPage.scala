@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, generateRandomString, randomIntFromOne}
 
 object TransferDetailsPage extends BasePage {
@@ -25,7 +26,7 @@ object TransferDetailsPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What are the details of this transfer? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "What are the details of this transfer? - Transfer details" + serviceName
 
   def enterValues(connectedPersons: Boolean = true): Unit = {
     verifyPageTitle(pageTitle)

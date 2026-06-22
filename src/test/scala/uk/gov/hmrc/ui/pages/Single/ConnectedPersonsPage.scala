@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object ConnectedPersonsPage extends BasePage {
 
@@ -37,7 +38,7 @@ object ConnectedPersonsPage extends BasePage {
   // placeholder yet to finalize the title
   override def pageTitle: String =
     "Connected persons - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
-      "& Connected persons - Seller details - securities-transfer-charge-frontend - GOV.UK"
+      "& Connected persons - Seller details" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

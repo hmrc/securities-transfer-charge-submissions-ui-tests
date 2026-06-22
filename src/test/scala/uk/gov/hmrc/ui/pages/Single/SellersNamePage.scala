@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object SellersNamePage extends BasePage {
 
@@ -24,7 +25,7 @@ object SellersNamePage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What’s the seller’s name? - securities-transfer-charge-frontend - GOV.UK"
+    "What’s the seller’s name?" + serviceName
 
   def enterName(sellerName: String): Unit = {
     verifyPageTitle(pageTitle)

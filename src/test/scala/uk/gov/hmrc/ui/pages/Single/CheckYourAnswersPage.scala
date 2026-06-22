@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages.Single
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 import scala.runtime.stdLibPatches.Predef.assert
 
@@ -27,7 +28,7 @@ object CheckYourAnswersPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Check your answers - securities-transfer-charge-frontend - GOV.UK"
+    "Check your answers" + serviceName
 
   def verify(expectedTitle: String): Unit = {
     verifyPageTitle(pageTitle)

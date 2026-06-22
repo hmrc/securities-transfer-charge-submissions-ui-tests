@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataConstants.validCRN
+import uk.gov.hmrc.ui.util.TestDataConstants.{serviceName, validCRN}
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomString
 
 object BusinessBuyingInPage extends BasePage {
@@ -27,8 +27,8 @@ object BusinessBuyingInPage extends BasePage {
   // placeholder yet to finalize the title
   override def pageTitle: String =
     "What business are you buying these securities in? - securities-transfer-charge-frontend - GOV.UK " +
-      "Which business are the securities being bought in? - securities-transfer-charge-frontend - GOV.UK" +
-      "What business are the securities bought in? - securities-transfer-charge-frontend - GOV.UK"
+      "Which business are the securities being bought in?" + serviceName +
+      "What business are the securities bought in?" + serviceName
 
   def enterValues(): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
