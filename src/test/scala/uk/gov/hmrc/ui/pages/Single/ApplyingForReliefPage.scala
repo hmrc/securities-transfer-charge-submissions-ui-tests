@@ -36,7 +36,7 @@ object ApplyingForReliefPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Are you applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
+    "Are you applying for a relief? - Transfer details" + serviceName +
       "Is the business applying for a relief? - Transfer details" + serviceName +
       "Is the buyer applying for a relief? - Transfer details" + serviceName
 

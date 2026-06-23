@@ -26,7 +26,7 @@ object BusinessBuyingInPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What business are you buying these securities in? - securities-transfer-charge-frontend - GOV.UK " +
+    "What business are you buying these securities in?" + serviceName +
       "Which business are the securities being bought in?" + serviceName +
       "What business are the securities bought in?" + serviceName
 

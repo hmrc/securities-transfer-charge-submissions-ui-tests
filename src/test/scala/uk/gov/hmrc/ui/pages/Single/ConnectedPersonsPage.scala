@@ -37,7 +37,7 @@ object ConnectedPersonsPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Connected persons - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
+    "Connected persons - Transfer details" + serviceName +
       "& Connected persons - Seller details" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
