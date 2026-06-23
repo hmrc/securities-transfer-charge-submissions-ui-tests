@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomAmount
 
 object HowMuchPaidPage extends BasePage {
@@ -25,9 +26,9 @@ object HowMuchPaidPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "How much did you pay for these securities? - securities-transfer-charge-frontend - GOV.UK" +
-      "How much did the business pay for these securities? - securities-transfer-charge-frontend - GOV.UK" +
-      "How much did the buyer pay for the securities? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "How much did you pay for these securities?" + serviceName +
+      "How much did the business pay for these securities?" + serviceName +
+      "How much did the buyer pay for the securities? - Transfer details" + serviceName
 
   def enterValues(): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

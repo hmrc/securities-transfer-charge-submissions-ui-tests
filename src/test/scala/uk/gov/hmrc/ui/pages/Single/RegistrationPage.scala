@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object RegistrationPage extends BasePage {
 
@@ -24,8 +25,8 @@ object RegistrationPage extends BasePage {
 
   override def pageTitle: String =
 //    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
-    "Register to tell us about a securities transfer - securities-transfer-charge-reg-frontend - GOV.UK"
-//  Register to tell us about a securities transfer -securities - transfer - charge - reg - frontend - GOV.UK
+    "Register to tell us about a securities transfer" + serviceName
+//  "Register to tell us about a securities transfer" + serviceName
   def startRegistration(): Unit = {
     verifyPageTitle(RegistrationPage.pageTitle)
     continue()

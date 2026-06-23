@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomString
 
 object AddAReference extends BasePage {
@@ -25,7 +26,7 @@ object AddAReference extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Add a reference - securities-transfer-charge-frontend - GOV.UK"
+    "Add a reference" + serviceName
 
   def enterValue(): Unit = {
     verifyPageTitle(pageTitle)

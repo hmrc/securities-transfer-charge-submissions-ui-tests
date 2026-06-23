@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.ui.pages.Single
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object ApplyingForReliefPage extends BasePage {
 
@@ -35,9 +36,9 @@ object ApplyingForReliefPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Are you applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK " +
-      "Is the business applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK" +
-      "Is the buyer applying for a relief? - Transfer details - securities-transfer-charge-frontend - GOV.UK"
+    "Are you applying for a relief? - Transfer details" + serviceName +
+      "Is the business applying for a relief? - Transfer details" + serviceName +
+      "Is the buyer applying for a relief? - Transfer details" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

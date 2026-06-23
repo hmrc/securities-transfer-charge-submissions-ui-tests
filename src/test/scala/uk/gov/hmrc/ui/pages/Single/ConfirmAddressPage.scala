@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object ConfirmAddressPage extends BasePage {
 
@@ -24,11 +25,11 @@ object ConfirmAddressPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Review and confirm your address - securities-transfer-charge-frontend - GOV.UK " +
+    "Review and confirm your address" + serviceName +
       "& Confirm the seller’s address - - GOV.UK " +
       "& Confirm the buyer’s address - - GOV.UK " +
       "& Review and confirm - - GOV.UK " +
-      "& Confirm business address - Business details - securities-transfer-charge-frontend - GOV.UK" +
+      "& Confirm business address - Business details" + serviceName +
       "& Confirm the business’s address - - GOV.UK"
 
   def confirm(): Unit                      = {

@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object BuyDatePage extends BasePage {
 
@@ -24,9 +25,9 @@ object BuyDatePage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "When did you buy these securities? - securities-transfer-charge-frontend - GOV.UK" +
-      "What is the charging point? - securities-transfer-charge-frontend - GOV.UK" +
-      "What’s the charging point? - securities-transfer-charge-frontend - GOV.UK"
+    "When did you buy these securities?" + serviceName +
+      "What is the charging point?" + serviceName +
+      "What’s the charging point?" + serviceName
 
   def enterDate(date: String, month: String, year: String): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

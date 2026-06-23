@@ -17,13 +17,14 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object SubmissionsDashboardPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/submissions-dashboard"
 
   override def pageTitle: String =
-    "Submissions - securities-transfer-charge-frontend - GOV.UK"
+    "Submissions" + serviceName
 
   def createNewSubmission(): Unit = {
     verifyPageTitle(pageTitle)

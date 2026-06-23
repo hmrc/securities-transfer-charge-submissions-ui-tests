@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object TaxRatePage extends BasePage {
 
@@ -36,7 +37,7 @@ object TaxRatePage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Tax rate - securities-transfer-charge-frontend - GOV.UK"
+    "Tax rate" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyPageTitle(pageTitle)

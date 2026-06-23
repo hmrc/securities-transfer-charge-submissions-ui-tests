@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Common
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object AboutYourSecuritiesTransfersPage extends BasePage {
 
@@ -35,8 +36,8 @@ object AboutYourSecuritiesTransfersPage extends BasePage {
   }
 
   override def pageTitle: String =
-    "How do you want to tell us about your securities transfers? - securities-transfer-charge-frontend - GOV.UK" +
-      "How would you like to tell us about these securities transfers? - securities-transfer-charge-frontend - GOV.UK"
+    "How do you want to tell us about your securities transfers?" + serviceName +
+      "How would you like to tell us about these securities transfers?" + serviceName
 
   def selectOneOrMore(option: ConfirmationOption = One): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
