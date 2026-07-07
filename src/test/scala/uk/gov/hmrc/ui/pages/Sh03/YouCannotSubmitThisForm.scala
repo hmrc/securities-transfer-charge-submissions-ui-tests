@@ -14,27 +14,31 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages.Sh03
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BuyDatePage extends BasePage {
+import scala.runtime.stdLibPatches.Predef.assert
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
+object YouCannotSubmitThisForm extends BasePage {
+
+  override def pageUrl: String = "/securities-transfer-charge/sh03/agent/cannot-submit-form"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "When did you buy these securities?" + serviceName +
-      "What is the charging point?" + serviceName +
-      "What’s the charging point?" + serviceName +
-      " Charging point - Share buyback (SH03)" + serviceName
+    "You cannot submit this form - Share buyback (SH03)" + serviceName
 
-  def enterDate(date: String, month: String, year: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
-    continue()
+  def verify(expectedTitle: String): Unit = {
+    verifyPageTitle(pageTitle)
+    val panelTitle = driver.findElement(By.cssSelector(".govuk-heading-l"))
+
+    val actualText = panelTitle.getText.trim
+
+    assert(
+      actualText == expectedTitle,
+      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
+    )
   }
 }

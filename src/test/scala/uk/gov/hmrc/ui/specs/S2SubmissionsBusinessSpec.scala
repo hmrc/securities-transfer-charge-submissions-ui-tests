@@ -23,8 +23,8 @@ import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{Other, Shares}
-import uk.gov.hmrc.ui.pages.Single.{AddressCountryPage, ApplyingForReliefPage, BusinessBuyingInPage, BuyDatePage, CheckYourAnswersPage, ConfirmAddressPage, ConnectedPersonsPage, EnterAddressPage, FindAddressPage, HowMuchPaidPage, ReliefApplyingForPage, SecuritiesTypePage, SelectAddressPage, SellersNamePage, SubmissionsDashboardPage, TaxRatePage, TotalMarketValuePage, TransferDetailsPage, TypeOfSecuritiesPage}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
+import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 

@@ -30,4 +30,9 @@ object SubmissionsDashboardPage extends BasePage {
     verifyPageTitle(pageTitle)
     continue()
   }
+
+  def createNewSh03(): Unit = {
+    verifyPageTitle(pageTitle)
+    secondaryContinue()
+  }
 }

@@ -40,49 +40,52 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   /** Locator values */
   object Locators {
-    val fileInput             = "#file-input-input"
-    val btnContinue           = ".govuk-button"
-    val btnReturn             = ".govuk-button  govuk-button--secondary"
-    val btnUpload             = "button[type='submit'].govuk-button"
-    val lnkBack               = "Back"
-    val btnSubmit             = ".govuk-button"
-    val lnkHeader             = ".govuk-header__link.govuk-header__service-name"
-    val rdoYes                = "#value_0"
-    val rdoNo                 = "#value_1"
-    val txtFileName           = ".govuk-body"
-    val txtBannerTitle        = "#govuk-notification-banner-title"
-    val lnkRemoveFile         = "dd[class='govuk-summary-list__actions'] a[class='govuk-link']"
-    val txtValue: By          = By.ById("value")
-    val txtDate: By           = By.ById("value.day")
-    val txtMonth: By          = By.ById("value.month")
-    val txtYear: By           = By.ById("value.year")
-    val dropDownCountry: By   = By.ById("countryCode")
-    val dropDownRelief: By    = By.ById("reliefs")
-    val rdoFirstAddress: By   = By.cssSelector("label[for='addressId']")
-    val txtEmailAddress: By   = By.cssSelector("#value")
-    val txtContactNumber: By  = By.cssSelector("#value")
-    val cbxConfirm            = "#value_0"
-    val txtHeader: By         = By.xpath("//h1")
-    val lnkAddrManually       = By.ById("manualAddress")
-    val lnkEditAddr           = By.ById("editAddressLink")
-    val txtPostCode: By       = By.ById("postcode")
-    val txtSaPostCode: By     = By.ById("saPostcode")
-    val txtAddress1: By       = By.ById("line1")
-    val txtTown: By           = By.ById("town")
-    val txtAddressPostCode    = By.ById("postcode")
-    val txtCompanyRegNumber   = By.ById("companyNumber")
-    val txtUtr                = By.ById("utr")
-    val txtCtUtr              = By.ById("ctutr")
-    val txtSaUtr              = By.ById("sa-utr")
-    val txtBusinessName: By   = By.ById("businessName")
-    val txtCRN: By            = By.ById("crn")
-    val txtNumberOfShares: By = By.ById("numberOfShares")
-    val txtTypeOfShares: By   = By.ById("typeOfShares")
-    val txtAmountPaid: By     = By.ById("amountPaid")
-    val txtMarketValue: By    = By.ById("marketValue")
-    val banner                = ".govuk-notification-banner"
-    val successBanner: By     = By.cssSelector("h1.govuk-panel__title")
-    val signOut               = "Sign out"
+    val fileInput                    = "#file-input-input"
+    val btnContinue                  = ".govuk-button"
+    val btnReturn                    = ".govuk-button.govuk-button--secondary"
+    val btnUpload                    = "button[type='submit'].govuk-button"
+    val lnkBack                      = "Back"
+    val btnSubmit                    = ".govuk-button"
+    val lnkHeader                    = ".govuk-header__link.govuk-header__service-name"
+    val rdoYes                       = "#value_0"
+    val rdoNo                        = "#value_1"
+    val txtFileName                  = ".govuk-body"
+    val txtBannerTitle               = "#govuk-notification-banner-title"
+    val lnkRemoveFile                = "dd[class='govuk-summary-list__actions'] a[class='govuk-link']"
+    val txtValue: By                 = By.ById("value")
+    val txtDate: By                  = By.ById("value.day")
+    val txtMonth: By                 = By.ById("value.month")
+    val txtYear: By                  = By.ById("value.year")
+    val dropDownCountry: By          = By.ById("countryCode")
+    val dropDownRelief: By           = By.ById("reliefs")
+    val rdoFirstAddress: By          = By.cssSelector("label[for='addressId']")
+    val txtEmailAddress: By          = By.cssSelector("#value")
+    val txtContactNumber: By         = By.cssSelector("#value")
+    val cbxConfirm                   = "#value_0"
+    val txtHeader: By                = By.xpath("//h1")
+    val lnkAddrManually              = By.ById("manualAddress")
+    val lnkEditAddr                  = By.ById("editAddressLink")
+    val txtPostCode: By              = By.ById("postcode")
+    val txtSaPostCode: By            = By.ById("saPostcode")
+    val txtAddress1: By              = By.ById("line1")
+    val txtTown: By                  = By.ById("town")
+    val txtAddressPostCode           = By.ById("postcode")
+    val txtCompanyRegNumber          = By.ById("companyNumber")
+    val txtCompanyRegistrationNumber = By.ById("companyRegistrationNumber")
+    val txtUtr                       = By.ById("utr")
+    val txtCtUtr                     = By.ById("ctutr")
+    val txtSaUtr                     = By.ById("sa-utr")
+    val txtBusinessName: By          = By.ById("businessName")
+    val txtCRN: By                   = By.ById("crn")
+    val txtNumberOfShares: By        = By.ById("numberOfShares")
+    val txtTypeOfShares: By          = By.ById("typeOfShares")
+    val txtAmountPaid: By            = By.ById("amountPaid")
+    val txtMarketValue: By           = By.ById("marketValue")
+    val txtCompanyName: By           = By.ById("companyName")
+    val txtUKSOrgan: By              = By.ById("uksOrgan")
+    val banner                       = ".govuk-notification-banner"
+    val successBanner: By            = By.cssSelector("h1.govuk-panel__title")
+    val signOut                      = "Sign out"
   }
 
   def pageUrl: String
@@ -129,6 +132,8 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     click(By.linkText(Locators.lnkBack))
   def continue(): Unit                   =
     click(By.cssSelector(Locators.btnContinue))
+  def secondaryContinue(): Unit          =
+    click(By.cssSelector(Locators.btnReturn))
   def saveAndContinue(): Unit            =
     click(By.cssSelector(Locators.btnContinue))
   def saveAndReturnToDashboard(): Unit   =

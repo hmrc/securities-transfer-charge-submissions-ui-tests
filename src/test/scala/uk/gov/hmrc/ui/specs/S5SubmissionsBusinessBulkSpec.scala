@@ -26,7 +26,7 @@ import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.util.TestDataConstants.checkYourAnswers
 
-class S4SubmissionsIndividualBulkSpec
+class S5SubmissionsBusinessBulkSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen

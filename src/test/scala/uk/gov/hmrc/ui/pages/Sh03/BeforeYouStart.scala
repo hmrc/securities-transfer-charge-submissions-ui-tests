@@ -14,27 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BuyDatePage extends BasePage {
+object BeforeYouStart extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
+  override def pageUrl: String = "/securities-transfer-charge/sh03/agent/before-you-start"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "When did you buy these securities?" + serviceName +
-      "What is the charging point?" + serviceName +
-      "What’s the charging point?" + serviceName +
-      " Charging point - Share buyback (SH03)" + serviceName
+    "Before you start - Share buyback (SH03)" + serviceName
 
-  def enterDate(date: String, month: String, year: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
+  def clickOnContinue(): Unit = {
+    verifyPageTitle(pageTitle)
     continue()
   }
 }

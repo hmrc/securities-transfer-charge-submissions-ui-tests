@@ -38,7 +38,8 @@ object ApplyingForReliefPage extends BasePage {
   override def pageTitle: String =
     "Are you applying for a relief? - Transfer details" + serviceName +
       "Is the business applying for a relief? - Transfer details" + serviceName +
-      "Is the buyer applying for a relief? - Transfer details" + serviceName
+      "Is the buyer applying for a relief? - Transfer details" + serviceName +
+      "Is the buyer applying for a relief? - Share buyback (SH03)" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
