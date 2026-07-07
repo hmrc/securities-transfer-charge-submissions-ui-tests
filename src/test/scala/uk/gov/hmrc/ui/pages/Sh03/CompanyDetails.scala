@@ -14,24 +14,37 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.AddAReference.input
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomString
 
-object AddAReference extends BasePage {
+object CompanyDetails extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/agent/add-reference"
+  override def pageUrl: String = "/securities-transfer-charge/sh03/agent/company-details"
 
-  // placeholder yet to finalize the title
+  sealed trait ConfirmationOption {
+    def selector: String
+  }
+
+  case object Yes extends ConfirmationOption {
+    override val selector = "#isPlc"
+  }
+
+  case object No extends ConfirmationOption {
+    override val selector = "#isPlc-2"
+  }
+
   override def pageTitle: String =
-    "Add a reference" + serviceName
-      + "Add a reference - Share buyback (SH03)" + serviceName
+    "Company details - Share buyback (SH03)" + serviceName
 
-  def enterValue(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtValue, generateRandomString(10))
-    continue()
+  def enterValues(option: ConfirmationOption = Yes): Unit = {
+    verifyPageTitle(pageTitle)
+    input(Locators.txtCompanyName, generateRandomString(10))
+    input(Locators.txtCompanyRegistrationNumber, generateRandomString(8))
+    radioButton(option.selector)
+    saveAndContinue()
   }
 }

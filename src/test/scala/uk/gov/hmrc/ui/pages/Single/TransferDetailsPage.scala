@@ -26,10 +26,11 @@ object TransferDetailsPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What are the details of this transfer? - Transfer details" + serviceName
+    "What are the details of this transfer? - Transfer details" + serviceName +
+      "What are the details of this share purchase? - Share buyback (SH03)" + serviceName
 
   def enterValues(connectedPersons: Boolean = true): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     input(Locators.txtNumberOfShares, randomIntFromOne(9))
     input(Locators.txtTypeOfShares, generateRandomString(9))
     input(Locators.txtAmountPaid, generateRandomAmount(9))

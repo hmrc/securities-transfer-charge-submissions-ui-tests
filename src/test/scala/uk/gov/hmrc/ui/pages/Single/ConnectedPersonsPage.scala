@@ -38,7 +38,8 @@ object ConnectedPersonsPage extends BasePage {
   // placeholder yet to finalize the title
   override def pageTitle: String =
     "Connected persons - Transfer details" + serviceName +
-      "& Connected persons - Seller details" + serviceName
+      "& Connected persons - Seller details" + serviceName +
+      "& Connected persons - Share buyback (SH03)" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

@@ -14,27 +14,33 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BuyDatePage extends BasePage {
+object SharePurchase extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
+  override def pageUrl: String = "/securities-transfer-charge/sh03/agent/share-purchase"
 
-  // placeholder yet to finalize the title
+  sealed trait ConfirmationOption {
+    def selector: String
+  }
+
+  case object ForCancellation extends ConfirmationOption {
+    val selector = "#value_0"
+  }
+
+  case object ToPlaceIntoTreasury extends ConfirmationOption {
+    val selector = "#value_1"
+  }
+
   override def pageTitle: String =
-    "When did you buy these securities?" + serviceName +
-      "What is the charging point?" + serviceName +
-      "What’s the charging point?" + serviceName +
-      " Charging point - Share buyback (SH03)" + serviceName
+    "Why are these shares being purchased? - Share buyback (SH03)" + serviceName
 
-  def enterDate(date: String, month: String, year: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
-    continue()
+  def select(option: ConfirmationOption = ForCancellation): Unit = {
+    verifyPageTitle(pageTitle)
+    radioButton(option.selector)
+    saveAndContinue()
   }
 }
