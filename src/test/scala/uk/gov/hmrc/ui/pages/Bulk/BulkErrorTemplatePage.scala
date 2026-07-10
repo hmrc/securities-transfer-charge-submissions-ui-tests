@@ -17,12 +17,14 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object TempPlaceholderFileUploadedPage extends BasePage {
+object BulkErrorTemplatePage extends BasePage {
 
-  override def pageUrl: String   = "/securities-transfer-charge/stf/file-upload"
-  override def pageTitle: String = "File uploaded"
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-template"
 
-  def verifyPageTitle(): Unit = verifyPageTitleContains(pageTitle)
+  override def pageTitle: String = "The template file you uploaded has been changed" + serviceName
 
+  def verifyError(): Unit =
+    verifyPageTitleContains(pageTitle)
 }

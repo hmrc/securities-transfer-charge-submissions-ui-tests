@@ -17,17 +17,14 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object BulkErrorListPage extends BasePage {
 
-  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-error-list"
-  override def pageTitle: String = "There is a problem with your uploaded file"
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error"
 
-  def selectUpload(): Unit = {
+  override def pageTitle: String = "Your file has formatting errors" + serviceName
+
+  def verifyErrors(): Unit =
     verifyPageTitleContains(pageTitle)
-    // Direct navigation used here because button "Back to file upload" not yet wired in
-    // TODO: replace with clickUploadButton() once the service handles this correctly.
-    navigateTo(UploadFileTransfersPage)
-  }
-
 }

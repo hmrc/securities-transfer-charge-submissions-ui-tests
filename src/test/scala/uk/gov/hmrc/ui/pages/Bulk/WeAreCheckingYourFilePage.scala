@@ -17,16 +17,13 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BulkFormattingPage extends BasePage {
+object WeAreCheckingYourFilePage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-formatting"
+  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-processing"
+  override def pageTitle: String = "We are checking your file" + serviceName
 
-  override def pageTitle: String = "There is a problem with your uploaded file"
-
-  def selectUpload(): Unit = {
+  def verify(): Unit =
     verifyPageTitleContains(pageTitle)
-    clickUploadButton()
-  }
-
 }
