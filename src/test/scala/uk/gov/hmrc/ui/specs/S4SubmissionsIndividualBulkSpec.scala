@@ -25,6 +25,7 @@ import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
+import uk.gov.hmrc.ui.tags.QAOnly
 import uk.gov.hmrc.ui.util.TestDataConstants.checkYourAnswers
 
 class S4SubmissionsIndividualBulkSpec
@@ -93,7 +94,7 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorListPage.verifyErrors()
     }
 
-    Scenario("Bulk submission of a user as an Individual - wrong file format") {
+    Scenario("Bulk submission of a user as an Individual - wrong file format", QAOnly) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
@@ -129,7 +130,7 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorEmptyPage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Password protected file") {
+    Scenario("Bulk submission of a user as an Individual - Password protected file", QAOnly) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
