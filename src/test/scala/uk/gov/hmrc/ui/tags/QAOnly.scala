@@ -14,19 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Bulk
+package uk.gov.hmrc.ui.tags
 
-import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
+import org.scalatest.Tag
 
-object HowUseTemplateTransfersPage extends BasePage {
-
-  override def pageUrl: String = "/securities-transfer-charge/stf/template"
-
-  override def pageTitle: String = "How to use the template" + serviceName
-
-  def selectContinue(): Unit = {
-    verifyPageTitleContains(pageTitle)
-    continue()
-  }
-}
+object QAOnly extends Tag("uk.gov.hmrc.ui.tags.QAOnly")

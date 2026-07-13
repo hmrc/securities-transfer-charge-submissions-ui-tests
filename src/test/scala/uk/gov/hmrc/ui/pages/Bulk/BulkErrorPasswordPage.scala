@@ -19,14 +19,12 @@ package uk.gov.hmrc.ui.pages.Bulk
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object HowUseTemplateTransfersPage extends BasePage {
+object BulkErrorPasswordPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/template"
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-password"
 
-  override def pageTitle: String = "How to use the template" + serviceName
+  override def pageTitle: String = "There was a problem uploading your file" + serviceName
 
-  def selectContinue(): Unit = {
+  def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)
-    continue()
-  }
 }

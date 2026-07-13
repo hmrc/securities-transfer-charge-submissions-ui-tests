@@ -17,17 +17,14 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BulkEmptyPage extends BasePage {
+object BulkErrorEmptyPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-empty"
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-empty"
 
-  // placeholder yet to finalize the title
-  override def pageTitle: String = "There are no transfers in your file"
+  override def pageTitle: String = "The file you have uploaded is empty" + serviceName
 
-  def selectUpload(): Unit = {
+  def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)
-    clickUploadButton()
-  }
-
 }

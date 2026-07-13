@@ -17,24 +17,28 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object UploadFileTransfersPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/file-upload"
 
-  override def pageTitle: String = "Upload your file"
+  override def pageTitle: String = "Upload your file - Transfer details" + serviceName
 
   private def testDataPath(fileName: String): String = {
-    val resource = getClass.getResource(s"/testData/$fileName")
-    if (resource == null) throw new IllegalArgumentException(s"Test resource not found: testData/$fileName")
+    val resource = getClass.getResource(s"/testData/individual/$fileName")
+    if (resource == null) throw new IllegalArgumentException(s"Test resource not found: testData/individual/$fileName")
     new java.io.File(resource.toURI).getAbsolutePath
   }
 
-  val filledFile: String     = testDataPath("Bulk Securities Transfer Charges - Filled.xlsx")
-  val emptyFile: String      = testDataPath("Bulk Securities Transfer Charges - Empty.xlsx")
-  val formattingFile: String = testDataPath("Bulk Securities Transfer Charges - Formatting.xlsx")
-  val errorListFile: String  = testDataPath("Bulk Securities Transfer Charges - Error List.xlsx")
-  val manyErrorsFile: String = testDataPath("Bulk Securities Transfer Charges - Many Errors.xlsx")
+  val filledFile: String            = testDataPath("STF Individual - One valid row.xlsx")
+  val errorListFile: String         = testDataPath("STF Individual - Error List.xlsx")
+  val manyErrorsFile: String        = testDataPath("STF Individual - Many Errors.xlsx")
+  val formattingFile: String        = testDataPath("STF Individual - Formatting.pdf")
+  val emptyFile: String             = testDataPath("STF Individual - Empty File.xlsx")
+  val passwordProtectedFile: String = testDataPath("STF Individual - Password Protected.xlsx")
+  val templateFile: String          = testDataPath("STF Individual - Error Template.xlsx")
+  val moreThanMaxRows: String       = testDataPath("STF Individual - 10k+1 valid rows.xlsx")
 
   def chooseFile(file: String = filledFile): Unit = {
     verifyPageTitleContains(pageTitle)

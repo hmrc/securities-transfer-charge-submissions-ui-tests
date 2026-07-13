@@ -21,9 +21,11 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.Bulk.*
+import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
+import uk.gov.hmrc.ui.tags.QAOnly
 import uk.gov.hmrc.ui.util.TestDataConstants.checkYourAnswers
 
 class S4SubmissionsIndividualBulkSpec
@@ -38,118 +40,148 @@ class S4SubmissionsIndividualBulkSpec
 
   Feature("STC Bulk Submission Individual Journeys") {
 
-    Scenario("Bulk submission of a user as an Individual") {
+    Scenario("Bulk submission of a user as an Individual - one valid row") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
-      When("User navigates to Submissions start page - Buyer's details")
+      When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
       UploadFileTransfersPage.chooseFile()
       UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
 
-      // To be replaced with bulk check your answers
-      TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
+      Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of an empty bulk file as a user as an Individual") {
+    Scenario("Bulk submission of a user as an Individual - less than 25 errors or fewer") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
-      When("User navigates to Submissions start page - Buyer's details")
+      When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
-      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.emptyFile)
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(errorListFile)
       UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
 
-      // Remove next step when navigation has been wired in
-      TempPlaceholderFileUploadedPage.navigateTo(BulkEmptyPage)
-
-      //      Wondering if this step should be in the spec as the title is part of the A/C?
-      BulkEmptyPage.verifyPageTitleContains("There are no transfers in your file")
-      BulkEmptyPage.selectUpload()
-      UploadFileTransfersPage.chooseFile()
-      UploadFileTransfersPage.selectUpload()
-
-      // To be replaced with bulk check your answers
-      TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
-      CheckYourAnswersPage.verify(checkYourAnswers)
-
+      Then("User verifies check your answers for details entered")
+      BulkErrorPage.verifyErrors()
     }
 
-    Scenario("Submission of a bulk file with error list (25 or less errors) as a user as an Individual") {
+    Scenario("Bulk submission of a user as an Individual - more than 25 errors") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
-      When("User navigates to Submissions start page - Buyer's details")
+      When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
-      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.errorListFile)
-      UploadFileTransfersPage.selectUpload()
 
-      // Remove next step when navigation has been wired in
-      TempPlaceholderFileUploadedPage.navigateTo(BulkErrorListPage)
-      BulkErrorListPage.selectUpload()
-      UploadFileTransfersPage.chooseFile()
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(manyErrorsFile)
       UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
 
-      // To be replaced with bulk check your answers
-      TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      Then("User verifies check your answers for details entered")
+      BulkErrorListPage.verifyErrors()
     }
 
-    Scenario("Submission of a bulk file with many errors (26 or more errors) as a user as an Individual") {
+    Scenario("Bulk submission of a user as an Individual - wrong file format", QAOnly) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
-      When("User navigates to Submissions start page - Buyer's details")
+      When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
-      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.manyErrorsFile)
-      UploadFileTransfersPage.selectUpload()
 
-      // Remove next step when navigation has been wired in
-      TempPlaceholderFileUploadedPage.navigateTo(BulkTooManyErrorsPage)
-      BulkTooManyErrorsPage.selectUpload()
-      UploadFileTransfersPage.chooseFile()
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(formattingFile)
       UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
 
-      // To be replaced with bulk check your answers
-      TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      Then("User verifies check your answers for details entered")
+      BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Submission of a bulk file with formatting errors as a user as an Individual") {
+    Scenario("Bulk submission of a user as an Individual - Empty File format") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
-      When("User navigates to Submissions start page - Buyer's details")
+      When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
-      UploadFileTransfersPage.chooseFile(UploadFileTransfersPage.formattingFile)
-      UploadFileTransfersPage.selectUpload()
 
-      // Remove next step when navigation has been wired in
-      TempPlaceholderFileUploadedPage.navigateTo(BulkFormattingPage)
-      BulkFormattingPage.selectUpload()
-      UploadFileTransfersPage.chooseFile()
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(emptyFile)
       UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
 
-      // To be replaced with bulk check your answers
-      TempPlaceholderFileUploadedPage.verifyPageTitle()
-      TempPlaceholderFileUploadedPage.navigateTo(CheckYourAnswersPage)
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      Then("User verifies check your answers for details entered")
+      BulkErrorEmptyPage.verifyError()
     }
 
+    Scenario("Bulk submission of a user as an Individual - Password protected file", QAOnly) {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs("individual")
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(passwordProtectedFile)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorPasswordPage.verifyError()
+    }
+
+    Scenario("Bulk submission of a user as an Individual - Error Template file") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs("individual")
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(templateFile)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorTemplatePage.verifyError()
+    }
+
+    Scenario("Bulk submission of a user as an Individual - Too Many rows") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs("individual")
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(moreThanMaxRows)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorRowsPage.verifyError()
+    }
   }
 }

@@ -17,15 +17,14 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BulkTooManyErrorsPage extends BasePage {
+object BulkErrorTypePage extends BasePage {
 
-  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-error"
-  override def pageTitle: String = "Your file has formatting errors"
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-type"
 
-  def selectUpload(): Unit = {
+  override def pageTitle: String = "Check your file" + serviceName
+
+  def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)
-    clickUploadButton()
-  }
-
 }
