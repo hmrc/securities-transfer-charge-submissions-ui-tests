@@ -25,7 +25,7 @@ import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
-import uk.gov.hmrc.ui.tags.QAOnly
+import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
 import uk.gov.hmrc.ui.util.TestDataConstants.checkYourAnswers
 
 class S4SubmissionsIndividualBulkSpec
@@ -40,7 +40,7 @@ class S4SubmissionsIndividualBulkSpec
 
   Feature("STC Bulk Submission Individual Journeys") {
 
-    Scenario("Bulk submission of a user as an Individual - one valid row") {
+    Scenario("Bulk submission of a user as an Individual - one valid row", Smoke) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 

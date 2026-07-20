@@ -25,6 +25,7 @@ import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{Other, Shares}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.pages.Single.*
+import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
@@ -39,7 +40,7 @@ class S1SubmissionsIndividualSpec
     with ScreenshotOnFailure {
 
   Feature("STC Individual Journeys") {
-    Scenario("Submission of a user as an Individual") {
+    Scenario("Submission of a user as an Individual", Smoke) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("individual")
 
