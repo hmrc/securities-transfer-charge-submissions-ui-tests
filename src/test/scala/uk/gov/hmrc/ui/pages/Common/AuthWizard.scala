@@ -40,7 +40,6 @@ object AuthWizard extends BasePage {
   def loginAs(userType: String): Unit = {
     AuthWizard.navigateToPage(url + Urls.SUBMISSION)
     driver.findElement(affinityGroup).sendKeys(userType)
-    println("DEBUG: Logging in as - " + userType)
     driver.findElement(enrolmentKey).sendKeys(enrolmentsEnrolmentKey)
     driver.findElement(identifierName).sendKeys(enrolmentsIdentifierName)
     driver.findElement(identifierValue).sendKeys(enrolmentsIdentifierValue)
