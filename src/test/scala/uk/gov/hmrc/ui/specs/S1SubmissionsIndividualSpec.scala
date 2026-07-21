@@ -42,7 +42,7 @@ class S1SubmissionsIndividualSpec
   Feature("STC Individual Journeys") {
     Scenario("Submission of a user as an Individual", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -74,7 +74,7 @@ class S1SubmissionsIndividualSpec
       "Submission of a user as an Individual - Edit and update buyer's & seller's address to another UK address"
     ) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -108,7 +108,7 @@ class S1SubmissionsIndividualSpec
 
     Scenario("Submission of a user as an Individual - Edit and update buyer's & seller's address to non UK address") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -140,7 +140,7 @@ class S1SubmissionsIndividualSpec
 
     Scenario("Submission of a user as an Individual with non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -170,7 +170,7 @@ class S1SubmissionsIndividualSpec
 
     Scenario("Submission of a user as an Individual with no relief option") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -199,7 +199,7 @@ class S1SubmissionsIndividualSpec
 
     Scenario("Submission of a user as an Individual with other securities type") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -231,7 +231,7 @@ class S1SubmissionsIndividualSpec
 
     Scenario("Submission of a user as an Individual with other securities type for non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("individual")
+      AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()

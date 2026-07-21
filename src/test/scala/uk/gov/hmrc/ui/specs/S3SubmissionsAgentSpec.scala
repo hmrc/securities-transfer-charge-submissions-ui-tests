@@ -42,7 +42,7 @@ class S3SubmissionsAgentSpec
   Feature("STC Agent Journeys") {
     Scenario("Submission of a user as an Agent", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -81,7 +81,7 @@ class S3SubmissionsAgentSpec
       "Submission of a user as an Agent - Add buyer's & seller's address by manually entering UK address"
     ) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -118,7 +118,7 @@ class S3SubmissionsAgentSpec
 
     Scenario("Submission of a user as an Agent - Edit and update buyer's & seller's address to non UK address") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -153,7 +153,7 @@ class S3SubmissionsAgentSpec
 
     Scenario("Submission of a user as an Agent with non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -190,7 +190,7 @@ class S3SubmissionsAgentSpec
 
     Scenario("Submission of a user as an Agent with no relief option") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -226,7 +226,7 @@ class S3SubmissionsAgentSpec
 
     Scenario("Submission of a user as an Agent with other securities type") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -265,7 +265,7 @@ class S3SubmissionsAgentSpec
 
     Scenario("Submission of a user as an Agent with other securities type for non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()

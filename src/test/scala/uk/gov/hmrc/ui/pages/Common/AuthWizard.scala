@@ -38,18 +38,9 @@ object AuthWizard extends BasePage {
   val btnSubmit: By       = By.id("submit")
 
   def loginAs(userType: String): Unit = {
-    val affinityValue = userType.toLowerCase match {
-      case "individual"   => affinityIndividual
-      case "organisation" => affinityOrganisation
-      case "agent"        => affinityAgent
-      case _              =>
-        throw new IllegalArgumentException(
-          s"Invalid user type: $userType. Must be 'individual', 'organisation', or 'agent'"
-        )
-    }
-
     AuthWizard.navigateToPage(url + Urls.SUBMISSION)
-    driver.findElement(affinityGroup).sendKeys(affinityValue)
+    driver.findElement(affinityGroup).sendKeys(userType)
+    println("DEBUG: Logging in as - " + userType)
     driver.findElement(enrolmentKey).sendKeys(enrolmentsEnrolmentKey)
     driver.findElement(identifierName).sendKeys(enrolmentsIdentifierName)
     driver.findElement(identifierValue).sendKeys(enrolmentsIdentifierValue)
