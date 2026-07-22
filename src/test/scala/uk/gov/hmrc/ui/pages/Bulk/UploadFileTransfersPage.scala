@@ -21,28 +21,38 @@ import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object UploadFileTransfersPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/file-upload"
+  override def pageUrl: String =
+    "/securities-transfer-charge/stf/file-upload"
 
-  override def pageTitle: String = "Upload your file - Transfer details" + serviceName
+  override def pageTitle: String =
+    "Upload your file - Transfer details" + serviceName
 
-  private def testDataPath(fileName: String): String = {
-    val resource = getClass.getResource(s"/testData/individual/$fileName")
-    if (resource == null) throw new IllegalArgumentException(s"Test resource not found: testData/individual/$fileName")
+  object FileName {
+    val Filled            = "One valid row.xlsx"
+    val ErrorList         = "Error List.xlsx"
+    val ManyErrors        = "Many Errors.xlsx"
+    val Formatting        = "Formatting.pdf"
+    val Empty             = "Empty File.xlsx"
+    val PasswordProtected = "Password Protected.xlsx"
+    val Template          = "Error Template.xlsx"
+    val MoreThanMaxRows   = "10k+1 valid rows.xlsx"
+  }
+
+  private def testDataPath(directory: String, fileName: String): String = {
+    val resource =
+      getClass.getResource(s"/testData/${directory.toLowerCase}/STF ${directory.toLowerCase} - $fileName")
+
+    if (resource == null)
+      throw new IllegalArgumentException(
+        s"Test resource not found: testData/${directory.toLowerCase}/STF ${directory.toLowerCase} - $fileName"
+      )
+
     new java.io.File(resource.toURI).getAbsolutePath
   }
 
-  val filledFile: String            = testDataPath("STF Individual - One valid row.xlsx")
-  val errorListFile: String         = testDataPath("STF Individual - Error List.xlsx")
-  val manyErrorsFile: String        = testDataPath("STF Individual - Many Errors.xlsx")
-  val formattingFile: String        = testDataPath("STF Individual - Formatting.pdf")
-  val emptyFile: String             = testDataPath("STF Individual - Empty File.xlsx")
-  val passwordProtectedFile: String = testDataPath("STF Individual - Password Protected.xlsx")
-  val templateFile: String          = testDataPath("STF Individual - Error Template.xlsx")
-  val moreThanMaxRows: String       = testDataPath("STF Individual - 10k+1 valid rows.xlsx")
-
-  def chooseFile(file: String = filledFile): Unit = {
+  def chooseFile(directory: String, fileName: String): Unit = {
     verifyPageTitleContains(pageTitle)
-    uploadFile(file)
+    uploadFile(testDataPath(directory, fileName))
   }
 
   def selectUpload(): Unit = {

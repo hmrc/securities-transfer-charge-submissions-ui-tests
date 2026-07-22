@@ -41,7 +41,7 @@ class S7SH03AgentSpec
   Feature("SH03 Agent Journeys") {
     Scenario("Submission of a user as an Agent", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -68,7 +68,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - No Treasury shares") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -121,7 +121,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - No PLC") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -146,7 +146,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - Receiver") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -173,7 +173,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - Receiver manager") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -200,7 +200,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - CIC Manager") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -227,7 +227,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - UKSocietas") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
@@ -254,7 +254,7 @@ class S7SH03AgentSpec
 
     Scenario("Submission of a user as an Agent - Not Provided") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("agent")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()

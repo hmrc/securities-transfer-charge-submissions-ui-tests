@@ -29,7 +29,7 @@ import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
 
-class S2SubmissionsBusinessSpec
+class S2SubmissionsOrganisationSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -39,10 +39,10 @@ class S2SubmissionsBusinessSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC Business Journeys") {
-    Scenario("Submission of a user as an Business", Smoke) {
+  Feature("STC Organisation Journeys") {
+    Scenario("Submission of a user as an Organisation", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -71,10 +71,10 @@ class S2SubmissionsBusinessSpec
     }
 
     Scenario(
-      "Submission of a user as an Business - Edit and update buyer's & seller's address to another UK address"
+      "Submission of a user as an Organisation - Edit and update buyer's & seller's address to another UK address"
     ) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -106,9 +106,9 @@ class S2SubmissionsBusinessSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business - Edit and update buyer's & seller's address to non UK address") {
+    Scenario("Submission of a user as an Organisation - Edit and update buyer's & seller's address to non UK address") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -138,9 +138,9 @@ class S2SubmissionsBusinessSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business with non connected persons") {
+    Scenario("Submission of a user as an Organisation with non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -168,9 +168,9 @@ class S2SubmissionsBusinessSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business with no relief option") {
+    Scenario("Submission of a user as an Organisation with no relief option") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -197,9 +197,9 @@ class S2SubmissionsBusinessSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business with other securities type") {
+    Scenario("Submission of a user as an Organisation with other securities type") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
@@ -229,9 +229,9 @@ class S2SubmissionsBusinessSpec
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business with other securities type for non connected persons") {
+    Scenario("Submission of a user as an Organisation with other securities type for non connected persons") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
       SubmissionsDashboardPage.createNewSubmission()
