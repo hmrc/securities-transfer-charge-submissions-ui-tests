@@ -27,6 +27,7 @@ object ReliefApplyingForPage extends BasePage {
   override def pageTitle: String =
     "What relief are you applying for? - Transfer details" + serviceName +
       "What relief is the business applying for? - Transfer details" + serviceName +
+      "Enter the relief the business is applying for - Transfer details" + serviceName +
       "Enter the relief the buyer is applying for - Transfer details" + serviceName +
       "Enter the relief the buyer is applying for - Share buyback (SH03)" + serviceName
 

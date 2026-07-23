@@ -82,6 +82,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val txtAmountPaid: By            = By.ById("amountPaid")
     val txtMarketValue: By           = By.ById("marketValue")
     val txtCompanyName: By           = By.ById("companyName")
+    val txtCrnNumber: By             = By.ById("companyRegistrationNumber")
     val txtUKSOrgan: By              = By.ById("uksOrgan")
     val banner                       = ".govuk-notification-banner"
     val successBanner: By            = By.cssSelector("h1.govuk-panel__title")

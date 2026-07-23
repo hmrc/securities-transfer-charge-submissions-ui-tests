@@ -39,10 +39,11 @@ object RolePurchasingCompany extends BasePage {
   case object NotProvided extends ConfirmationOption { val selector = "#role-10" }
 
   override def pageTitle: String =
-    "Who at the purchasing company provided the details of this share buyback? - Share buyback (SH03)" + serviceName
+    "Who at the purchasing company provided the details of this share buyback? - Share buyback (SH03)" + serviceName +
+      "What is your role within the purchasing company? - Share buyback (SH03)" + serviceName
 
   def select(option: ConfirmationOption = Director): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyExpectedContainsPageTitle(pageTitle)
     radioButton(option.selector)
     if (option == UKSocietas) {
       input(Locators.txtUKSOrgan, generateRandomString(10))
