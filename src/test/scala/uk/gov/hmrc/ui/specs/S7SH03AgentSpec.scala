@@ -20,7 +20,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
 import uk.gov.hmrc.ui.pages.Sh03.RolePurchasingCompany.*
 import uk.gov.hmrc.ui.pages.Sh03.SharePurchase.ToPlaceIntoTreasury
 import uk.gov.hmrc.ui.pages.Sh03.*
