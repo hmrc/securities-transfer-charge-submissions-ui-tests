@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.Single.AddAReference.input
+import uk.gov.hmrc.ui.pages.Common.AddAReference.input
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.randomIntFromOne
 
