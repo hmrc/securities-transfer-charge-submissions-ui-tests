@@ -28,21 +28,8 @@ object CompanyNumber extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/sh03/org/company-number"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
+  override def pageTitle: String                             =
     "What is the company registration number (CRN)? - Share buyback (SH03)" + serviceName
-
-//  def clickOnContinue(): Unit = {
-//    verifyPageTitle(pageTitle)
-//    continue()
-//  }
-//
-//  def enterRelief(relief: String): Unit                      = {
-//    verifyExpectedContainsPageTitle(pageTitle)
-//    input(Locators.txtValue, relief)
-//    continue()
-//    // additional continue is to select and continue to next page
-//    continue()
-//  }
   def enterCrnNumber(option: ConfirmationOption = Yes): Unit = {
     verifyPageTitle(pageTitle)
     input(Locators.txtCompanyRegistrationNumber, "12345678")
