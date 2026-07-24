@@ -46,7 +46,6 @@ class S7SH03BusinessSpec
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
-      // AddAReference.enterValue() // REMOVE
 
       And("User selects and enters transfer details")
 //      CompanyDetails.enterValues()
