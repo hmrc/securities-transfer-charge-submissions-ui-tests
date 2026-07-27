@@ -23,12 +23,12 @@ import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityIndividual, checkYourAnswers}
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityAgent, checkYourAnswers}
 
-class S4SubmissionsIndividualBulkSpec
+class S10SH03AgentBulkSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -38,11 +38,11 @@ class S4SubmissionsIndividualBulkSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC Bulk Submission Individual Journeys") {
+  Feature("STC Bulk SH03 Agent Journeys") {
 
-    Scenario("Bulk submission of a user as an Individual - one valid row", Smoke) {
+    Scenario("Bulk SH03 of a user as an Agent - one valid row", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -50,17 +50,18 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.Filled)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Filled)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
+      AddAReference.enterValue()
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
 
-    Scenario("Bulk submission of a user as an Individual - less than 25 errors or fewer") {
+    Scenario("Bulk SH03 of a user as an Agent - less than 25 errors or fewer") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -68,7 +69,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.ErrorList, "SH03")
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.ErrorList)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -76,9 +77,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorPage.verifyErrors()
     }
 
-    Scenario("Bulk submission of a user as an Individual - more than 25 errors") {
+    Scenario("Bulk SH03 of a user as an Agent - more than 25 errors") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -86,7 +87,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.ManyErrors)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.ManyErrors)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -94,9 +95,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorListPage.verifyErrors()
     }
 
-    Scenario("Bulk submission of a user as an Individual - wrong file format", QAOnly) {
+    Scenario("Bulk SH03 of a user as an Agent - wrong file format", QAOnly) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -104,7 +105,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.Formatting)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Formatting)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -112,9 +113,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Empty File format") {
+    Scenario("Bulk SH03 of a user as an Agent - Empty File format") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -122,7 +123,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.Empty)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Empty)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -130,9 +131,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorEmptyPage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Password protected file", QAOnly) {
+    Scenario("Bulk SH03 of a user as an Agent - Password protected file", QAOnly) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -140,7 +141,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.PasswordProtected)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.PasswordProtected)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -148,9 +149,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorPasswordPage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Error Template file") {
+    Scenario("Bulk SH03 of a user as an Agent - Error Template file") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -158,7 +159,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.Template)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Template)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -166,9 +167,9 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorTemplatePage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Too Many rows") {
+    Scenario("Bulk SH03 of a user as an Agent - Too Many rows") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityIndividual)
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSubmission()
@@ -176,7 +177,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.MoreThanMaxRows)
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.MoreThanMaxRows)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 

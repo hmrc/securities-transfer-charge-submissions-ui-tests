@@ -21,11 +21,9 @@ import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object UploadFileTransfersPage extends BasePage {
 
-  override def pageUrl: String =
-    "/securities-transfer-charge/stf/file-upload"
+  override def pageUrl: String = "/securities-transfer-charge/stf/file-upload"
 
-  override def pageTitle: String =
-    "Upload your file - Transfer details" + serviceName
+  override def pageTitle: String = "Upload your file - Transfer details" + serviceName
 
   object FileName {
     val Filled            = "One valid row.xlsx"
@@ -38,21 +36,25 @@ object UploadFileTransfersPage extends BasePage {
     val MoreThanMaxRows   = "10k+1 valid rows.xlsx"
   }
 
-  private def testDataPath(directory: String, fileName: String): String = {
-    val resource =
-      getClass.getResource(s"/testData/${directory.toLowerCase}/STF ${directory.toLowerCase} - $fileName")
+  private val TestDataPrefix = "STF"
+
+  private def getTestDataPath(directory: String, fileName: String, prefix: String = TestDataPrefix): String = {
+    val dirSubPath   = TestDataPrefix.toLowerCase
+    val dirPath      = directory.toLowerCase
+    val resourcePath = s"/testData/$dirPath/$dirSubPath/$prefix $dirPath - $fileName"
+    val resource     = getClass.getResource(resourcePath)
 
     if (resource == null)
       throw new IllegalArgumentException(
-        s"Test resource not found: testData/${directory.toLowerCase}/STF ${directory.toLowerCase} - $fileName"
+        s"Test resource not found: $resourcePath"
       )
 
     new java.io.File(resource.toURI).getAbsolutePath
   }
 
-  def chooseFile(directory: String, fileName: String): Unit = {
+  def chooseFile(directory: String, fileName: String, prefix: String = TestDataPrefix): Unit = {
     verifyPageTitleContains(pageTitle)
-    uploadFile(testDataPath(directory, fileName))
+    uploadFile(getTestDataPath(directory, fileName, prefix))
   }
 
   def selectUpload(): Unit = {
