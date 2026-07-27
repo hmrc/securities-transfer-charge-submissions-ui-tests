@@ -25,6 +25,7 @@ import uk.gov.hmrc.ui.pages.Sh03.*
 import uk.gov.hmrc.ui.pages.Sh03.RolePurchasingCompany.*
 import uk.gov.hmrc.ui.pages.Sh03.SharePurchase.ToPlaceIntoTreasury
 import uk.gov.hmrc.ui.pages.Single.*
+import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 
 class S7SH03BusinessSpec
@@ -38,7 +39,7 @@ class S7SH03BusinessSpec
     with ScreenshotOnFailure {
 
   Feature("SH03 Business Journeys") {
-    Scenario("Submission of a user as an Business") {
+    Scenario("Submission of a user as an Business", Smoke) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("organisation")
 
