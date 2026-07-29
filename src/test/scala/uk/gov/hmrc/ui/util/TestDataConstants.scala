@@ -25,6 +25,10 @@ object TestDataConstants {
   final val affinityOrganisation: String = "Organisation"
   final val affinityAgent: String        = "Agent"
 
+  // -- Types
+  final val stf: String  = "STF"
+  final val sh03: String = "SH03"
+
   // -- Enrolment
   final val enrolmentsEnrolmentKey: String    = "HMRC-STC-ORG"
   final val enrolmentsIdentifierName: String  = "STCID"

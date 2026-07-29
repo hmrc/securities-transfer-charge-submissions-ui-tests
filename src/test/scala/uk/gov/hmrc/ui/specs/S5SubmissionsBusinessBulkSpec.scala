@@ -112,7 +112,7 @@ class S5SubmissionsBusinessBulkSpec
       BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Organisation - Empty File format") {
+    Scenario("Bulk submission of a user as an Organisation - Empty File") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityOrganisation)
 
@@ -123,6 +123,24 @@ class S5SubmissionsBusinessBulkSpec
 
       And("User uploads a file")
       UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.Empty)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorEmptyPage.verifyError()
+    }
+
+    Scenario("Bulk submission of a user as an Organisation - Empty Row") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs(affinityOrganisation)
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.EmptyRow)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 

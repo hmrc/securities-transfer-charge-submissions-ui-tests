@@ -27,4 +27,5 @@ object BulkErrorPasswordPage extends BasePage {
 
   def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)
+    clickBackToFileUpload()
 }

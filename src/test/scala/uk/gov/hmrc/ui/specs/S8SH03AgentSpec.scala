@@ -28,7 +28,7 @@ import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 
-class S7SH03AgentSpec
+class S8SH03AgentSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen

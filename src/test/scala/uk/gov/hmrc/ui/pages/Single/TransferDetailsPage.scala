@@ -35,7 +35,7 @@ object TransferDetailsPage extends BasePage {
     input(Locators.txtTypeOfShares, generateRandomString(9))
     input(Locators.txtAmountPaid, generateRandomAmount(9))
     if (connectedPersons)
-      input(Locators.txtMarketValue, generateRandomAmount(9))
+      input(Locators.txtMarketValue, randomIntFromOne(9))
     continue()
   }
 }
