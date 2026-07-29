@@ -113,7 +113,7 @@ class S6SubmissionsAgentBulkSpec
       BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Agent - Empty File format") {
+    Scenario("Bulk submission of a user as an Agent - Empty File") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityAgent)
 
@@ -124,6 +124,24 @@ class S6SubmissionsAgentBulkSpec
 
       And("User uploads a file")
       UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Empty)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorEmptyPage.verifyError()
+    }
+
+    Scenario("Bulk submission of a user as an Agent - Empty Row") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs(affinityAgent)
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.EmptyRow)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 

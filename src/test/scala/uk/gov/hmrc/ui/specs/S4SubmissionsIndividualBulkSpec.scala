@@ -68,7 +68,7 @@ class S4SubmissionsIndividualBulkSpec
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.ErrorList, "SH03")
+      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.ErrorList)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -112,7 +112,7 @@ class S4SubmissionsIndividualBulkSpec
       BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Bulk submission of a user as an Individual - Empty File format") {
+    Scenario("Bulk submission of a user as an Individual - Empty File") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityIndividual)
 
@@ -123,6 +123,24 @@ class S4SubmissionsIndividualBulkSpec
 
       And("User uploads a file")
       UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.Empty)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+
+      Then("User verifies check your answers for details entered")
+      BulkErrorEmptyPage.verifyError()
+    }
+
+    Scenario("Bulk submission of a user as an Individual - Empty Row") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs(affinityIndividual)
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSubmission()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(affinityIndividual, FileName.EmptyRow)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 

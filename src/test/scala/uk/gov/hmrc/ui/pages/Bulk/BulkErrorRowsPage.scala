@@ -27,4 +27,5 @@ object BulkErrorRowsPage extends BasePage {
 
   def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)
+    clickBackToFileUpload()
 }

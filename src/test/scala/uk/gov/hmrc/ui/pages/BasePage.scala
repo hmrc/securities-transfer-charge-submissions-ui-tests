@@ -45,6 +45,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val btnReturn                    = ".govuk-button.govuk-button--secondary"
     val btnUpload                    = "button[type='submit'].govuk-button"
     val lnkBack                      = "Back"
+    val lnkBackToFileUpload          = "Back to file upload"
     val btnSubmit                    = ".govuk-button"
     val lnkHeader                    = ".govuk-header__link.govuk-header__service-name"
     val rdoYes                       = "#value_0"
@@ -130,6 +131,8 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     click(By.cssSelector(Locators.btnSubmit))
   def clickBackLink(): Unit              =
     click(By.linkText(Locators.lnkBack))
+  def clickBackToFileUpload(): Unit      =
+    click(By.linkText(Locators.lnkBackToFileUpload))
   def continue(): Unit                   =
     click(By.cssSelector(Locators.btnContinue))
   def secondaryContinue(): Unit          =
@@ -227,6 +230,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
 
   def verifyPageTitleContains(expectedString: String): Unit = {
     logger.info("Actual page title is: " + driver.getTitle)
+    logger.info("Expected page title contains: " + expectedString)
     waitForPageTitleContains(expectedString)
     assert(
       driver.getTitle.contains(expectedString),

@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.pages.Bulk
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
+import uk.gov.hmrc.ui.util.TestDataConstants.{serviceName, stf}
 
 object UploadFileTransfersPage extends BasePage {
 
@@ -31,15 +31,14 @@ object UploadFileTransfersPage extends BasePage {
     val ManyErrors        = "Many Errors.xlsx"
     val Formatting        = "Formatting.pdf"
     val Empty             = "Empty File.xlsx"
+    val EmptyRow          = "Empty Row.xlsx"
     val PasswordProtected = "Password Protected.xlsx"
     val Template          = "Error Template.xlsx"
     val MoreThanMaxRows   = "10k+1 valid rows.xlsx"
   }
 
-  private val TestDataPrefix = "STF"
-
-  private def getTestDataPath(directory: String, fileName: String, prefix: String = TestDataPrefix): String = {
-    val dirSubPath   = TestDataPrefix.toLowerCase
+  private def getTestDataPath(directory: String, fileName: String, prefix: String): String = {
+    val dirSubPath   = prefix.toLowerCase
     val dirPath      = directory.toLowerCase
     val resourcePath = s"/testData/$dirPath/$dirSubPath/$prefix $dirPath - $fileName"
     val resource     = getClass.getResource(resourcePath)
@@ -52,7 +51,7 @@ object UploadFileTransfersPage extends BasePage {
     new java.io.File(resource.toURI).getAbsolutePath
   }
 
-  def chooseFile(directory: String, fileName: String, prefix: String = TestDataPrefix): Unit = {
+  def chooseFile(directory: String, fileName: String, prefix: String = stf): Unit = {
     verifyPageTitleContains(pageTitle)
     uploadFile(getTestDataPath(directory, fileName, prefix))
   }

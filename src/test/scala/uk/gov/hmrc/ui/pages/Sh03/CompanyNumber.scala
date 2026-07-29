@@ -17,11 +17,10 @@
 package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.Sh03.CompanyDetails.{ConfirmationOption, Yes, input, pageTitle, radioButton, saveAndContinue, verifyPageTitle}
-import uk.gov.hmrc.ui.pages.Sh03.MaximumAmountShares.{input, pageTitle, saveAndContinue, verifyPageTitle}
-import uk.gov.hmrc.ui.pages.Single.ReliefApplyingForPage.{continue, input, pageTitle, verifyExpectedContainsPageTitle}
+import uk.gov.hmrc.ui.pages.Sh03.CompanyDetails.{ConfirmationOption, Yes}
+import uk.gov.hmrc.ui.pages.Sh03.MaximumAmountShares.{saveAndContinue, verifyPageTitle}
+import uk.gov.hmrc.ui.pages.Single.ReliefApplyingForPage.input
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
-import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, randomIntFromOne}
 
 object CompanyNumber extends BasePage {
 
