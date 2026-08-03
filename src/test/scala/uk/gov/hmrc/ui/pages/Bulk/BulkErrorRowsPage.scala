@@ -23,7 +23,9 @@ object BulkErrorRowsPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-rows"
 
-  override def pageTitle: String = "There was a problem uploading your file" + serviceName
+  override def pageTitle: String =
+//    "There was a problem uploading your file" + serviceName +
+    "Too many rows in your uploaded file" + serviceName
 
   def verifyError(): Unit =
     verifyPageTitleContains(pageTitle)

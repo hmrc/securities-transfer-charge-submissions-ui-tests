@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.Single.HowMuchPaidPage.verifyExpectedContainsPageTitle
-import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.randomIntFromOne
 
 object TotalMarketValuePage extends BasePage {
@@ -27,8 +26,9 @@ object TotalMarketValuePage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What is the total market value of these securities?" + serviceName +
-      "What is the total market value of the securities?" + serviceName
+//    "What is the total market value of these securities?" + serviceName +
+//      "What is the total market value of the securities?" + serviceName
+    "What is the total market value of the shares? - Tell us about a security transfer - GOV.UK"
 
   def enterValues(): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

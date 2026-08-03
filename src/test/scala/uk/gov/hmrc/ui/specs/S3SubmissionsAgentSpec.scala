@@ -22,7 +22,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
-import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{Other, Shares}
+import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{No, Yes}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.tags.Smoke
@@ -70,7 +70,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(HalfRate)
-      SecuritiesTypePage.select(Shares)
+      SecuritiesTypePage.select(Yes)
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
@@ -109,7 +109,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(OneAndHalfRate)
-      SecuritiesTypePage.select(Shares)
+      SecuritiesTypePage.select(Yes)
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
@@ -144,7 +144,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(HalfRate)
-      SecuritiesTypePage.select(Shares)
+      SecuritiesTypePage.select(Yes)
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
@@ -181,7 +181,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(OneAndHalfRate)
-      SecuritiesTypePage.select(Shares)
+      SecuritiesTypePage.select(Yes)
       TransferDetailsPage.enterValues(false)
 
       Then("User verifies check your answers for details entered")
@@ -217,7 +217,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(HalfRate)
-      SecuritiesTypePage.select(Shares)
+      SecuritiesTypePage.select(Yes)
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
@@ -254,7 +254,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(OneAndHalfRate)
-      SecuritiesTypePage.select(Other)
+      SecuritiesTypePage.select(No)
       TypeOfSecuritiesPage.enterValues()
       HowMuchPaidPage.enterValues()
       TotalMarketValuePage.enterValues()
@@ -293,7 +293,7 @@ class S3SubmissionsAgentSpec
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
       TaxRatePage.select(HalfRate)
-      SecuritiesTypePage.select(Other)
+      SecuritiesTypePage.select(No)
       TypeOfSecuritiesPage.enterValues()
       HowMuchPaidPage.enterValues()
 
