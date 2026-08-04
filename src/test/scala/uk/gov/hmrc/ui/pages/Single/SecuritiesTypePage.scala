@@ -27,19 +27,20 @@ object SecuritiesTypePage extends BasePage {
     def selector: String
   }
 
-  case object Shares extends ConfirmationOption {
-    val selector = "#value_0"
+  case object Yes extends ConfirmationOption {
+    val selector = "#value"
   }
 
-  case object Other extends ConfirmationOption {
-    val selector = "#value_1"
+  case object No extends ConfirmationOption {
+    val selector = "#value-no"
   }
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What type of securities are you buying? - Transfer details" + serviceName +
-      "What type of securities is the business buying? - Transfer details" + serviceName +
-      "What type of securities is the buyer purchasing? - Transfer details" + serviceName
+    "Is the buyer purchasing shares? - Transfer details" + serviceName +
+      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
+      "Is the business purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
+      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)

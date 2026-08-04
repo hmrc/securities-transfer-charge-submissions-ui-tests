@@ -29,6 +29,7 @@ object TotalMarketValuePage extends BasePage {
   override def pageTitle: String =
     "What is the total market value of these securities?" + serviceName +
       "What is the total market value of the securities?" + serviceName
+//    "What is the total market value of the shares? - Tell us about a security transfer - GOV.UK"
 
   def enterValues(): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
