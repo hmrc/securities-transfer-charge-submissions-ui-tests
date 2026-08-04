@@ -49,8 +49,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-//      CompanyDetails.enterValues()
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -76,7 +75,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select(TreasuryShares.No)
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -102,7 +101,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select(ToPlaceIntoTreasury)
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
@@ -116,31 +115,30 @@ class S7SH03BusinessSpec
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
+    
+    Scenario("Submission of a user as an Business - No PLC") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs("organisation")
 
-    // Below senario required, once dev rework completed
-//    Scenario("Submission of a user as an Business  - No PLC") {
-//      Given("User enters login using the Authority Wizard page")
-//      AuthWizard.loginAs("organisation")
-//
-//      When("User navigates to SH03 start page")
-//      SubmissionsDashboardPage.createNewSh03()
-//      BeforeYouStart.clickOnContinue()
-//      AboutYourSecuritiesTransfersPage.selectOneOrMore()
-//
-//      And("User selects and enters transfer details")
-//      CompanyDetails.enterValues(CompanyDetails.No)
-//      SharePurchase.select()
-//      TreasuryShares.select()
-//      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
-//      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-//      ReliefApplyingForPage.enterRelief(CRRelief)
-//      TransferDetailsPage.enterValues()
-//      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
-//      RolePurchasingCompany.select(Administrator)
-//
-//      Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verify(checkYourAnswers)
-//    }
+      When("User navigates to SH03 start page")
+      SubmissionsDashboardPage.createNewSh03()
+      BeforeYouStart.clickOnContinue()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore()
+
+      And("User selects and enters transfer details")
+      CompanyDetails.enterValues(CompanyDetails.No)
+      SharePurchase.select()
+      TreasuryShares.select()
+      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
+      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
+      ReliefApplyingForPage.enterRelief(CRRelief)
+      TransferDetailsPage.enterValues()
+      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      RolePurchasingCompany.select(Administrator)
+
+      Then("User verifies check your answers for details entered")
+      CheckYourAnswersPage.verify(checkYourAnswers)
+    }
 
     Scenario("Submission of a user as an Business  - Receiver") {
       Given("User enters login using the Authority Wizard page")
@@ -152,7 +150,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -178,7 +176,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -204,7 +202,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -230,7 +228,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
@@ -256,7 +254,7 @@ class S7SH03BusinessSpec
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
 
       And("User selects and enters transfer details")
-      CompanyNumber.enterCrnNumber()
+      CompanyDetails.enterValues()
       SharePurchase.select()
       TreasuryShares.select()
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
