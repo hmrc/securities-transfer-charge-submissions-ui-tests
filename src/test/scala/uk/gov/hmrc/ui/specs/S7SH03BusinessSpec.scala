@@ -115,7 +115,7 @@ class S7SH03BusinessSpec
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verify(checkYourAnswers)
     }
-    
+
     Scenario("Submission of a user as an Business - No PLC") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs("organisation")

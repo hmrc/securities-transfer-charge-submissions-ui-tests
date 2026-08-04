@@ -38,9 +38,9 @@ object SecuritiesTypePage extends BasePage {
   // placeholder yet to finalize the title
   override def pageTitle: String =
     "Is the buyer purchasing shares? - Transfer details" + serviceName +
-    "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
-    "Is the business purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
-    "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK"
+      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
+      "Is the business purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
+      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK"
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
