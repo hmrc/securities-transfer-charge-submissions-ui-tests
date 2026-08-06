@@ -21,7 +21,7 @@ import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object SecuritiesTypePage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/securities-type"
+  override def pageUrl: String = "/securities-transfer-charge/stf/purchasing-shares"
 
   sealed trait ConfirmationOption {
     def selector: String
@@ -37,10 +37,9 @@ object SecuritiesTypePage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Is the buyer purchasing shares? - Transfer details" + serviceName +
-      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
-      "Is the business purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK" +
-      "Is the buyer purchasing shares? - Tell us about a security transfer (STF) - Securities Transfers Charge - GOV.UK"
+    "Are you buying shares? - Transfer details" + serviceName +
+      "Is the business purchasing shares? - Transfer details" + serviceName +
+      "Is the buyer purchasing shares? - Transfer details" + serviceName
 
   def select(option: ConfirmationOption): Unit = {
     verifyExpectedContainsPageTitle(pageTitle)
