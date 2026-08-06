@@ -34,7 +34,7 @@ object CompanyDetails extends BasePage {
   }
 
   case object No extends ConfirmationOption {
-    override val selector = "#isPlc-2"
+    override val selector = "#isPlc-no"
   }
 
   override def pageTitle: String =
