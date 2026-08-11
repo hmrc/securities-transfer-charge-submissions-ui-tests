@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.taxRate
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object TaxRatePage extends BasePage {
@@ -36,11 +37,13 @@ object TaxRatePage extends BasePage {
   }
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Tax rate" + serviceName
+  )
 
   def select(option: ConfirmationOption): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
+    taxRate = if (option == HalfRate) 0.5 else 1.5
     radioButton(option.selector)
     continue()
   }

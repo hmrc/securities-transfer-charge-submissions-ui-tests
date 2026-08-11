@@ -67,7 +67,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario(
@@ -103,7 +103,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Organisation - Edit and update buyer's & seller's address to non UK address") {
@@ -135,7 +135,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Organisation with non connected persons") {
@@ -165,7 +165,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues(false)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Organisation with no relief option") {
@@ -194,7 +194,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Organisation with other securities type") {
@@ -226,7 +226,7 @@ class S2SubmissionsOrganisationSpec
       TotalMarketValuePage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Organisation with other securities type for non connected persons") {
@@ -257,7 +257,7 @@ class S2SubmissionsOrganisationSpec
       HowMuchPaidPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
   }
 }

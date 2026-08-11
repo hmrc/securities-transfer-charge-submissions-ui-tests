@@ -23,9 +23,11 @@ object BulkErrorEmptyPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-empty"
 
-  override def pageTitle: String = "The file you have uploaded is empty" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "The file you have uploaded is empty" + serviceName
+  )
 
   def verifyError(): Unit =
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     clickBackToFileUpload()
 }

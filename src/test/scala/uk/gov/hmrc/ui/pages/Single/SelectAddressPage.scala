@@ -23,13 +23,14 @@ object SelectAddressPage extends BasePage {
   override def pageUrl: String = "/lookup-address/*/select?postcode=*"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Choose the seller’s address - - GOV.UK " +
-      "& Select the buyer’s address - - GOV.UK" +
-      "& Select the business’s address - - GOV.UK"
+  val pageTitles: Seq[String] = Seq(
+    "Choose the seller’s address - - GOV.UK",
+    "Select the buyer’s address - - GOV.UK",
+    "Select the business’s address - - GOV.UK"
+  )
 
   def selectAddress(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     click(Locators.rdoFirstAddress)
     continue()
   }

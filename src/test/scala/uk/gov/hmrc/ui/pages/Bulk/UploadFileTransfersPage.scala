@@ -23,7 +23,9 @@ object UploadFileTransfersPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/file-upload"
 
-  override def pageTitle: String = "Upload your file - Transfer details" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Upload your file - Transfer details" + serviceName
+  )
 
   object FileName {
     val Filled            = "One valid row.xlsx"
@@ -52,12 +54,12 @@ object UploadFileTransfersPage extends BasePage {
   }
 
   def chooseFile(directory: String, fileName: String, prefix: String = stf): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     uploadFile(getTestDataPath(directory, fileName, prefix))
   }
 
   def selectUpload(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     clickUploadButton()
   }
 }

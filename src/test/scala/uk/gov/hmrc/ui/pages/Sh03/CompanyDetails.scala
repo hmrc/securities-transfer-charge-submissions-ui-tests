@@ -37,11 +37,12 @@ object CompanyDetails extends BasePage {
     override val selector = "#isPlc-no"
   }
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Company details - Share buyback (SH03)" + serviceName
+  )
 
   def enterValues(option: ConfirmationOption = Yes, check: Boolean = true): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtCompanyName, generateRandomString(10))
     input(Locators.txtCompanyRegistrationNumber, generateRandomString(8))
     if (check)

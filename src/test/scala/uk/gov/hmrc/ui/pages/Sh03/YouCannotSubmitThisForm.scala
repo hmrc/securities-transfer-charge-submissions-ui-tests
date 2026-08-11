@@ -27,11 +27,12 @@ object YouCannotSubmitThisForm extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/sh03/agent/cannot-submit-form"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "You cannot submit this form - Share buyback (SH03)" + serviceName
+  )
 
   def verify(expectedTitle: String): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     val panelTitle = driver.findElement(By.cssSelector(".govuk-heading-l"))
 
     val actualText = panelTitle.getText.trim

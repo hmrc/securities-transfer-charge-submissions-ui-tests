@@ -23,9 +23,11 @@ object BulkErrorTemplatePage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error-template"
 
-  override def pageTitle: String = "The template file you uploaded has been changed" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "The template file you uploaded has been changed" + serviceName
+  )
 
   def verifyError(): Unit =
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     clickBackToFileUpload()
 }

@@ -23,10 +23,12 @@ object BulkErrorPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error"
 
-  override def pageTitle: String = "There is a problem with your uploaded file" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "There is a problem with your uploaded file" + serviceName
+  )
 
   def verifyErrors(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     clickBackToFileUpload()
   }
 }

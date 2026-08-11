@@ -21,9 +21,11 @@ import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object WeAreCheckingYourFilePage extends BasePage {
 
-  override def pageUrl: String   = "/securities-transfer-charge/stf/bulk-processing"
-  override def pageTitle: String = "We are checking your file" + serviceName
+  override def pageUrl: String = "/securities-transfer-charge/stf/bulk-processing"
+  val pageTitles: Seq[String]  = Seq(
+    "We are checking your file" + serviceName
+  )
 
   def verify(): Unit =
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
 }

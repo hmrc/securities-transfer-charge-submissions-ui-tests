@@ -24,18 +24,20 @@ object ReliefApplyingForPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/select-relief"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "What relief are you applying for? - Transfer details" + serviceName +
-      "What relief is the business applying for? - Transfer details" + serviceName +
-      "Enter the relief the business is applying for - Transfer details" + serviceName +
-      "Enter the relief the buyer is applying for - Transfer details" + serviceName +
-      "Enter the relief the buyer is applying for - Share buyback (SH03)" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "What relief are you applying for? - Transfer details" + serviceName,
+    "What relief is the business applying for? - Transfer details" + serviceName,
+    "Enter the relief the business is applying for - Transfer details" + serviceName,
+    "Enter the relief the buyer is applying for - Transfer details" + serviceName,
+    "Enter the relief the buyer is applying for - Share buyback (SH03)" + serviceName
+  )
 
   def enterRelief(relief: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.dropDownRelief, relief)
     continue()
     // additional continue is to select and continue to next page
-    continue()
+    // check on other browsers
+//    continue()
   }
 }

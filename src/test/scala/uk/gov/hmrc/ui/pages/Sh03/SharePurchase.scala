@@ -35,11 +35,12 @@ object SharePurchase extends BasePage {
     val selector = "#value_1"
   }
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Why are these shares being purchased? - Share buyback (SH03)" + serviceName
+  )
 
   def select(option: ConfirmationOption = ForCancellation): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     radioButton(option.selector)
     saveAndContinue()
   }

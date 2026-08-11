@@ -90,7 +90,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   def pageUrl: String
-  def pageTitle: String
+//  def pageTitle: String
 
   /** Wait for visibility of an element */
   def waitForVisibilityOfElement(selector: By): WebElement =
@@ -168,7 +168,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def navigateBackToPage(): Unit        = driver.navigate().back()
 
   /** Page validation methods */
-  def isCurrentPage: Boolean         = pageTitle.startsWith(getPageTitle)
+//  def isCurrentPage: Boolean         = pageTitle.startsWith(getPageTitle)
   def isCurrentUrl: Boolean          = getCurrentUrlInBrowser.contains(pageUrl)
   def getCurrentUrlInBrowser: String = driver.getCurrentUrl
   def getPageTitle: String           = driver.getTitle
@@ -210,42 +210,14 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
         logger.info(s"Failed to click the link with ID: $linkId. Error: ${e.getMessage}")
     }
 
-  def verifyPageTitle(expectedTitle: String): Unit = {
-    logger.info("Actual page title is: " + driver.getTitle)
-    waitForPageTitle(expectedTitle)
-    assert(
-      driver.getTitle == expectedTitle,
-      s"Page title mismatch! Expected: $expectedTitle, Actual: ${driver.getTitle}"
-    )
+  def verifyPageTitleIsOneOf(expectedTitles: Seq[String]): Unit = {
+    logger.info(s"Expected page titles are: ${expectedTitles.mkString(", ")}")
+    waitForPageTitleOneOf(expectedTitles)
+    logger.info(s"Actual page title is: ${driver.getTitle}")
   }
 
-  def verifyExpectedContainsPageTitle(expectedString: String): Unit = {
-    logger.info("Actual page title is: " + driver.getTitle)
-    waitForExpectedContainsPageTitle(expectedString)
-    assert(
-      expectedString.contains(driver.getTitle),
-      s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
-    )
-  }
-
-  def verifyPageTitleContains(expectedString: String): Unit = {
-    logger.info("Actual page title is: " + driver.getTitle)
-    logger.info("Expected page title contains: " + expectedString)
-    waitForPageTitleContains(expectedString)
-    assert(
-      driver.getTitle.contains(expectedString),
-      s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
-    )
-  }
-
-  def waitForPageTitle(expectedTitle: String): Unit =
-    fluentWait.until(ExpectedConditions.titleIs(expectedTitle))
-
-  def waitForExpectedContainsPageTitle(expectedTitle: String): Unit =
-    fluentWait.until((driver: WebDriver) => expectedTitle.contains(driver.getTitle))
-
-  def waitForPageTitleContains(expectedTitle: String): Unit =
-    fluentWait.until((driver: WebDriver) => driver.getTitle.contains(expectedTitle))
+  def waitForPageTitleOneOf(expectedTitles: Seq[String]): Unit =
+    fluentWait.until((driver: WebDriver) => expectedTitles.contains(driver.getTitle))
 
   def verifyPageHeader(expectedHeader: String): Unit = {
     waitForVisibilityOfElement(Locators.txtHeader)

@@ -23,13 +23,13 @@ import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Sh03.{BeforeYouStart, CompanyDetails, RolePurchasingCompany}
 import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityAgent, checkYourAnswers, sh03}
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityOrganisation, checkYourAnswers, sh03}
 
-class S10SH03AgentBulkSpec
+class S09SH03BusinessBulkSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -39,22 +39,21 @@ class S10SH03AgentBulkSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC Bulk SH03 Agent Journeys") {
+  Feature("STC Bulk SH03 Business Journeys") {
 
-    Scenario("Bulk SH03 of a user as an Agent - one valid row", Smoke) {
+    Scenario("Bulk SH03 of a user as an Organisation - one valid row") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Filled, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.Filled, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
       RolePurchasingCompany.select()
@@ -63,20 +62,19 @@ class S10SH03AgentBulkSpec
 //      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - less than 25 errors or fewer") {
+    Scenario("Bulk SH03 of a user as an Business - less than 25 errors or fewer") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.ErrorList, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.ErrorList, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -84,20 +82,19 @@ class S10SH03AgentBulkSpec
       BulkErrorPage.verifyErrors()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - more than 25 errors") {
+    Scenario("Bulk SH03 of a user as an Business - more than 25 errors") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.ManyErrors, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.ManyErrors, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -105,20 +102,19 @@ class S10SH03AgentBulkSpec
       BulkErrorListPage.verifyErrors()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - wrong file format", QAOnly) {
+    Scenario("Bulk SH03 of a user as an Business - wrong file format", QAOnly) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Formatting, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.Formatting, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -126,20 +122,19 @@ class S10SH03AgentBulkSpec
       BulkErrorTypePage.verifyError()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - Empty File") {
+    Scenario("Bulk SH03 of a user as an Business - Empty File") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Empty, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.Empty, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -147,20 +142,19 @@ class S10SH03AgentBulkSpec
       BulkErrorEmptyPage.verifyError()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - Empty Row") {
+    Scenario("Bulk SH03 of a user as an Business - Empty Row") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.EmptyRow, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.EmptyRow, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -168,20 +162,19 @@ class S10SH03AgentBulkSpec
       BulkErrorEmptyPage.verifyError()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - Password protected file", QAOnly) {
+    Scenario("Bulk SH03 of a user as an Business - Password protected file", QAOnly) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.PasswordProtected, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.PasswordProtected, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -189,20 +182,19 @@ class S10SH03AgentBulkSpec
       BulkErrorPasswordPage.verifyError()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - Error Template file") {
+    Scenario("Bulk SH03 of a user as an Business - Error Template file") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Template, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.Template, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 
@@ -210,20 +202,19 @@ class S10SH03AgentBulkSpec
       BulkErrorTemplatePage.verifyError()
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - Too Many rows") {
+    Scenario("Bulk SH03 of a user as an Business - Too Many rows") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs(affinityAgent)
+      AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
-      AddAReference.enterValue()
       CompanyDetails.enterValues(CompanyDetails.Yes, false)
       HowUseTemplateTransfersPage.selectContinue()
 
       And("User uploads a file")
-      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.MoreThanMaxRows, sh03)
+      UploadFileTransfersPage.chooseFile(affinityOrganisation, FileName.MoreThanMaxRows, sh03)
       UploadFileTransfersPage.selectUpload()
       WeAreCheckingYourFilePage.verify()
 

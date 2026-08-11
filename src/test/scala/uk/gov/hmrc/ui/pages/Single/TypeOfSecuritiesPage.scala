@@ -25,13 +25,14 @@ object TypeOfSecuritiesPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/security-type"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Enter the type of securities you are buying - Transfer details" + serviceName +
-      "& What type of securities is the business buying? - Transfer details" + serviceName +
-      "Enter the type of securities the buyer is purchasing - Transfer details" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Enter the type of securities you are buying - Transfer details" + serviceName,
+    "What type of securities is the business buying? - Transfer details" + serviceName,
+    "Enter the type of securities the buyer is purchasing - Transfer details" + serviceName
+  )
 
   def enterValues(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtValue, generateRandomString(10))
     continue()
   }

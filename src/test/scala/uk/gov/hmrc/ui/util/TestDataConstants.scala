@@ -45,6 +45,7 @@ object TestDataConstants {
   final val emailAddress: String                = "abcd@xyz.com"
   final val contactNumber: String               = "+44 1234567890"
   final val checkYourAnswers: String            = "Check your answers"
+  final val SubmissionComplete: String          = "Submission complete"
   final val CannotSubmitForm: String            = "You cannot submit this form"
   final val addressLine1: String                = "A1"
   final val nonUkPostCode: String               = "123456"

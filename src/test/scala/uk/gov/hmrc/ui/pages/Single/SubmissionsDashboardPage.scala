@@ -23,16 +23,17 @@ object SubmissionsDashboardPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/submissions-dashboard"
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Submissions" + serviceName
+  )
 
   def createNewSubmission(): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     continue()
   }
 
   def createNewSh03(): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     secondaryContinue()
   }
 }

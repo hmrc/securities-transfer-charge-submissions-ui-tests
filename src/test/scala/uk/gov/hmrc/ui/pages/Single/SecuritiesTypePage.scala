@@ -36,13 +36,14 @@ object SecuritiesTypePage extends BasePage {
   }
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Are you buying shares? - Transfer details" + serviceName +
-      "Is the business purchasing shares? - Transfer details" + serviceName +
-      "Is the buyer purchasing shares? - Transfer details" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Are you buying shares? - Transfer details" + serviceName,
+    "Is the business purchasing shares? - Transfer details" + serviceName,
+    "Is the buyer purchasing shares? - Transfer details" + serviceName
+  )
 
   def select(option: ConfirmationOption): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     radioButton(option.selector)
     continue()
   }

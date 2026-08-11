@@ -23,12 +23,12 @@ object RegistrationPage extends BasePage {
 
   override def pageUrl: String = "register-securities-transfer-charge/register"
 
-  override def pageTitle: String =
-//    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
+  val pageTitles: Seq[String]   = Seq(
     "Register to tell us about a securities transfer" + serviceName
+  )
 //  "Register to tell us about a securities transfer" + serviceName
   def startRegistration(): Unit = {
-    verifyPageTitle(RegistrationPage.pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     continue()
   }
 }

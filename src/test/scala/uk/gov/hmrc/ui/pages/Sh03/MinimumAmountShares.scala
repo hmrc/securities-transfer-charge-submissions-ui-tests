@@ -25,11 +25,12 @@ object MinimumAmountShares extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/sh03/agent/minimum-share-price"
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "What is the minimum amount paid for the shares, in pounds? - Share buyback (SH03)" + serviceName
+  )
 
   def enterMinValue(): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtValue, randomIntFromOne(9))
     saveAndContinue()
   }

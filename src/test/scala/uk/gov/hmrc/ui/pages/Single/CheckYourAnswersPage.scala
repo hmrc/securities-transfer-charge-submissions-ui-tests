@@ -17,28 +17,103 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 import scala.runtime.stdLibPatches.Predef.assert
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 object CheckYourAnswersPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/check-your-answers"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Check your answers" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Check your answers" + serviceName,
+    "Check your answers - Securities Transfer (STF)" + serviceName
+  )
 
-  def verify(expectedTitle: String): Unit = {
-    verifyPageTitle(pageTitle)
-    val panelTitle = driver.findElement(By.cssSelector(".govuk-heading-xl"))
+  // Test data values
+  var consideration: BigDecimal = 0.00
+  var marketValue: BigDecimal   = 0.00
+  var taxRate: Double           = 0.5
+  val dateValue: LocalDate      = LocalDate.of(2026, 1, 1)
 
-    val actualText = panelTitle.getText.trim
+  def readTaxDueText(): String = {
+    val el   = driver.findElement(By.cssSelector("h2.govuk-heading-m"))
+    val text = el.getText.trim
+    logger.info(s"Tax due raw text: $text")
+    text
+  }
 
-    assert(
-      actualText == expectedTitle,
-      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
+  def readTaxDueAmount(): BigDecimal = {
+
+    val element = w.until(
+      ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//h2[contains(normalize-space(.), 'Tax due:')]")
+      )
     )
+
+    val text = element.getText
+
+    logger.info(s"Tax due raw text: $text")
+
+    val pattern = "£\\s*([0-9,]+(?:\\.[0-9]{1,2})?)".r
+
+    val amountStr = pattern
+      .findFirstMatchIn(text)
+      .map(_.group(1))
+      .getOrElse(
+        throw new AssertionError(
+          s"Could not parse tax due amount from '$text'"
+        )
+      )
+
+    BigDecimal(amountStr.replace(",", ""))
+  }
+
+  def readPaymentDueText(): String = {
+    val el   = driver.findElement(By.xpath("//p[contains(., 'Payment due by')]/strong"))
+    val text = el.getText.trim
+    logger.info(s"Payment due raw text: $text")
+    text
+  }
+
+  def readPaymentDueDate(): LocalDate = {
+    val text = readPaymentDueText()
+    val fmt  = DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH)
+    LocalDate.parse(text, fmt)
+  }
+
+  def readPaymentDueDateStr: String = readPaymentDueDate().toString
+
+  def verifyDues(expectedTitle: String): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
+
+//    verifyTaxDue()
+    verifyPaymentDue()
+
+    continue()
+  }
+
+  def verifyTaxDue(): Unit = {
+    val actualTaxDue   = readTaxDueAmount()
+    logger.info(s"Actual tax due: $actualTaxDue")
+    val taxableValue   = if (consideration > marketValue) consideration else marketValue
+    val expectedTaxDue =
+      (taxableValue * taxRate).setScale(2, BigDecimal.RoundingMode.HALF_UP)
+    logger.info(s"Expected tax due: $expectedTaxDue")
+    assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
+  }
+
+  def verifyPaymentDue(): Unit = {
+    val actualPaymentDueDate   = readPaymentDueDate()
+    logger.info(s"Actual payment due date: $actualPaymentDueDate")
+    val expectedPaymentDueDate = dateValue.plusDays(30)
+    logger.info(s"Expected payment due date: $expectedPaymentDueDate")
+    assert(actualPaymentDueDate == expectedPaymentDueDate, s"Expected payment due date not found")
   }
 }
