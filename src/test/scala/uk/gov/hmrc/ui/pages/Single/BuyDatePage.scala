@@ -24,14 +24,16 @@ object BuyDatePage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/charging-point"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "When did you buy these securities?" + serviceName +
-      "What is the charging point?" + serviceName +
-      "What’s the charging point?" + serviceName +
-      " Charging point - Share buyback (SH03)" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "When did you buy these securities?" + serviceName,
+    "What is the charging point?" + serviceName,
+    "What’s the charging point?" + serviceName,
+    "Charging point - Share buyback (SH03)" + serviceName
+  )
 
   def enterDate(date: String, month: String, year: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
+
     input(Locators.txtDate, date)
     input(Locators.txtMonth, month)
     input(Locators.txtYear, year)

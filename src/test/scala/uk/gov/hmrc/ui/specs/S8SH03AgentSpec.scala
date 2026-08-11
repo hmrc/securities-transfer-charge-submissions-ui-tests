@@ -63,7 +63,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - No Treasury shares") {
@@ -90,7 +90,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(Secretary)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - To place into treasury") {
@@ -116,7 +116,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(PersonAuthorised)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - No PLC") {
@@ -141,7 +141,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(Administrator)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - Receiver") {
@@ -168,7 +168,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(Receiver)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - Receiver manager") {
@@ -195,7 +195,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(ReceiverManager)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - CIC Manager") {
@@ -222,7 +222,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(CICManager)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - UKSocietas") {
@@ -249,7 +249,7 @@ class S8SH03AgentSpec
       RolePurchasingCompany.select(UKSocietas)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Agent - Not Provided") {

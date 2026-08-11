@@ -23,9 +23,11 @@ object BulkErrorListPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/bulk-error"
 
-  override def pageTitle: String = "Your file has formatting errors" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Your file has formatting errors" + serviceName
+  )
 
   def verifyErrors(): Unit =
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     clickBackToFileUpload()
 }

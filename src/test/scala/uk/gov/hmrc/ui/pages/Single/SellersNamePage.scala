@@ -24,11 +24,12 @@ object SellersNamePage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/seller-name"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "What’s the seller’s name?" + serviceName
+  )
 
   def enterName(sellerName: String): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtValue, sellerName)
     saveAndContinue()
   }

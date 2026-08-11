@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.pages.Sh03
 
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.Sh03.CompanyDetails.{ConfirmationOption, Yes}
-import uk.gov.hmrc.ui.pages.Sh03.MaximumAmountShares.{saveAndContinue, verifyPageTitle}
+import uk.gov.hmrc.ui.pages.Sh03.MaximumAmountShares.saveAndContinue
 import uk.gov.hmrc.ui.pages.Single.ReliefApplyingForPage.input
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
@@ -27,10 +27,12 @@ object CompanyNumber extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/sh03/org/company-number"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String                             =
+  val pageTitles: Seq[String] = Seq(
     "What is the company registration number (CRN)? - Share buyback (SH03)" + serviceName
+  )
+
   def enterCrnNumber(option: ConfirmationOption = Yes): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtCompanyRegistrationNumber, "12345678")
     saveAndContinue()
   }

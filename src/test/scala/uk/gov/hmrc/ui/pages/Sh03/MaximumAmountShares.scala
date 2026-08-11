@@ -25,11 +25,12 @@ object MaximumAmountShares extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/sh03/agent/maximum-amount-shares"
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "What is the maximum amount paid for the shares, in pounds? - Share buyback (SH03)" + serviceName
+  )
 
   def enterMaxValue(): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtValue, randomIntFromOne(9))
     saveAndContinue()
   }

@@ -23,10 +23,12 @@ object HowUseTemplateTransfersPage extends BasePage {
 
   override def pageUrl: String = "/securities-transfer-charge/stf/template"
 
-  override def pageTitle: String = "How to use the template" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "How to use the template" + serviceName
+  )
 
   def selectContinue(): Unit = {
-    verifyPageTitleContains(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     continue()
   }
 }

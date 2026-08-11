@@ -35,11 +35,12 @@ object TreasuryShares extends BasePage {
     val selector = "#value-no"
   }
 
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Do these shares also qualify as treasury shares? - Share buyback (SH03)" + serviceName
+  )
 
   def select(option: ConfirmationOption = Yes): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     radioButton(option.selector)
     saveAndContinue()
   }

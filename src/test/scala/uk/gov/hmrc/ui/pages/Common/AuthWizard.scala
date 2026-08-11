@@ -26,7 +26,9 @@ object AuthWizard extends BasePage {
 
   override def pageUrl: String = s"${Env.baseUrl}/auth-login-stub/gg-sign-in"
 
-  override def pageTitle: String = "auth login stub"
+  val pageTitles: Seq[String] = Seq(
+    "auth login stub"
+  )
 
   val url: String = s"${Env.baseUrl}"
 

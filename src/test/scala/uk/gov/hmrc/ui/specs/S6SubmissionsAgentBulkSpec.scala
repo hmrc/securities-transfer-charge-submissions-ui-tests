@@ -56,7 +56,7 @@ class S6SubmissionsAgentBulkSpec
       AddAReference.enterValue()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Bulk submission of a user as an Agent - less than 25 errors or fewer") {

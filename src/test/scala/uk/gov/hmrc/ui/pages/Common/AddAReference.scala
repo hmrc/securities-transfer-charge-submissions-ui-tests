@@ -25,12 +25,13 @@ object AddAReference extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/agent/add-reference"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Add a reference" + serviceName
-      + "Add a reference - Share buyback (SH03)" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Add a reference" + serviceName,
+    "Add a reference - Share buyback (SH03)" + serviceName
+  )
 
   def enterValue(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtValue, generateRandomString(10))
     continue()
   }

@@ -24,20 +24,22 @@ object ConfirmAddressPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/confirm-address"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Review and confirm your address" + serviceName +
-      "& Confirm the seller’s address - - GOV.UK " +
-      "& Confirm the buyer’s address - - GOV.UK " +
-      "& Review and confirm - - GOV.UK " +
-      "& Confirm business address - Business details" + serviceName +
-      "& Confirm the business’s address - - GOV.UK"
+  val pageTitles: Seq[String] = Seq(
+    "Review and confirm your address" + serviceName,
+    "Confirm the seller’s address - - GOV.UK",
+    "Confirm the buyer’s address - - GOV.UK",
+    "Review and confirm - - GOV.UK",
+    "Confirm business address - Business details" + serviceName,
+    "Confirm the business’s address - - GOV.UK"
+  )
 
-  def confirm(): Unit                      = {
-    verifyExpectedContainsPageTitle(pageTitle)
+  def confirm(): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
     continue()
   }
+
   def clickEnterTheAddressManually(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     click(Locators.lnkEditAddr)
   }
 }

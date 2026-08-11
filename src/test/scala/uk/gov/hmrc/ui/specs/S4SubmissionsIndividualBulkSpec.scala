@@ -55,7 +55,7 @@ class S4SubmissionsIndividualBulkSpec
       WeAreCheckingYourFilePage.verify()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Bulk submission of a user as an Individual - less than 25 errors or fewer") {

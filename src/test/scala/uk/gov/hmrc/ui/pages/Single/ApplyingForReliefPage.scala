@@ -35,15 +35,16 @@ object ApplyingForReliefPage extends BasePage {
   }
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Are you applying for a relief? - Transfer details" + serviceName +
-      "Is the business applying for a relief? - Transfer details" + serviceName +
-      "Is the buyer applying for a relief? - Transfer details" + serviceName +
-      "Is the buyer applying for a relief? - Share buyback (SH03)" + serviceName +
-      "Is the business applying for a relief? - Share buyback (SH03)" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "Are you applying for a relief? - Transfer details" + serviceName,
+    "Is the business applying for a relief? - Transfer details" + serviceName,
+    "Is the buyer applying for a relief? - Transfer details" + serviceName,
+    "Is the buyer applying for a relief? - Share buyback (SH03)" + serviceName,
+    "Is the business applying for a relief? - Share buyback (SH03)" + serviceName
+  )
 
   def select(option: ConfirmationOption): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     radioButton(option.selector)
     continue()
   }

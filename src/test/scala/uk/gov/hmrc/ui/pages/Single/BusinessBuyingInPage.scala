@@ -25,13 +25,14 @@ object BusinessBuyingInPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/securities-target"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "What business are you buying these securities in?" + serviceName +
-      "Which business are the securities being bought in?" + serviceName +
-      "What business are the securities bought in?" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "What business are you buying these securities in?" + serviceName,
+    "Which business are the securities being bought in?" + serviceName,
+    "What business are the securities bought in?" + serviceName
+  )
 
   def enterValues(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtBusinessName, generateRandomString(10))
     input(Locators.txtCRN, validCRN)
     continue()

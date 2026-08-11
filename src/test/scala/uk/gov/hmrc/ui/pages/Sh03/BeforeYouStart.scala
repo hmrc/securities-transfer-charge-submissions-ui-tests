@@ -24,11 +24,12 @@ object BeforeYouStart extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/sh03/agent/before-you-start"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
+  val pageTitles: Seq[String] = Seq(
     "Before you start - Share buyback (SH03)" + serviceName
+  )
 
   def clickOnContinue(): Unit = {
-    verifyPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     continue()
   }
 }

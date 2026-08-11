@@ -23,12 +23,14 @@ object EnterAddressPage extends BasePage {
   override def pageUrl: String = "/lookup-address/*/edit"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "What’s the seller’s address - - GOV.UK & Enter your address - - GOV.UK" +
-      "Enter the buyer’s address - - GOV.UK"
+  val pageTitles: Seq[String] = Seq(
+    "What’s the seller’s address - - GOV.UK ",
+    "Enter your address - - GOV.UK",
+    "Enter the buyer’s address - - GOV.UK"
+  )
 
   def enterAddressDetails(address1: String, postcode: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtAddress1, address1)
     input(Locators.txtPostCode, postcode)
     continue()

@@ -25,14 +25,15 @@ object HowMuchPaidPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/consideration"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "How much did you pay for these securities?" + serviceName +
-      "How much did the business pay for these securities?" + serviceName +
-      "How much did the buyer pay for the securities? - Transfer details" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "How much did you pay for these securities?" + serviceName,
+    "How much did the business pay for these securities?" + serviceName,
+    "How much did the buyer pay for the securities? - Transfer details" + serviceName
+  )
 
   def enterValues(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
-    input(Locators.txtValue, generateRandomAmount(9))
+    verifyPageTitleIsOneOf(pageTitles)
+    input(Locators.txtValue, generateRandomAmount(9).toString)
     continue()
   }
 }

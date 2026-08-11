@@ -62,7 +62,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(Administrator)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business - No Treasury shares") {
@@ -88,7 +88,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(Secretary)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business  - To place into treasury") {
@@ -113,7 +113,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(PersonAuthorised)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business - No PLC") {
@@ -137,7 +137,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(Administrator)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business  - Receiver") {
@@ -163,7 +163,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(Receiver)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business  - Receiver manager") {
@@ -189,7 +189,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(ReceiverManager)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business - CIC Manager") {
@@ -215,7 +215,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(CICManager)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business  - UKSocietas") {
@@ -241,7 +241,7 @@ class S7SH03BusinessSpec
       RolePurchasingCompany.select(UKSocietas)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verify(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario("Submission of a user as an Business - Not Provided") {

@@ -37,23 +37,47 @@ object TestDataGenerator {
     (1 to length).map(_ => chars(random.nextInt(chars.length))).mkString
   }
 
-  def generateRandomAmount(maxDigits: Int): String = {
-    val numDigits   = random.nextInt(maxDigits) + 1
-    val wholePart   = if (numDigits == 1) {
-      (random.nextInt(9) + 1).toString
-    } else {
-      val firstDigit = random.nextInt(9) + 1
-      val restDigits = (1 until numDigits).map(_ => random.nextInt(10)).mkString
-      s"$firstDigit$restDigits"
-    }
+  def generateRandomAmount(maxDigits: Int): BigDecimal = {
+    val numDigits = random.nextInt(maxDigits) + 1
+
+    val wholePart =
+      if (numDigits == 1) {
+        (random.nextInt(9) + 1).toString
+      } else {
+        val firstDigit = random.nextInt(9) + 1
+        val restDigits = (1 until numDigits).map(_ => random.nextInt(10)).mkString
+        s"$firstDigit$restDigits"
+      }
+
     val numDecimals = random.nextInt(3)
+
     if (numDecimals == 0) {
-      wholePart
+      BigDecimal(wholePart)
     } else {
-      val decimalPart = (1 to numDecimals).map(_ => random.nextInt(10)).mkString
-      s"$wholePart.$decimalPart"
+      val decimalPart =
+        (1 to numDecimals).map(_ => random.nextInt(10)).mkString
+
+      BigDecimal(s"$wholePart.$decimalPart")
     }
   }
+
+//  def generateRandomAmount(maxDigits: Int): Double = {
+//    val numDigits   = random.nextInt(maxDigits) + 1
+//    val wholePart   = if (numDigits == 1) {
+//      (random.nextInt(9) + 1).toString
+//    } else {
+//      val firstDigit = random.nextInt(9) + 1
+//      val restDigits = (1 until numDigits).map(_ => random.nextInt(10)).mkString
+//      s"$firstDigit$restDigits"
+//    }
+//    val numDecimals = random.nextInt(3)
+//    if (numDecimals == 0) {
+//      wholePart.toDouble
+//    } else {
+//      val decimalPart = (1 to numDecimals).map(_ => random.nextInt(10)).mkString
+//      s"$wholePart.$decimalPart".toDouble
+//    }
+//  }
 
   private val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
 

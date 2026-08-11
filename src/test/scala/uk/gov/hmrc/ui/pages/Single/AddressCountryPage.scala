@@ -22,13 +22,14 @@ object AddressCountryPage extends BasePage {
   override def pageUrl: String = "lookup-address/*/country-picker"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Seller’s address - - GOV.UK " +
-      "& Buyer’s address - - GOV.UK" +
-      "& Business address - - GOV.UK"
+  val pageTitles: Seq[String] = Seq(
+    "Seller’s address - - GOV.UK",
+    "Buyer’s address - - GOV.UK",
+    "Business address - - GOV.UK"
+  )
 
   def enterCountry(country: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.dropDownCountry, country)
     continue()
     // First continue to select value from dropdown

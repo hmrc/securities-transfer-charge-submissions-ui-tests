@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.{consideration, marketValue}
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, generateRandomString, randomIntFromOne}
 
@@ -25,17 +26,21 @@ object TransferDetailsPage extends BasePage {
   override def pageUrl: String = "/securities-transfer-charge/stf/share-details"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "What are the details of this transfer? - Transfer details" + serviceName +
-      "What are the details of this share purchase? - Share buyback (SH03)" + serviceName
+  val pageTitles: Seq[String] = Seq(
+    "What are the details of this transfer? - Transfer details" + serviceName,
+    "What are the details of this share purchase? - Share buyback (SH03)" + serviceName
+  )
 
   def enterValues(connectedPersons: Boolean = true): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtNumberOfShares, randomIntFromOne(9))
     input(Locators.txtTypeOfShares, generateRandomString(9))
-    input(Locators.txtAmountPaid, generateRandomAmount(9))
-    if (connectedPersons)
-      input(Locators.txtMarketValue, randomIntFromOne(9))
+    consideration = generateRandomAmount(9)
+    input(Locators.txtAmountPaid, consideration.toString)
+    if (connectedPersons) {
+      marketValue = generateRandomAmount(9)
+      input(Locators.txtMarketValue, marketValue.toString)
+    }
     continue()
   }
 }

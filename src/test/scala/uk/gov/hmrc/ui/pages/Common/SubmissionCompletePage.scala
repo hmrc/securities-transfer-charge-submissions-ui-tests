@@ -14,23 +14,31 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.Single
+package uk.gov.hmrc.ui.pages.Common
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.verifyPageTitleIsOneOf
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-object BuyersNamePage extends BasePage {
+object SubmissionCompletePage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/stf/*/buyer-name"
+  override def pageUrl: String = "/securities-transfer-charge/stf/confirmation"
 
   // placeholder yet to finalize the title
   val pageTitles: Seq[String] = Seq(
-    "What’s the buyer’s name?" + serviceName
+    "Submission complete" + serviceName
   )
 
-  def enterName(BuyersName: String): Unit = {
+  def validateSubmissionCompleteMessage(expectedTitle: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    input(Locators.txtValue, BuyersName)
-    saveAndContinue()
+    val panelTitle = driver.findElement(By.cssSelector(".govuk-panel__title"))
+
+    val actualText = panelTitle.getText.trim
+
+    assert(
+      actualText == expectedTitle,
+      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
+    )
   }
 }

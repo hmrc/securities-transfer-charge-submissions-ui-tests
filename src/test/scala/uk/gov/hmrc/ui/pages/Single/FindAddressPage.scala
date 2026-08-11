@@ -23,19 +23,20 @@ object FindAddressPage extends BasePage {
   override def pageUrl: String = "lookup-address/*/lookup"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "Find the seller’s address - - GOV.UK " +
-      "& Find the buyer’s address - - GOV.UK" +
-      "& Find the business’s address - - GOV.UK"
+  val pageTitles: Seq[String] = Seq(
+    "Find the seller’s address - - GOV.UK",
+    "Find the buyer’s address - - GOV.UK",
+    "Find the business’s address - - GOV.UK"
+  )
 
   def enterPostCode(postcode: String): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     input(Locators.txtPostCode, postcode)
     continue()
   }
 
   def clickEnterTheAddressManually(): Unit = {
-    verifyExpectedContainsPageTitle(pageTitle)
+    verifyPageTitleIsOneOf(pageTitles)
     click(Locators.lnkAddrManually)
   }
 }
