@@ -18,6 +18,9 @@ package uk.gov.hmrc.ui.util
 
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import scala.util.Random
 
 object TestDataGenerator {
@@ -61,28 +64,28 @@ object TestDataGenerator {
     }
   }
 
-//  def generateRandomAmount(maxDigits: Int): Double = {
-//    val numDigits   = random.nextInt(maxDigits) + 1
-//    val wholePart   = if (numDigits == 1) {
-//      (random.nextInt(9) + 1).toString
-//    } else {
-//      val firstDigit = random.nextInt(9) + 1
-//      val restDigits = (1 until numDigits).map(_ => random.nextInt(10)).mkString
-//      s"$firstDigit$restDigits"
-//    }
-//    val numDecimals = random.nextInt(3)
-//    if (numDecimals == 0) {
-//      wholePart.toDouble
-//    } else {
-//      val decimalPart = (1 to numDecimals).map(_ => random.nextInt(10)).mkString
-//      s"$wholePart.$decimalPart".toDouble
-//    }
-//  }
-
   private val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
 
   def getUKPostCode: String = env match {
     case "qa" | "staging" => ukPostCodeQA
     case _                => ukPostCode
   }
+
+  def generateRandomDate(): (Int, Int, Int) = {
+    val startDate = LocalDate.of(2026, 1, 1)
+    val endDate   = LocalDate.now()
+
+    val daysBetween = ChronoUnit.DAYS.between(startDate, endDate)
+
+    val randomDate = startDate.plusDays(Random.nextLong(daysBetween + 1))
+
+    val day   = randomDate.getDayOfMonth
+    val month = randomDate.getMonthValue
+    val year  = randomDate.getYear
+
+    (day, month, year)
+  }
+
+  def addDays(date: LocalDate, count: Int): LocalDate =
+    date.plusDays(count)
 }

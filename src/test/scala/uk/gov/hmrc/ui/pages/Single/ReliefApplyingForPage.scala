@@ -17,7 +17,8 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.reliefMultiplier
+import uk.gov.hmrc.ui.util.TestDataConstants.{CRRelief, serviceName}
 
 object ReliefApplyingForPage extends BasePage {
 
@@ -35,6 +36,10 @@ object ReliefApplyingForPage extends BasePage {
   def enterRelief(relief: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
     input(Locators.dropDownRelief, relief)
+    if (relief == CRRelief)
+      reliefMultiplier = 0.5
+    else
+      reliefMultiplier = 0
     continue()
     // additional continue is to select and continue to next page
     // check on other browsers

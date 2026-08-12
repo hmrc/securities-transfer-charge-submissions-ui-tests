@@ -17,7 +17,11 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.expectedPaymentDueDate
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
+import uk.gov.hmrc.ui.util.TestDataGenerator.{addDays, generateRandomDate}
+
+import java.time.LocalDate
 
 object BuyDatePage extends BasePage {
 
@@ -31,12 +35,18 @@ object BuyDatePage extends BasePage {
     "Charging point - Share buyback (SH03)" + serviceName
   )
 
-  def enterDate(date: String, month: String, year: String): Unit = {
+  def enterDate(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
 
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
+    val (day, month, year) = generateRandomDate()
+    val date               = LocalDate.of(year, month, day)
+
+    input(Locators.txtDate, day.toString)
+    input(Locators.txtMonth, month.toString)
+    input(Locators.txtYear, year.toString)
+
+    expectedPaymentDueDate = addDays(date, 30)
+
     continue()
   }
 }
