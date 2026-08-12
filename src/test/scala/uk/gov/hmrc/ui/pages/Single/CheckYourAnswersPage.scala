@@ -37,10 +37,11 @@ object CheckYourAnswersPage extends BasePage {
   )
 
   // Test data values
-  var consideration: BigDecimal = 0.00
-  var marketValue: BigDecimal   = 0.00
-  var taxRate: Double           = 0.5
-  val dateValue: LocalDate      = LocalDate.of(2026, 1, 1)
+  var consideration: BigDecimal         = 0.00
+  var marketValue: BigDecimal           = 0.00
+  var taxRate: Double                   = 0.005
+  var reliefMultiplier: Double          = 1
+  var expectedPaymentDueDate: LocalDate = _
 
   def readTaxDueText(): String = {
     val el   = driver.findElement(By.cssSelector("h2.govuk-heading-m"))
@@ -93,7 +94,7 @@ object CheckYourAnswersPage extends BasePage {
   def verifyDues(expectedTitle: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
 
-//    verifyTaxDue()
+    verifyTaxDue()
     verifyPaymentDue()
 
     continue()
@@ -104,15 +105,14 @@ object CheckYourAnswersPage extends BasePage {
     logger.info(s"Actual tax due: $actualTaxDue")
     val taxableValue   = if (consideration > marketValue) consideration else marketValue
     val expectedTaxDue =
-      (taxableValue * taxRate).setScale(2, BigDecimal.RoundingMode.HALF_UP)
+      (taxableValue * taxRate * reliefMultiplier).setScale(2, BigDecimal.RoundingMode.HALF_UP)
     logger.info(s"Expected tax due: $expectedTaxDue")
     assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
   }
 
   def verifyPaymentDue(): Unit = {
-    val actualPaymentDueDate   = readPaymentDueDate()
+    val actualPaymentDueDate = readPaymentDueDate()
     logger.info(s"Actual payment due date: $actualPaymentDueDate")
-    val expectedPaymentDueDate = dateValue.plusDays(30)
     logger.info(s"Expected payment due date: $expectedPaymentDueDate")
     assert(actualPaymentDueDate == expectedPaymentDueDate, s"Expected payment due date not found")
   }

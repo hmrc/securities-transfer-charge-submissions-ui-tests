@@ -43,7 +43,7 @@ object TaxRatePage extends BasePage {
 
   def select(option: ConfirmationOption): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    taxRate = if (option == HalfRate) 0.5 else 1.5
+    taxRate = if (option == HalfRate) 0.005 else 0.015
     radioButton(option.selector)
     continue()
   }

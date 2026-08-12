@@ -59,7 +59,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select()
 
       Then("User verifies check your answers for details entered")
@@ -86,7 +86,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(Secretary)
 
       Then("User verifies check your answers for details entered")
@@ -112,7 +112,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(PersonAuthorised)
 
       Then("User verifies check your answers for details entered")
@@ -137,7 +137,7 @@ class S8SH03AgentSpec
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
       ReliefApplyingForPage.enterRelief(CRRelief)
       TransferDetailsPage.enterValues()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(Administrator)
 
       Then("User verifies check your answers for details entered")
@@ -164,7 +164,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(Receiver)
 
       Then("User verifies check your answers for details entered")
@@ -191,7 +191,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(ReceiverManager)
 
       Then("User verifies check your answers for details entered")
@@ -218,7 +218,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(CICManager)
 
       Then("User verifies check your answers for details entered")
@@ -245,7 +245,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(UKSocietas)
 
       Then("User verifies check your answers for details entered")
@@ -272,7 +272,7 @@ class S8SH03AgentSpec
       TransferDetailsPage.enterValues()
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
-      BuyDatePage.enterDate(buyDate, buyMonth, BuyYear)
+      BuyDatePage.enterDate()
       RolePurchasingCompany.select(NotProvided)
 
       Then("User verifies check your answers for details entered")
