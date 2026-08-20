@@ -17,8 +17,9 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.marketValue
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
-import uk.gov.hmrc.ui.util.TestDataGenerator.randomIntFromOne
+import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, randomIntFromOne}
 
 object TotalMarketValuePage extends BasePage {
 
@@ -33,7 +34,8 @@ object TotalMarketValuePage extends BasePage {
 
   def enterValues(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    input(Locators.txtValue, randomIntFromOne(9))
+    marketValue = generateRandomAmount(9)
+    input(Locators.txtValue, marketValue.toString)
     continue()
   }
 }

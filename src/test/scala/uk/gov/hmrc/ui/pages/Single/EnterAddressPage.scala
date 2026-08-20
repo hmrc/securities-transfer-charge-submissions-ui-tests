@@ -24,7 +24,7 @@ object EnterAddressPage extends BasePage {
 
   // placeholder yet to finalize the title
   val pageTitles: Seq[String] = Seq(
-    "What’s the seller’s address - - GOV.UK ",
+    "What’s the seller’s address - - GOV.UK",
     "Enter your address - - GOV.UK",
     "Enter the buyer’s address - - GOV.UK"
   )

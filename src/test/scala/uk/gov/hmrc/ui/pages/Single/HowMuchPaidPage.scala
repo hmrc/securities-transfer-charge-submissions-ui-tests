@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.consideration
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomAmount
 
@@ -33,7 +34,8 @@ object HowMuchPaidPage extends BasePage {
 
   def enterValues(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    input(Locators.txtValue, generateRandomAmount(9).toString)
+    consideration = generateRandomAmount(9)
+    input(Locators.txtValue, consideration.toString)
     continue()
   }
 }
