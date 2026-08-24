@@ -45,6 +45,13 @@ object ConnectedPersonsPage extends BasePage {
   def select(option: ConfirmationOption): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
     radioButton(option.selector)
+
+    CheckYourAnswersPage.setTestData(
+      considerationBD = BigDecimal(0.00),
+      marketValueBD = BigDecimal(0.00),
+      taxRateD = 0.005,
+      reliefMultD = 1.0
+    )
     continue()
   }
 }

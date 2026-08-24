@@ -24,9 +24,9 @@ import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
-import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
+import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityIndividual, checkYourAnswers}
+import uk.gov.hmrc.ui.util.TestDataConstants.affinityIndividual
 
 class S4SubmissionsIndividualBulkSpec
     extends AnyFeatureSpec

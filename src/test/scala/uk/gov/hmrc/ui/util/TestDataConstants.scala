@@ -56,6 +56,7 @@ object TestDataConstants {
   final val utrRS: String                       = "5432167812"
   final val postcodeSL: String                  = "AA1 1AA"
   final val CRRelief: String                    = "Charities Relief"
+  final val IRRelief: String                    = "Intermediary Relief"
   final val validCRN: String                    = "SN898989"
 
   // -- Local

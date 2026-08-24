@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.pages.Single
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.marketValue
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
-import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomAmount, randomIntFromOne}
+import uk.gov.hmrc.ui.util.TestDataGenerator.generateRandomAmount
 
 object TotalMarketValuePage extends BasePage {
 

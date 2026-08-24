@@ -25,9 +25,9 @@ import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
 import uk.gov.hmrc.ui.pages.Sh03.{BeforeYouStart, CompanyDetails, RolePurchasingCompany}
-import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
+import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityAgent, checkYourAnswers, sh03}
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityAgent, sh03}
 
 class S10SH03AgentBulkSpec
     extends AnyFeatureSpec
