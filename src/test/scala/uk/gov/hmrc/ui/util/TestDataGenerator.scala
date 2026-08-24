@@ -19,7 +19,6 @@ package uk.gov.hmrc.ui.util
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import scala.util.Random
 

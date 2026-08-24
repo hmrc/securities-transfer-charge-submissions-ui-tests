@@ -74,7 +74,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario(

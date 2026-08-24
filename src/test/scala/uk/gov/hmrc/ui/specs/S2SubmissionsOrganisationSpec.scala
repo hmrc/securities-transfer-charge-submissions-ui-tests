@@ -67,7 +67,7 @@ class S2SubmissionsOrganisationSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
     Scenario(
@@ -95,7 +95,7 @@ class S2SubmissionsOrganisationSpec
       And("User selects and enters transfer details")
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
+      ReliefApplyingForPage.enterRelief(IRRelief)
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate()
       TaxRatePage.select(OneAndHalfRate)
@@ -157,7 +157,7 @@ class S2SubmissionsOrganisationSpec
       And("User selects and enters transfer details")
       ConnectedPersonsPage.select(ConnectedPersonsPage.No)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
+      ReliefApplyingForPage.enterRelief(IRRelief)
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate()
       TaxRatePage.select(OneAndHalfRate)
@@ -216,7 +216,7 @@ class S2SubmissionsOrganisationSpec
       And("User selects and enters transfer details")
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
+      ReliefApplyingForPage.enterRelief(IRRelief)
       BusinessBuyingInPage.enterValues()
       BuyDatePage.enterDate()
       TaxRatePage.select(OneAndHalfRate)

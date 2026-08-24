@@ -43,6 +43,23 @@ object CheckYourAnswersPage extends BasePage {
   var reliefMultiplier: Double          = 1
   var expectedPaymentDueDate: LocalDate = _
 
+  /** Set test data values used by checks on the "Check your answers" page. Centralises mutation so other page objects
+    * don't assign globals directly.
+    */
+  def setTestData(
+    considerationBD: BigDecimal = 0.00,
+    marketValueBD: BigDecimal = 0.00,
+    taxRateD: Double = 0.005,
+    reliefMultD: Double = 1.0,
+    expectedPaymentDateOpt: Option[LocalDate] = None
+  ): Unit = {
+    consideration = considerationBD
+    marketValue = marketValueBD
+    taxRate = taxRateD
+    reliefMultiplier = reliefMultD
+    expectedPaymentDateOpt.foreach(d => expectedPaymentDueDate = d)
+  }
+
   def readTaxDueText(): String = {
     val el   = driver.findElement(By.cssSelector("h2.govuk-heading-m"))
     val text = el.getText.trim
@@ -103,6 +120,10 @@ object CheckYourAnswersPage extends BasePage {
   def verifyTaxDue(): Unit = {
     val actualTaxDue   = readTaxDueAmount()
     logger.info(s"Actual tax due: $actualTaxDue")
+    logger.info(s"Consideration: $consideration")
+    logger.info(s"Market value: $marketValue")
+    logger.info(s"Tax rate: $taxRate")
+    logger.info(s"Relief multiplier: $reliefMultiplier")
     val taxableValue   = if (consideration > marketValue) consideration else marketValue
     val expectedTaxDue =
       (taxableValue * taxRate * reliefMultiplier).setScale(2, BigDecimal.RoundingMode.HALF_UP)

@@ -25,9 +25,9 @@ import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
 import uk.gov.hmrc.ui.pages.Sh03.{BeforeYouStart, CompanyDetails, RolePurchasingCompany}
-import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
+import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityOrganisation, checkYourAnswers, sh03}
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityOrganisation, sh03}
 
 class S09SH03BusinessBulkSpec
     extends AnyFeatureSpec
@@ -41,7 +41,7 @@ class S09SH03BusinessBulkSpec
 
   Feature("STC Bulk SH03 Business Journeys") {
 
-    Scenario("Bulk SH03 of a user as an Organisation - one valid row") {
+    Scenario("Bulk SH03 of a user as an Organisation - one valid row", Smoke) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityOrganisation)
 
