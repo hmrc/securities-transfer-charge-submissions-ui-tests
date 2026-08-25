@@ -28,21 +28,21 @@ object UploadFileTransfersPage extends BasePage {
   )
 
   object FileName {
-    val Filled            = "One valid row.xlsx"
-    val ErrorList         = "Error List.xlsx"
-    val ManyErrors        = "Many Errors.xlsx"
-    val Formatting        = "Formatting.pdf"
-    val Empty             = "Empty File.xlsx"
-    val EmptyRow          = "Empty Row.xlsx"
-    val PasswordProtected = "Password Protected.xlsx"
-    val Template          = "Error Template.xlsx"
-    val MoreThanMaxRows   = "10k+1 valid rows.xlsx"
+    val Filled            = "one_valid_row.xlsx"
+    val ErrorList         = "error_list.xlsx"
+    val ManyErrors        = "many_errors.xlsx"
+    val Formatting        = "formatting.pdf"
+    val Empty             = "empty_file.xlsx"
+    val EmptyRow          = "empty_row.xlsx"
+    val PasswordProtected = "password_protected.xlsx"
+    val Template          = "error_template.xlsx"
+    val MoreThanMaxRows   = "10k_plus_1_valid_rows.xlsx"
   }
 
   private def getTestDataPath(directory: String, fileName: String, prefix: String): String = {
     val dirSubPath   = prefix.toLowerCase
     val dirPath      = directory.toLowerCase
-    val resourcePath = s"/testData/$dirPath/$dirSubPath/$prefix $dirPath - $fileName"
+    val resourcePath = s"/testData/$dirPath/$dirSubPath/${prefix.toLowerCase}_${dirPath}_$fileName"
     val resource     = getClass.getResource(resourcePath)
 
     if (resource == null)
