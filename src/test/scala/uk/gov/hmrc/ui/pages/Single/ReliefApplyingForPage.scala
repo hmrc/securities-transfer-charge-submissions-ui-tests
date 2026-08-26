@@ -36,10 +36,7 @@ object ReliefApplyingForPage extends BasePage {
   def enterRelief(relief: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
     input(Locators.dropDownRelief, relief)
-    if (relief == CRRelief)
-      reliefMultiplier = 0.5
-    else
-      reliefMultiplier = 0
+    reliefMultiplier = 0
     continue()
     // additional continue is to select and continue to next page
     // check on other browsers
