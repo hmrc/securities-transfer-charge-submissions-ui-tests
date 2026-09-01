@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.pages
 
 import com.typesafe.scalalogging.LazyLogging
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait, WebDriverWait}
-import org.openqa.selenium.{By, JavascriptExecutor, WebDriver, WebElement}
+import org.openqa.selenium.{By, JavascriptExecutor, TimeoutException, WebDriver, WebElement}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.time.{Millis, Span}
@@ -92,9 +92,42 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def pageUrl: String
 //  def pageTitle: String
 
+  private def describeSelector(selector: By): String = selector match {
+    case by: By.ByCssSelector => s"cssSelector '${by.toString}'"
+    case by: By.ById          => s"id '${by.toString}'"
+    case by: By.ByXPath       => s"xpath '${by.toString}'"
+    case by: By.ByLinkText    => s"linkText '${by.toString}'"
+    case _                    => selector.toString
+  }
+
+  private def pageContext: String = {
+    val pageName = this.getClass.getSimpleName
+    val url      =
+      try getCurrentUrlInBrowser
+      catch { case _: Throwable => "unknown-url" }
+    val title    =
+      try getPageTitle
+      catch { case _: Throwable => "unknown-title" }
+    s"page=$pageName, url=$url, title=$title"
+  }
+
+  private def pageSourcePreview: String = {
+    val source =
+      try driver.getPageSource
+      catch { case _: Throwable => "<page source unavailable>" }
+    if (source.length > 500) source.take(500) + "..." else source
+  }
+
   /** Wait for visibility of an element */
   def waitForVisibilityOfElement(selector: By): WebElement =
-    w.until(ExpectedConditions.visibilityOfElementLocated(selector))
+    try w.until(ExpectedConditions.visibilityOfElementLocated(selector))
+    catch {
+      case e: TimeoutException =>
+        throw new TimeoutException(
+          s"Timed out waiting for visible element ${describeSelector(selector)} on $pageContext. Page source preview: $pageSourcePreview",
+          e
+        )
+    }
 
   /** Generic input method */
   def input(selector: By, value: String): Unit = {
@@ -174,7 +207,15 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   def getPageTitle: String           = driver.getTitle
 
   /** Wait for page to load */
-  def waitForPage(): Unit = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("footer")))
+  def waitForPage(): Unit =
+    try fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("footer")))
+    catch {
+      case e: TimeoutException =>
+        throw new TimeoutException(
+          s"Timed out waiting for the page footer on $pageContext. Page source preview: $pageSourcePreview",
+          e
+        )
+    }
 
   private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(30))
@@ -217,7 +258,14 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   def waitForPageTitleOneOf(expectedTitles: Seq[String]): Unit =
-    fluentWait.until((driver: WebDriver) => expectedTitles.contains(driver.getTitle))
+    try fluentWait.until((driver: WebDriver) => expectedTitles.contains(driver.getTitle))
+    catch {
+      case e: TimeoutException =>
+        throw new TimeoutException(
+          s"Timed out waiting for page title to be one of ${expectedTitles.mkString("[", ", ", "]")} on $pageContext. Page source preview: $pageSourcePreview",
+          e
+        )
+    }
 
   def verifyPageHeader(expectedHeader: String): Unit = {
     waitForVisibilityOfElement(Locators.txtHeader)
@@ -230,8 +278,16 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   def waitForElementToBeClickable(selector: By): WebElement =
-    new WebDriverWait(driver, Duration.ofSeconds(10))
-      .until(ExpectedConditions.elementToBeClickable(selector))
+    try
+      new WebDriverWait(driver, Duration.ofSeconds(10))
+        .until(ExpectedConditions.elementToBeClickable(selector))
+    catch {
+      case e: TimeoutException =>
+        throw new TimeoutException(
+          s"Timed out waiting for clickable element ${describeSelector(selector)} on $pageContext. Page source preview: $pageSourcePreview",
+          e
+        )
+    }
 
   def verifySuccessBannerMessage(successMessage: String): Unit = {
 

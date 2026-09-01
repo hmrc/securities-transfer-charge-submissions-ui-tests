@@ -33,7 +33,8 @@ object CheckYourAnswersPage extends BasePage {
   // placeholder yet to finalize the title
   val pageTitles: Seq[String] = Seq(
     "Check your answers" + serviceName,
-    "Check your answers - Securities Transfer (STF)" + serviceName
+    "Check your answers - Securities Transfer (STF)" + serviceName,
+    "Check your answers - Share buyback (SH03)" + serviceName
   )
 
   // Test data values
