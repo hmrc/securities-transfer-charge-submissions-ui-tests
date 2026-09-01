@@ -20,10 +20,10 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
-import uk.gov.hmrc.ui.pages.Sh03.*
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
 import uk.gov.hmrc.ui.pages.Sh03.RolePurchasingCompany.*
 import uk.gov.hmrc.ui.pages.Sh03.SharePurchase.ToPlaceIntoTreasury
+import uk.gov.hmrc.ui.pages.Sh03.*
 import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
@@ -39,14 +39,15 @@ class S7SH03BusinessSpec
     with ScreenshotOnFailure {
 
   Feature("SH03 Business Journeys") {
-    Scenario("Submission of a user as an Business", Smoke) {
+    Scenario("Submission of a user as a Business", Smoke) {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues()
@@ -59,31 +60,28 @@ class S7SH03BusinessSpec
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
       BuyDatePage.enterDate()
-      RolePurchasingCompany.select(Administrator)
+      RolePurchasingCompany.select()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business - No Treasury shares") {
+    Scenario("Submission of a user as a Business - No Treasury shares") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
-      CompanyDetails.enterValues()
-      SharePurchase.select()
-      TreasuryShares.select(TreasuryShares.No)
+      CompanyDetails.enterValues(CompanyDetails.No)
+      SharePurchase.select(ToPlaceIntoTreasury)
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
-      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
+      ApplyingForReliefPage.select(ApplyingForReliefPage.No)
       TransferDetailsPage.enterValues()
-      MaximumAmountShares.enterMaxValue()
-      MinimumAmountShares.enterMinValue()
       BuyDatePage.enterDate()
       RolePurchasingCompany.select(Secretary)
 
@@ -91,22 +89,24 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business  - To place into treasury") {
+    Scenario("Submission of a user as a Business - To place into treasury") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs("agent")
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues()
-      SharePurchase.select(ToPlaceIntoTreasury)
-      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
+      SharePurchase.select()
+      TreasuryShares.select(TreasuryShares.No)
+      ConnectedPersonsPage.select(ConnectedPersonsPage.No)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
-      TransferDetailsPage.enterValues()
+      ReliefApplyingForPage.enterRelief(IRRelief)
+      TransferDetailsPage.enterValues(false)
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
       BuyDatePage.enterDate()
@@ -116,23 +116,22 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business - No PLC") {
+    Scenario("Submission of a user as a Business - No PLC") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues(CompanyDetails.No)
-      SharePurchase.select()
-      TreasuryShares.select()
-      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
-      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
-      TransferDetailsPage.enterValues()
+      SharePurchase.select(ToPlaceIntoTreasury)
+      ConnectedPersonsPage.select(ConnectedPersonsPage.No)
+      ApplyingForReliefPage.select(ApplyingForReliefPage.No)
+      TransferDetailsPage.enterValues(false)
       BuyDatePage.enterDate()
       RolePurchasingCompany.select(Administrator)
 
@@ -140,14 +139,15 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business  - Receiver") {
+    Scenario("Submission of a user as a Business - Receiver") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues()
@@ -166,25 +166,22 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business  - Receiver manager") {
+    Scenario("Submission of a user as a Business - Receiver manager") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
-      CompanyDetails.enterValues()
-      SharePurchase.select()
-      TreasuryShares.select()
+      CompanyDetails.enterValues(CompanyDetails.No)
+      SharePurchase.select(ToPlaceIntoTreasury)
       ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
-      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
+      ApplyingForReliefPage.select(ApplyingForReliefPage.No)
       TransferDetailsPage.enterValues()
-      MaximumAmountShares.enterMaxValue()
-      MinimumAmountShares.enterMinValue()
       BuyDatePage.enterDate()
       RolePurchasingCompany.select(ReceiverManager)
 
@@ -192,23 +189,24 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business - CIC Manager") {
+    Scenario("Submission of a user as a Business - CIC Manager") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues()
       SharePurchase.select()
-      TreasuryShares.select()
-      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
+      TreasuryShares.select(TreasuryShares.No)
+      ConnectedPersonsPage.select(ConnectedPersonsPage.No)
       ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
-      TransferDetailsPage.enterValues()
+      ReliefApplyingForPage.enterRelief(IRRelief)
+      TransferDetailsPage.enterValues(false)
       MaximumAmountShares.enterMaxValue()
       MinimumAmountShares.enterMinValue()
       BuyDatePage.enterDate()
@@ -218,25 +216,22 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business  - UKSocietas") {
+    Scenario("Submission of a user as a Business - UKSocietas") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
-      CompanyDetails.enterValues()
-      SharePurchase.select()
-      TreasuryShares.select()
-      ConnectedPersonsPage.select(ConnectedPersonsPage.Yes)
-      ApplyingForReliefPage.select(ApplyingForReliefPage.Yes)
-      ReliefApplyingForPage.enterRelief(CRRelief)
-      TransferDetailsPage.enterValues()
-      MaximumAmountShares.enterMaxValue()
-      MinimumAmountShares.enterMinValue()
+      CompanyDetails.enterValues(CompanyDetails.No)
+      SharePurchase.select(ToPlaceIntoTreasury)
+      ConnectedPersonsPage.select(ConnectedPersonsPage.No)
+      ApplyingForReliefPage.select(ApplyingForReliefPage.No)
+      TransferDetailsPage.enterValues(false)
       BuyDatePage.enterDate()
       RolePurchasingCompany.select(UKSocietas)
 
@@ -244,14 +239,15 @@ class S7SH03BusinessSpec
       CheckYourAnswersPage.verifyDues(checkYourAnswers)
     }
 
-    Scenario("Submission of a user as an Business - Not Provided") {
+    Scenario("Submission of a user as a Business - Not Provided") {
       Given("User enters login using the Authority Wizard page")
-      AuthWizard.loginAs("organisation")
+      AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to SH03 start page")
       SubmissionsDashboardPage.createNewSh03()
       BeforeYouStart.clickOnContinue()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
+      AddAReference.enterValue()
 
       And("User selects and enters transfer details")
       CompanyDetails.enterValues()
