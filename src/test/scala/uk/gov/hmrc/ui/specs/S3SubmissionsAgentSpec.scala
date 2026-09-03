@@ -74,7 +74,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario(
@@ -113,7 +113,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - Edit and update buyer's & seller's address to non UK address") {
@@ -148,7 +148,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with non connected persons") {
@@ -185,7 +185,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues(false)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with no relief option") {
@@ -221,7 +221,7 @@ class S3SubmissionsAgentSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with other securities type") {
@@ -260,7 +260,7 @@ class S3SubmissionsAgentSpec
       TotalMarketValuePage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with other securities type for non connected persons") {
@@ -298,7 +298,7 @@ class S3SubmissionsAgentSpec
       HowMuchPaidPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
   }
 }
