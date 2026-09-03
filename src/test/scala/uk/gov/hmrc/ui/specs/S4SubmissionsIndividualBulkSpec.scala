@@ -24,9 +24,9 @@ import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
-import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
+import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.affinityIndividual
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityIndividual, checkYourAnswers}
 
 class S4SubmissionsIndividualBulkSpec
     extends AnyFeatureSpec
@@ -55,7 +55,7 @@ class S4SubmissionsIndividualBulkSpec
       WeAreCheckingYourFilePage.verify()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyBulkDues("£75.00", "31 January 2026")
     }
 
     Scenario("Bulk submission of a user as an Individual - less than 25 errors or fewer") {

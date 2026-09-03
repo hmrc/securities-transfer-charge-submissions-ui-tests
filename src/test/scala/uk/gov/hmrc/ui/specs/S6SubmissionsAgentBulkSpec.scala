@@ -24,7 +24,7 @@ import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
-import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
+import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
 import uk.gov.hmrc.ui.util.TestDataConstants.affinityAgent
 
@@ -56,7 +56,7 @@ class S6SubmissionsAgentBulkSpec
       AddAReference.enterValue()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyBulkDues("£2.00", "28 February 2026")
     }
 
     Scenario("Bulk submission of a user as an Agent - less than 25 errors or fewer") {

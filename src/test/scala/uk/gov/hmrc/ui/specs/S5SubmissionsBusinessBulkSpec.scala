@@ -24,7 +24,7 @@ import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
-import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
+import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
 import uk.gov.hmrc.ui.util.TestDataConstants.affinityOrganisation
 
@@ -55,7 +55,7 @@ class S5SubmissionsBusinessBulkSpec
       WeAreCheckingYourFilePage.verify()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyBulkDues("£125.00", "31 January 2026")
     }
 
     Scenario("Bulk submission of a user as an Organisation - less than 25 errors or fewer") {

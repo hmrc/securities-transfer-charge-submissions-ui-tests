@@ -67,7 +67,7 @@ class S1SubmissionsIndividualSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
 
       Then("User verifies success message is displayed")
       SubmissionCompletePage.validateSubmissionCompleteMessage(SubmissionComplete)
@@ -106,7 +106,7 @@ class S1SubmissionsIndividualSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual - Edit and update buyer's & seller's address to non UK address") {
@@ -138,7 +138,7 @@ class S1SubmissionsIndividualSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with non connected persons") {
@@ -168,7 +168,7 @@ class S1SubmissionsIndividualSpec
       TransferDetailsPage.enterValues(false)
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with no relief option") {
@@ -197,7 +197,7 @@ class S1SubmissionsIndividualSpec
       TransferDetailsPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with other securities type") {
@@ -229,7 +229,7 @@ class S1SubmissionsIndividualSpec
       TotalMarketValuePage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with other securities type for non connected persons") {
@@ -260,7 +260,7 @@ class S1SubmissionsIndividualSpec
       HowMuchPaidPage.enterValues()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyDues()
     }
   }
 }

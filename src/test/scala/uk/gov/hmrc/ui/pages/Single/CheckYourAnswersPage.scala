@@ -44,9 +44,6 @@ object CheckYourAnswersPage extends BasePage {
   var reliefMultiplier: Double          = 1
   var expectedPaymentDueDate: LocalDate = _
 
-  /** Set test data values used by checks on the "Check your answers" page. Centralises mutation so other page objects
-    * don't assign globals directly.
-    */
   def setTestData(
     considerationBD: BigDecimal = 0.00,
     marketValueBD: BigDecimal = 0.00,
@@ -109,15 +106,6 @@ object CheckYourAnswersPage extends BasePage {
 
   def readPaymentDueDateStr: String = readPaymentDueDate().toString
 
-  def verifyDues(expectedTitle: String): Unit = {
-    verifyPageTitleIsOneOf(pageTitles)
-
-    verifyTaxDue()
-    verifyPaymentDue()
-
-    continue()
-  }
-
   def verifyTaxDue(): Unit = {
     val actualTaxDue   = readTaxDueAmount()
     logger.info(s"Actual tax due: $actualTaxDue")
@@ -132,10 +120,42 @@ object CheckYourAnswersPage extends BasePage {
     assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
   }
 
+  def verifyBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
+    val actualTaxDue = readTaxDueAmount()
+    logger.info(s"Actual tax due: $actualTaxDue")
+    logger.info(s"Expected tax due: $expectedTaxDue")
+    assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
+  }
+
   def verifyPaymentDue(): Unit = {
     val actualPaymentDueDate = readPaymentDueDate()
     logger.info(s"Actual payment due date: $actualPaymentDueDate")
     logger.info(s"Expected payment due date: $expectedPaymentDueDate")
     assert(actualPaymentDueDate == expectedPaymentDueDate, s"Expected payment due date not found")
+  }
+
+  def verifyBulkPaymentDue(expectedPaymentDueDate: LocalDate): Unit = {
+    val actualPaymentDueDate = readPaymentDueDate()
+    logger.info(s"Actual payment due date: $actualPaymentDueDate")
+    logger.info(s"Expected payment due date: $expectedPaymentDueDate")
+    assert(actualPaymentDueDate == expectedPaymentDueDate, s"Expected payment due date not found")
+  }
+
+  def verifyDues(): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
+
+    verifyTaxDue()
+    verifyPaymentDue()
+
+    continue()
+  }
+
+  def verifyBulkDues(taxDue: String, paymentDueDate: String): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
+
+    verifyBulkTaxDue(BigDecimal(taxDue.stripPrefix("£").replace(",", "")))
+    verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH)))
+
+    continue()
   }
 }
