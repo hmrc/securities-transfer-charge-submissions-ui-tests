@@ -21,7 +21,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
-import scala.runtime.stdLibPatches.Predef.assert
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -38,8 +37,18 @@ object CheckYourAnswersPage extends BasePage {
   )
 
   // Test data values
-  var consideration: BigDecimal         = 0.00
-  var marketValue: BigDecimal           = 0.00
+  private val currencyPattern                  = "£\\s*([0-9,]+(?:\\.[0-9]{1,2})?)".r
+  private val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH)
+
+  private def parseCurrency(text: String): BigDecimal =
+    currencyPattern
+      .findFirstMatchIn(text)
+      .map(_.group(1))
+      .map(s => BigDecimal(s.replace(",", "")))
+      .getOrElse(throw new AssertionError(s"Could not parse currency from '$text'"))
+
+  var consideration: BigDecimal         = BigDecimal(0)
+  var marketValue: BigDecimal           = BigDecimal(0)
   var taxRate: Double                   = 0.005
   var reliefMultiplier: Double          = 1
   var expectedPaymentDueDate: LocalDate = _
@@ -77,18 +86,7 @@ object CheckYourAnswersPage extends BasePage {
 
     logger.info(s"Tax due raw text: $text")
 
-    val pattern = "£\\s*([0-9,]+(?:\\.[0-9]{1,2})?)".r
-
-    val amountStr = pattern
-      .findFirstMatchIn(text)
-      .map(_.group(1))
-      .getOrElse(
-        throw new AssertionError(
-          s"Could not parse tax due amount from '$text'"
-        )
-      )
-
-    BigDecimal(amountStr.replace(",", ""))
+    parseCurrency(text)
   }
 
   def readPaymentDueText(): String = {
@@ -100,8 +98,7 @@ object CheckYourAnswersPage extends BasePage {
 
   def readPaymentDueDate(): LocalDate = {
     val text = readPaymentDueText()
-    val fmt  = DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH)
-    LocalDate.parse(text, fmt)
+    LocalDate.parse(text, dateFormatter)
   }
 
   def readPaymentDueDateStr: String = readPaymentDueDate().toString
@@ -153,8 +150,8 @@ object CheckYourAnswersPage extends BasePage {
   def verifyBulkDues(taxDue: String, paymentDueDate: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
 
-    verifyBulkTaxDue(BigDecimal(taxDue.stripPrefix("£").replace(",", "")))
-    verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, DateTimeFormatter.ofPattern("d MMMM uuuu", Locale.ENGLISH)))
+    verifyBulkTaxDue(parseCurrency(taxDue))
+    verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
 
     continue()
   }
