@@ -40,6 +40,7 @@ class S1SubmissionsIndividualSpec
     with ScreenshotOnFailure {
 
   Feature("STC Individual Journeys") {
+
     Scenario("Submission of a user as an Individual", Smoke) {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityIndividual)

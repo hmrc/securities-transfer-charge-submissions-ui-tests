@@ -89,6 +89,20 @@ object CheckYourAnswersPage extends BasePage {
     parseCurrency(text)
   }
 
+  def readTaxDueBulkAmount(): BigDecimal = {
+
+    val element = w.until(
+      ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//h1[contains(normalize-space(.), 'Tax due:')]")
+      )
+    )
+    val text    = element.getText
+
+    logger.info(s"Bulk Tax due raw text: $text")
+
+    parseCurrency(text)
+  }
+
   def readPaymentDueText(): String = {
     val el   = driver.findElement(By.xpath("//p[contains(., 'Payment due by')]/strong"))
     val text = el.getText.trim
@@ -117,7 +131,14 @@ object CheckYourAnswersPage extends BasePage {
     assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
   }
 
-  def verifyBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
+  def verifyBusinessBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
+    val actualTaxDue = readTaxDueBulkAmount()
+    logger.info(s"Actual tax due: $actualTaxDue")
+    logger.info(s"Expected tax due: $expectedTaxDue")
+    assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
+  }
+
+  def verifyAgentBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
     val actualTaxDue = readTaxDueAmount()
     logger.info(s"Actual tax due: $actualTaxDue")
     logger.info(s"Expected tax due: $expectedTaxDue")
@@ -147,12 +168,17 @@ object CheckYourAnswersPage extends BasePage {
     continue()
   }
 
+  def verifyBusinessBulkDues(taxDue: String, paymentDueDate: String): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
+    verifyBusinessBulkTaxDue(parseCurrency(taxDue))
+    verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
+    continue()
+  }
+
   def verifyBulkDues(taxDue: String, paymentDueDate: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-
-    verifyBulkTaxDue(parseCurrency(taxDue))
+    verifyAgentBulkTaxDue(parseCurrency(taxDue))
     verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
-
     continue()
   }
 }

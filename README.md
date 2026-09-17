@@ -8,7 +8,7 @@ UI journey tests suite for the [securities-transfer-charge-submissions](https://
 ### Services
 
 Start Mongo Docker container as follows:
-
+  
 ```bash
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:6.0
 ```

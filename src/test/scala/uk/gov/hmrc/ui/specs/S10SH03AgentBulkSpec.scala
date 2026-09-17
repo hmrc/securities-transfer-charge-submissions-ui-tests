@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
+/*
+ * Copyright 2026 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package uk.gov.hmrc.ui.specs
 
 import org.scalatest.featurespec.AnyFeatureSpec
@@ -24,10 +40,11 @@ import uk.gov.hmrc.ui.pages.Bulk.*
 import uk.gov.hmrc.ui.pages.Bulk.UploadFileTransfersPage.*
 import uk.gov.hmrc.ui.pages.Common.AboutYourSecuritiesTransfersPage.More
 import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
-import uk.gov.hmrc.ui.pages.Sh03.{BeforeYouStart, CompanyDetails, RolePurchasingCompany}
-import uk.gov.hmrc.ui.pages.Single.SubmissionsDashboardPage
+import uk.gov.hmrc.ui.pages.Sh03.RolePurchasingCompany.{NotProvided, UKSocietas}
+import uk.gov.hmrc.ui.pages.Sh03.{BeforeYouStart, CompanyDetails, RolePurchasingCompany, YouCannotSubmitThisForm}
+import uk.gov.hmrc.ui.pages.Single.{CheckYourAnswersPage, SubmissionsDashboardPage}
 import uk.gov.hmrc.ui.tags.{QAOnly, Smoke}
-import uk.gov.hmrc.ui.util.TestDataConstants.{affinityAgent, sh03}
+import uk.gov.hmrc.ui.util.TestDataConstants.{CannotSubmitForm, affinityAgent, sh03}
 
 class S10SH03AgentBulkSpec
     extends AnyFeatureSpec
@@ -60,7 +77,51 @@ class S10SH03AgentBulkSpec
       RolePurchasingCompany.select()
 
       Then("User verifies check your answers for details entered")
-//      CheckYourAnswersPage.verifyDues(checkYourAnswers)
+      CheckYourAnswersPage.verifyBulkDues("£1.00", "12 May 2026")
+    }
+
+    Scenario("Bulk SH03 of a user as an Agent - one valid row-UKSocietas", Smoke) {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs(affinityAgent)
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSh03()
+      BeforeYouStart.clickOnContinue()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      AddAReference.enterValue()
+      CompanyDetails.enterValues(CompanyDetails.Yes, false)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Filled, sh03)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+      RolePurchasingCompany.select(UKSocietas)
+
+      Then("User verifies check your answers for details entered")
+      CheckYourAnswersPage.verifyBulkDues("£1.00", "12 May 2026")
+    }
+
+    Scenario("Bulk SH03 of a user as an Agent - one valid row-Not Provided", Smoke) {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAs(affinityAgent)
+
+      When("User navigates to Submissions start page")
+      SubmissionsDashboardPage.createNewSh03()
+      BeforeYouStart.clickOnContinue()
+      AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
+      AddAReference.enterValue()
+      CompanyDetails.enterValues(CompanyDetails.Yes, false)
+      HowUseTemplateTransfersPage.selectContinue()
+
+      And("User uploads a file")
+      UploadFileTransfersPage.chooseFile(affinityAgent, FileName.Filled, sh03)
+      UploadFileTransfersPage.selectUpload()
+      WeAreCheckingYourFilePage.verify()
+      RolePurchasingCompany.select(NotProvided)
+
+      Then("User verifies check your answers for details entered")
+      YouCannotSubmitThisForm.verify(CannotSubmitForm)
     }
 
     Scenario("Bulk SH03 of a user as an Agent - less than 25 errors or fewer") {
