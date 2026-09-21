@@ -81,25 +81,8 @@ object CheckYourAnswersPage extends BasePage {
         By.xpath("//h2[contains(normalize-space(.), 'Tax due:')]")
       )
     )
-
-    val text = element.getText
-
-    logger.info(s"Tax due raw text: $text")
-
-    parseCurrency(text)
-  }
-
-  def readTaxDueBulkAmount(): BigDecimal = {
-
-    val element = w.until(
-      ExpectedConditions.visibilityOfElementLocated(
-        By.xpath("//h1[contains(normalize-space(.), 'Tax due:')]")
-      )
-    )
     val text    = element.getText
-
-    logger.info(s"Bulk Tax due raw text: $text")
-
+    logger.info(s"Tax due raw text: $text")
     parseCurrency(text)
   }
 
@@ -131,14 +114,7 @@ object CheckYourAnswersPage extends BasePage {
     assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
   }
 
-  def verifyBusinessBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
-    val actualTaxDue = readTaxDueBulkAmount()
-    logger.info(s"Actual tax due: $actualTaxDue")
-    logger.info(s"Expected tax due: $expectedTaxDue")
-    assert(actualTaxDue == expectedTaxDue, s"Expected tax due amount not found")
-  }
-
-  def verifyAgentBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
+  def verifyBulkTaxDue(expectedTaxDue: BigDecimal): Unit = {
     val actualTaxDue = readTaxDueAmount()
     logger.info(s"Actual tax due: $actualTaxDue")
     logger.info(s"Expected tax due: $expectedTaxDue")
@@ -161,23 +137,14 @@ object CheckYourAnswersPage extends BasePage {
 
   def verifyDues(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-
     verifyTaxDue()
     verifyPaymentDue()
-
-    continue()
-  }
-
-  def verifyBusinessBulkDues(taxDue: String, paymentDueDate: String): Unit = {
-    verifyPageTitleIsOneOf(pageTitles)
-    verifyBusinessBulkTaxDue(parseCurrency(taxDue))
-    verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
     continue()
   }
 
   def verifyBulkDues(taxDue: String, paymentDueDate: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    verifyAgentBulkTaxDue(parseCurrency(taxDue))
+    verifyBulkTaxDue(parseCurrency(taxDue))
     verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
     continue()
   }
