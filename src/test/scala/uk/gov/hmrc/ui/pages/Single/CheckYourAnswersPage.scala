@@ -81,11 +81,8 @@ object CheckYourAnswersPage extends BasePage {
         By.xpath("//h2[contains(normalize-space(.), 'Tax due:')]")
       )
     )
-
-    val text = element.getText
-
+    val text    = element.getText
     logger.info(s"Tax due raw text: $text")
-
     parseCurrency(text)
   }
 
@@ -140,19 +137,15 @@ object CheckYourAnswersPage extends BasePage {
 
   def verifyDues(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-
     verifyTaxDue()
     verifyPaymentDue()
-
     continue()
   }
 
   def verifyBulkDues(taxDue: String, paymentDueDate: String): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-
     verifyBulkTaxDue(parseCurrency(taxDue))
     verifyBulkPaymentDue(LocalDate.parse(paymentDueDate, dateFormatter))
-
     continue()
   }
 }
