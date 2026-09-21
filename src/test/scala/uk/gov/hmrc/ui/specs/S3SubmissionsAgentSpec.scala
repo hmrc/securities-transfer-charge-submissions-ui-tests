@@ -21,7 +21,7 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard, SubmissionConfirmationPage}
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{No, Yes}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.pages.Single.*
@@ -75,6 +75,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario(
@@ -114,6 +115,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - Edit and update buyer's & seller's address to non UK address") {
@@ -149,6 +151,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with non connected persons") {
@@ -186,6 +189,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with no relief option") {
@@ -222,6 +226,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with other securities type") {
@@ -261,6 +266,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent with other securities type for non connected persons") {
@@ -299,6 +305,7 @@ class S3SubmissionsAgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
   }
 }

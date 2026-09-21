@@ -21,7 +21,7 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard, SubmissionConfirmationPage}
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{No, Yes}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
 import uk.gov.hmrc.ui.pages.Single.*
@@ -68,6 +68,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario(
@@ -104,6 +105,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Organisation - Edit and update buyer's & seller's address to non UK address") {
@@ -136,6 +138,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Organisation with non connected persons") {
@@ -166,6 +169,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Organisation with no relief option") {
@@ -195,6 +199,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Organisation with other securities type") {
@@ -227,6 +232,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Organisation with other securities type for non connected persons") {
@@ -258,6 +264,7 @@ class S2SubmissionsOrganisationSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
   }
 }
