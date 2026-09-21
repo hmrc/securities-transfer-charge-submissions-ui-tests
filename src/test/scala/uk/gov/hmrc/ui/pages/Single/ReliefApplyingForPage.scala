@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.pages.Single
 
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.Single.CheckYourAnswersPage.reliefMultiplier
-import uk.gov.hmrc.ui.util.TestDataConstants.{CRRelief, serviceName}
+import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object ReliefApplyingForPage extends BasePage {
 
