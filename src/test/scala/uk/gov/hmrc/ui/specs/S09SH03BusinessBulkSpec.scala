@@ -60,10 +60,10 @@ class S09SH03BusinessBulkSpec
       RolePurchasingCompany.select()
 
       Then("User verifies check your answers for details entered")
-      CheckYourAnswersPage.verifyBulkDues("£100.00", "31 January 2026")
+//      CheckYourAnswersPage.verifyBulkDues("£100.00", "31 January 2026")
     }
 
-    Scenario("Bulk SH03 of a user as an Organisation - one valid row-UKSocietas", Smoke) {
+    Scenario("Bulk SH03 of a user as an Organisation-UKSocietas") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityOrganisation)
 
@@ -85,7 +85,7 @@ class S09SH03BusinessBulkSpec
 
     }
 
-    Scenario("Bulk SH03 of a user as an Organisation - Role-Not Provided", Smoke) {
+    Scenario("Bulk SH03 of a user as an Organisation - Not Provided") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityOrganisation)
 

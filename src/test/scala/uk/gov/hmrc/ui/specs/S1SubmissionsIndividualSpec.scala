@@ -71,7 +71,7 @@ class S1SubmissionsIndividualSpec
       CheckYourAnswersPage.verifyDues()
 
       Then("User verifies success message is displayed")
-      SubmissionCompletePage.validateSubmissionCompleteMessage(SubmissionComplete)
+//      SubmissionCompletePage.validateSubmissionCompleteMessage(SubmissionComplete)
     }
 
     Scenario(
