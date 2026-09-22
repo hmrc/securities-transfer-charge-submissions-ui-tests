@@ -21,10 +21,10 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard, SubmissionCompletePage}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AuthWizard, SubmissionConfirmationPage}
+import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.pages.Single.SecuritiesTypePage.{No, Yes}
 import uk.gov.hmrc.ui.pages.Single.TaxRatePage.{HalfRate, OneAndHalfRate}
-import uk.gov.hmrc.ui.pages.Single.*
 import uk.gov.hmrc.ui.tags.Smoke
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, getUKPostCode}
@@ -69,6 +69,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
 
       Then("User verifies success message is displayed")
 //      SubmissionCompletePage.validateSubmissionCompleteMessage(SubmissionComplete)
@@ -108,6 +109,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual - Edit and update buyer's & seller's address to non UK address") {
@@ -140,6 +142,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with non connected persons") {
@@ -170,6 +173,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with no relief option") {
@@ -199,6 +203,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with other securities type") {
@@ -231,6 +236,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Individual with other securities type for non connected persons") {
@@ -262,6 +268,7 @@ class S1SubmissionsIndividualSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
   }
 }
