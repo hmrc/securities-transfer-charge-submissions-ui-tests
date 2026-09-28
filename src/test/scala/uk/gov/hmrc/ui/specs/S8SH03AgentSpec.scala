@@ -20,7 +20,7 @@ import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
-import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard}
+import uk.gov.hmrc.ui.pages.Common.{AboutYourSecuritiesTransfersPage, AddAReference, AuthWizard, SubmissionConfirmationPage}
 import uk.gov.hmrc.ui.pages.Sh03.RolePurchasingCompany.*
 import uk.gov.hmrc.ui.pages.Sh03.SharePurchase.ToPlaceIntoTreasury
 import uk.gov.hmrc.ui.pages.Sh03.*
@@ -64,6 +64,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - No Treasury shares") {
@@ -87,6 +88,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - To place into treasury") {
@@ -114,6 +116,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - No PLC") {
@@ -137,6 +140,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - Receiver") {
@@ -164,6 +168,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - Receiver manager") {
@@ -187,6 +192,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - CIC Manager") {
@@ -214,6 +220,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - UKSocietas") {
@@ -237,6 +244,7 @@ class S8SH03AgentSpec
 
       Then("User verifies check your answers for details entered")
       CheckYourAnswersPage.verifyDues()
+      SubmissionConfirmationPage.verifyDues()
     }
 
     Scenario("Submission of a user as an Agent - Not Provided") {
