@@ -32,7 +32,5 @@ object AddressCountryPage extends BasePage {
     verifyPageTitleIsOneOf(pageTitles)
     input(Locators.dropDownCountry, country)
     continue()
-    // First continue to select value from dropdown
-    continue()
   }
 }

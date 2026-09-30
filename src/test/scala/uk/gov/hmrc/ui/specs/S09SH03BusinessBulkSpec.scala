@@ -63,7 +63,7 @@ class S09SH03BusinessBulkSpec
       CheckYourAnswersPage.verifyBulkDues("£100.00", "31 January 2026")
     }
 
-    Scenario("Bulk SH03 of a user as an Organisation-UKSocietas") {
+    Scenario("Bulk SH03 of a user as an Organisation - UKSocietas") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityOrganisation)
 
