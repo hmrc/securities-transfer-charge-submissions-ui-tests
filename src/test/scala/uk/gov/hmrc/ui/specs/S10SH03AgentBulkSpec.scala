@@ -64,7 +64,7 @@ class S10SH03AgentBulkSpec
       CheckYourAnswersPage.verifyBulkDues("£1.00", "12 May 2026")
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - one valid row-UKSocietas", Smoke) {
+    Scenario("Bulk SH03 of a user as an Agent - UKSocietas") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityAgent)
 
@@ -86,7 +86,7 @@ class S10SH03AgentBulkSpec
       CheckYourAnswersPage.verifyBulkDues("£1.00", "12 May 2026")
     }
 
-    Scenario("Bulk SH03 of a user as an Agent - one valid row-Not Provided", Smoke) {
+    Scenario("Bulk SH03 of a user as an Agent - Not Provided") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAs(affinityAgent)
 
