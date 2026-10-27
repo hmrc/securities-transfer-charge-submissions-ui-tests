@@ -45,7 +45,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -85,7 +85,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -123,7 +123,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -159,7 +159,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -197,7 +197,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -234,7 +234,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 
@@ -274,7 +274,7 @@ class S3SubmissionsAgentSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       AddAReference.enterValue()
 

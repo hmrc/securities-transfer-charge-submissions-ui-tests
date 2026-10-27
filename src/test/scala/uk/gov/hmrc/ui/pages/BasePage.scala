@@ -42,6 +42,9 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   object Locators {
     val fileInput                    = "#file-input-input"
     val btnContinue                  = ".govuk-button"
+    val btnContinueStfInd            = "//a[normalize-space()='Tell us about a securities transfer (STF)']"
+    val btnContinueStfOrgAndAgent    = "(//a[normalize-space()='securities transfer (STF)'])[1]"
+    val btnContinueSho3              = "//a[normalize-space()='share buyback (SH03)']"
     val btnReturn                    = ".govuk-button.govuk-button--secondary"
     val btnUpload                    = "button[type='submit'].govuk-button"
     val lnkBack                      = "Back"
@@ -160,26 +163,42 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
   }
 
   /** Specific actions */
-  def clickSubmitButton(): Unit          =
+  def clickSubmitButton(): Unit =
     click(By.cssSelector(Locators.btnSubmit))
-  def clickBackLink(): Unit              =
+
+  def clickBackLink(): Unit =
     click(By.linkText(Locators.lnkBack))
-  def clickBackToFileUpload(): Unit      =
+
+  def clickBackToFileUpload(): Unit =
     click(By.linkText(Locators.lnkBackToFileUpload))
-  def continue(): Unit                   =
+
+  def continue(): Unit =
     click(By.cssSelector(Locators.btnContinue))
-  def secondaryContinue(): Unit          =
-    click(By.cssSelector(Locators.btnReturn))
-  def saveAndContinue(): Unit            =
+
+  def continueStfInd(): Unit =
+    click(By.xpath(Locators.btnContinueStfInd))
+
+  def continueStfOrgAndAgent(): Unit =
+    click(By.xpath(Locators.btnContinueStfOrgAndAgent))
+
+  def continueSho3(): Unit =
+    click(By.xpath(Locators.btnContinueSho3))
+
+  def saveAndContinue(): Unit =
     click(By.cssSelector(Locators.btnContinue))
-  def saveAndReturnToDashboard(): Unit   =
+
+  def saveAndReturnToDashboard(): Unit =
     click(By.cssSelector(Locators.btnContinue))
-  def acceptAndContinue(): Unit          =
+
+  def acceptAndContinue(): Unit =
     click(By.cssSelector(Locators.btnContinue))
-  def header(): Unit                     =
+
+  def header(): Unit =
     click(By.cssSelector(Locators.lnkHeader))
-  def removeFile(): Unit                 =
+
+  def removeFile(): Unit =
     click(By.cssSelector(Locators.lnkRemoveFile))
+
   def uploadFile(filePath: String): Unit = {
     val js = driver.asInstanceOf[JavascriptExecutor]
     js.executeScript(

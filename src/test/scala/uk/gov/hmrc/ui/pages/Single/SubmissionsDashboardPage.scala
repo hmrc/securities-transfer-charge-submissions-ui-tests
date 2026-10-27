@@ -21,19 +21,24 @@ import uk.gov.hmrc.ui.util.TestDataConstants.serviceName
 
 object SubmissionsDashboardPage extends BasePage {
 
-  override def pageUrl: String = "/securities-transfer-charge/submissions-dashboard"
+  override def pageUrl: String = "/securities-transfer-charge/dashboard"
 
   val pageTitles: Seq[String] = Seq(
-    "Submissions" + serviceName
+    "Dashboard" + serviceName
   )
 
-  def createNewSubmission(): Unit = {
+  def createNewSubmissionInd(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    continue()
+    continueStfInd()
+  }
+
+  def createNewSubmissionOrgAndAgent(): Unit = {
+    verifyPageTitleIsOneOf(pageTitles)
+    continueStfOrgAndAgent()
   }
 
   def createNewSh03(): Unit = {
     verifyPageTitleIsOneOf(pageTitles)
-    secondaryContinue()
+    continueSho3()
   }
 }
