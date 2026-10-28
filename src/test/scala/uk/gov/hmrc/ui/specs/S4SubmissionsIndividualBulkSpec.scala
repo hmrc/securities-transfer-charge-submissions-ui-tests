@@ -45,7 +45,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -63,7 +63,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -81,7 +81,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -99,7 +99,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -117,7 +117,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -135,7 +135,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -153,7 +153,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -171,7 +171,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -189,7 +189,7 @@ class S4SubmissionsIndividualBulkSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 

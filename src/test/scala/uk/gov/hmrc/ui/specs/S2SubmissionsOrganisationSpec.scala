@@ -45,7 +45,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -78,7 +78,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.clickEnterTheAddressManually()
       AddressCountryPage.enterCountry(ukCountry)
@@ -113,7 +113,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.clickEnterTheAddressManually()
       AddressCountryPage.enterCountry(nonUkCountry)
@@ -146,7 +146,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -177,7 +177,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -207,7 +207,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -240,7 +240,7 @@ class S2SubmissionsOrganisationSpec
       AuthWizard.loginAs(affinityOrganisation)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 

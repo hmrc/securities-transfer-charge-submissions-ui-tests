@@ -46,7 +46,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -82,7 +82,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.clickEnterTheAddressManually()
       AddressCountryPage.enterCountry(ukCountry)
@@ -117,7 +117,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Edit Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.clickEnterTheAddressManually()
       AddressCountryPage.enterCountry(nonUkCountry)
@@ -150,7 +150,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -181,7 +181,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -211,7 +211,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 
@@ -244,7 +244,7 @@ class S1SubmissionsIndividualSpec
       AuthWizard.loginAs(affinityIndividual)
 
       When("User navigates to Submissions start page - Buyer's details")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionInd()
       AboutYourSecuritiesTransfersPage.selectOneOrMore()
       ConfirmAddressPage.confirm()
 

@@ -45,7 +45,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -64,7 +64,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -82,7 +82,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -100,7 +100,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -118,7 +118,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -136,7 +136,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -154,7 +154,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -172,7 +172,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
@@ -190,7 +190,7 @@ class S6SubmissionsAgentBulkSpec
       AuthWizard.loginAs(affinityAgent)
 
       When("User navigates to Submissions start page")
-      SubmissionsDashboardPage.createNewSubmission()
+      SubmissionsDashboardPage.createNewSubmissionOrgAndAgent()
       AboutYourSecuritiesTransfersPage.selectOneOrMore(More)
       HowUseTemplateTransfersPage.selectContinue()
 
