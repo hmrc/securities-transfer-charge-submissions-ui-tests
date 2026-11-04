@@ -32,19 +32,29 @@ object AuthWizard extends BasePage {
 
   val url: String = s"${Env.baseUrl}"
 
-  val redirectUrl: By     = By.id("redirectionUrl")
-  val affinityGroup: By   = By.id("affinityGroupSelect")
-  val enrolmentKey: By    = By.id("enrolment[0].name")
-  val identifierName: By  = By.id("input-0-0-name")
-  val identifierValue: By = By.id("input-0-0-value")
-  val btnSubmit: By       = By.id("submit")
+  val redirectUrl: By               = By.id("redirectionUrl")
+  val affinityGroup: By             = By.id("affinityGroupSelect")
+  val enrolmentKey: By              = By.id("enrolment[0].name")
+  val identifierName: By            = By.id("input-0-0-name")
+  val identifierValue: By           = By.id("input-0-0-value")
+  val identifierniniValue: By       = By.id("nino")
+  val identifiergivennameValue: By  = By.id("itmp.givenName")
+  val identifierfamilynameValue: By = By.id("itmp.familyName")
+
+  val btnSubmit: By = By.id("submit")
 
   def loginAs(userType: String): Unit = {
     AuthWizard.navigateToPage(url + Urls.SUBMISSION)
     driver.findElement(affinityGroup).sendKeys(userType)
-    driver.findElement(enrolmentKey).sendKeys(enrolmentsEnrolmentKey)
-    driver.findElement(identifierName).sendKeys(enrolmentsIdentifierName)
-    driver.findElement(identifierValue).sendKeys(enrolmentsIdentifierValue)
+    if (userType == affinityIndividual)
+      {
+        driver.findElement(identifierniniValue).sendKeys(enrolmentsIdentifierNinoValue)
+        driver.findElement(identifiergivennameValue).sendKeys(enrolmentsIdentifierGivenNameValue)
+        driver.findElement(identifierfamilynameValue).sendKeys(enrolmentsIdentifierFamilyNameValue)
+      }
+      driver.findElement(enrolmentKey).sendKeys(enrolmentsEnrolmentKey)
+      driver.findElement(identifierName).sendKeys(enrolmentsIdentifierName)
+      driver.findElement(identifierValue).sendKeys(enrolmentsIdentifierValue)
     click(btnSubmit)
   }
 }

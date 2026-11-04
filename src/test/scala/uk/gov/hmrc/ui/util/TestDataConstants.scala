@@ -30,9 +30,12 @@ object TestDataConstants {
   final val sh03: String = "SH03"
 
   // -- Enrolment
-  final val enrolmentsEnrolmentKey: String    = "HMRC-STC-ORG"
-  final val enrolmentsIdentifierName: String  = "STCID"
-  final val enrolmentsIdentifierValue: String = "XASTC0000000009"
+  final val enrolmentsEnrolmentKey: String              = "HMRC-STC-ORG"
+  final val enrolmentsIdentifierName: String            = "STCID"
+  final val enrolmentsIdentifierValue: String           = "XASTC0000000009"
+  final val enrolmentsIdentifierNinoValue: String       = "AB123456C"
+  final val enrolmentsIdentifierGivenNameValue: String  = "TEST GIVEN NAME"
+  final val enrolmentsIdentifierFamilyNameValue: String = "TEST FAMILY NAME "
 
   // ==== Test data
   // -- Common
